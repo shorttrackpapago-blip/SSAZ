@@ -82,7 +82,7 @@ Until the URL is filled in, the page shows a fake DOS error explaining that the 
 2. Open `js/gallery.js` and edit the `PHOTOS` array at the top. Each photo is one line:
 
    ```js
-   { file: "2019-bonfire.jpg", caption: "Nobody remembers this", year: 2019 },
+   { file: "2019-bonfire.jpg", caption: "Nobody remembers this" },
    ```
 3. Delete the `placeholder-XX.png` lines, and the placeholder files, once you have real ones.
 
