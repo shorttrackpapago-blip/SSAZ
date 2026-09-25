@@ -30,16 +30,6 @@
   .stamp-no { display: inline-block; border: 4px double var(--berry); color: var(--berry); font-family: var(--cond); font-size: 22px; padding: 2px 10px; transform: rotate(-6deg); margin: 6px 0 2px; }
   .hero-wine img { background: none; border: 0; transform: rotate(-4deg); }
   .misattr p { text-decoration: line-through; text-decoration-color: var(--berry); text-decoration-thickness: 2px; }
-  /* floating cutout over the banner, same hover behavior as the camp hotspots */
-  .float-babe { position: absolute; right: 3%; top: 112px; width: 120px; z-index: 25; display: block; background: none; transition: transform .12s steps(2); }
-  .float-babe img { display: block; width: 100%; height: auto; filter: drop-shadow(5px 5px 0 var(--navy)); }
-  .float-babe:hover, .float-babe:focus-visible { background: none; animation: babe-bounce .45s steps(3) infinite; }
-  .float-babe:hover img, .float-babe:focus-visible img { filter: drop-shadow(3px 0 0 #FFD628) drop-shadow(-3px 0 0 #FFD628) drop-shadow(0 3px 0 #FFD628) drop-shadow(0 -3px 0 #FFD628) drop-shadow(5px 5px 0 var(--navy)); }
-  .float-babe:focus-visible { outline: 4px dashed #FFD628; outline-offset: 4px; }
-  @keyframes babe-bounce { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-12px) rotate(2deg); } }
-  .float-babe::after { content: attr(data-label); position: absolute; left: 50%; top: 100%; transform: translate(-50%, 4px); background: #ffffe1; color: #000; border: 1px solid #000; box-shadow: 2px 2px 0 #000; font: bold 12px Tahoma, Arial, sans-serif; padding: 2px 6px; white-space: nowrap; display: none; }
-  .float-babe:hover::after, .float-babe:focus-visible::after { display: block; }
-  @media (max-width: 768px) { .float-babe { width: 74px; top: 104px; right: 6px; } .banner { padding-right: 92px; } }
 </style>
 </head>
 <body>
@@ -49,7 +39,7 @@
     <a href="camp.html">← Camp</a><a href="itinerary.html">Plan</a><a href="register.html">Register</a><a href="gear.html">Gear</a><a href="gallery.html">Gallery</a><a href="guestbook.html">Guestbook</a><a href="misc.html" aria-current="page">Misc.</a>
   </nav>
 
-  <a class="float-babe" href="http://drunkcyclistporn.com/" target="_blank" rel="noopener" data-label="PORN">
+  <a class="floater" href="http://drunkcyclistporn.com/" target="_blank" rel="noopener" data-label="PORN">
     <img src="assets/obj-babe.png" alt="A woman in a black catsuit posing with a mountain bike: link to drunkcyclistporn.com (opens in a new tab)">
   </a>
 
