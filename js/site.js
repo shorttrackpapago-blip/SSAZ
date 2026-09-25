@@ -105,6 +105,7 @@
     register: ["Actual photo of the $120", "Mailbox, emotionally prepared", "Legible handwriting (rare)", "Illegible handwriting (uninvited)", "Stamp licker of the year", "Kaolin opening mail", "The Cave Creek HQ", "Your envelope, probably"],
     gear: ["Gear ratio: vibes", "Derailleur, not invited", "Rigid fork, rigid personality", "Chainline by eyeball", "Tire pressure: yes", "Van rack, 11 bikes, 0 gears", "Spare tube (it's a beer)", "Titanium, allegedly"],
     gallery: ["Whose tent is this", "Nobody remembers this", "Allegedly a trail", "Fire code violation #4", "The morning after the morning after", "Found one (1) sock", "Yacht Club, low tide", "Stars. Or the beer."],
+    misc: ["Hydration station", "Box wine, 5L, zero regrets", "Lance-free since forever", "Rule #5 in action", "The 2-mile beer, found", "Anti-doping control (Karl)", "Clunker archaeology", "Mug quotes, unsourced"],
     guestbook: ["Dear diary", "Signed in blood (ketchup)", "Pen on a string, stolen", "Our webmaster", "Visitor #069,421", "Web ring? Web ring.", "Sign it or else", "Management reads these"]
   };
 

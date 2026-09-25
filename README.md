@@ -16,6 +16,7 @@ It's plain HTML, CSS, and vanilla JS, with no build step and no dependencies bey
 | `gear.html` | Rigs & kit. |
 | `gallery.html` + `js/gallery.js` | Past years. |
 | `guestbook.html` | The Atabook guestbook embed. |
+| `misc.html` | Shenanigans: fact-checked cycling and doping quotes, lore, one-liners, silly links. |
 | `404.html` | For GitHub Pages. |
 
 ## Preview locally
@@ -108,6 +109,7 @@ Real art already in place on the campsite (camp.html):
 | `assets/obj-rider.png` | Trailforks. |
 | `assets/obj-rigs.png` | Gear. |
 | `assets/obj-ice.png` | Guestbook. |
+| `assets/obj-wine.png` | Misc. It sits flush in the scene's bottom-left corner because the photo is cut off on those two sides. |
 
 `assets/obj-postcard.png` is the old cartoon postcard. Nothing uses it anymore.
 
