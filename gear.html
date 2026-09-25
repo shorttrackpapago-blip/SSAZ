@@ -22,7 +22,7 @@
   .card .sub { font-family: var(--cond); text-transform: uppercase; color: var(--berry); font-size: 14px; margin-bottom: 5px; }
   .card .go { display: inline-block; margin-top: 6px; background: var(--navy); color: var(--paper); text-decoration: none; font-family: var(--cond); font-size: 16px; padding: 3px 10px; border: 2px solid var(--navy); box-shadow: 3px 3px 0 var(--berry); }
   .card .go:hover { background: var(--yellow); color: var(--navy); }
-  .ratio { font-family: var(--bubble); font-size: 64px; color: #fff; -webkit-text-stroke: 3px var(--navy); paint-order: stroke fill; text-shadow: 5px 5px 0 var(--navy); text-align: center; line-height: 1; margin: 6px 0; }
+  .ratio { font-family: var(--bubble); font-size: clamp(40px, 4.4vw, 56px); white-space: nowrap; color: #fff; -webkit-text-stroke: 3px var(--navy); paint-order: stroke fill; text-shadow: 5px 5px 0 var(--navy); text-align: center; line-height: 1; margin: 6px 0; }
   .ban { text-align: center; }
   .ban svg { width: 140px; height: 140px; }
   .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
@@ -125,8 +125,8 @@
 
       <section class="info" aria-labelledby="gr">
         <h3 id="gr">Recommended gear ratio</h3>
-        <div class="ratio">1</div>
-        <p style="text-align:center">That's it. That's the table. One. If your bike has a number bigger than one on it anywhere, that's a size, not a gear.</p>
+        <div class="ratio">32xYM</div>
+        <p style="text-align:center">That's it. That's the golden ratio.</p>
       </section>
 
       <section class="panel ban tilt-r" aria-labelledby="bn">
@@ -143,11 +143,13 @@
         <table class="spec">
           <tr><th>Item</th><th>Need it?</th></tr>
           <tr><td>Singlespeed</td><td class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></td></tr>
-          <tr><td>Tent that survives wind</td><td class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></td></tr>
+          <tr><td>Tent that survives scorpions</td><td class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></td></tr>
           <tr><td>Puffy + sunscreen</td><td class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></td></tr>
           <tr><td>Headlamp</td><td class="dots"><span class="dot"></span><span class="dot"></span><span class="dot off"></span></td></tr>
           <tr><td>Camp chair</td><td class="dots"><span class="dot"></span><span class="dot"></span><span class="dot off"></span></td></tr>
           <tr><td>Earplugs (Karl)</td><td class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></td></tr>
+          <tr><td>Beer</td><td class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></td></tr>
+          <tr><td>Stickers</td><td class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></td></tr>
           <tr><td>Shame</td><td class="dots"><span class="dot off"></span><span class="dot off"></span><span class="dot off"></span></td></tr>
         </table>
       </section>
