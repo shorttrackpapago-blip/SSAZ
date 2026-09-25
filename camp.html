@@ -55,15 +55,15 @@
   .hot:hover::after, .hot:focus-visible::after { display: block; }
   .hot.tip-below::after { bottom: auto; top: 100%; transform: translate(-50%, 4px); }
 
-  /* left / top / width are % of the 2:1 scene. Upper row: photos, weather, rider. Ground: postcard, guestbook, fire, van. */
+  /* left / top / width are % of the 2:1 scene. Upper row: photos, weather, rider. Ground: postcard, ice machine, fire, rigs. */
   .h-photoset  { left: 1%;   top: 3%;  width: 19%; }
   .h-weather   { left: 37%;  top: 2%;  width: 14%; }
   .h-rider     { left: 74%;  top: 6%;  width: 17%; }
   .h-postcard  { left: 4%;   top: 57%; width: 17%; transform: rotate(-7deg); }
   .h-postcard img { background: #fff; padding: 3%; border: 2px solid #111; box-shadow: 3px 3px 0 #2E3351; }
-  .h-guestbook { left: 23.5%; top: 63%; width: 9%; }
-  .h-bonfire   { left: 35%;  top: 33%; width: 22%; }
-  .h-van       { left: 60%;  top: 56%; width: 30%; }
+  .h-guestbook { left: 22.5%; top: 75%; width: 14%; }
+  .h-bonfire   { left: 37%;  top: 33%; width: 21%; }
+  .h-van       { left: 60%;  top: 57%; width: 32%; }
   .h-postcard:hover, .h-postcard:focus-visible { animation: wiggle-card .3s steps(2) infinite; }
   @keyframes wiggle-card { 0% { transform: rotate(-10deg); } 100% { transform: rotate(-4deg); } }
 
@@ -121,10 +121,10 @@
         <img src="assets/howdy-cleator.jpg" alt="A Howdy From Cleator postcard: registration and payment">
       </a>
       <a class="hot h-guestbook" href="guestbook.html" data-label="SIGN THE GUESTBOOK!!!">
-        <img src="assets/obj-guestbook.png" alt="A clipboard nailed to a fence post: the guestbook">
+        <img src="assets/obj-ice.png" alt="A guy climbing out of an ice machine: the guestbook">
       </a>
       <a class="hot h-van" href="gear.html" data-label="RIGS &amp; KIT">
-        <img src="assets/obj-van.png" alt="A van with bikes on the rack: gear and rigs">
+        <img src="assets/obj-rigs.png" alt="A tangled pile of singlespeeds: rigs and kit">
       </a>
       <a class="hot h-rider tip-below bounce" href="https://www.trailforks.com/region/black-canyon-city/" target="_blank" rel="noopener" data-label="TRAILS (Trailforks) →">
         <img src="assets/obj-rider.png" alt="A rider heading out on the trail: Black Canyon City trails on Trailforks (opens in a new tab)">
@@ -140,11 +140,11 @@
   <ul class="chunky" aria-label="Campsite links">
     <li><a href="itinerary.html"><img src="assets/obj-bonfire-jump.png" alt=""><span>The plan (loosely)<small>Itinerary. Fire. Yelling.</small></span></a></li>
     <li><a href="register.html"><img src="assets/howdy-cleator.jpg" alt=""><span>Register<small>$120 cash, by mail. Yes, mail.</small></span></a></li>
-    <li><a href="gear.html"><img src="assets/obj-van.png" alt=""><span>Rigs &amp; kit<small>Your derailleur is not invited.</small></span></a></li>
+    <li><a href="gear.html"><img src="assets/obj-rigs.png" alt=""><span>Rigs &amp; kit<small>Your derailleur is not invited.</small></span></a></li>
     <li><a href="https://forecast.weather.gov/MapClick.php?lat=34.2059&amp;lon=-112.1488" target="_blank" rel="noopener"><img src="assets/obj-weather.png" alt=""><span>Weather ↗<small>75° at noon, frost on your tent at 5am.</small></span></a></li>
     <li><a href="https://www.trailforks.com/region/black-canyon-city/" target="_blank" rel="noopener"><img src="assets/obj-rider.png" alt=""><span>Trails ↗<small>Black Canyon City on Trailforks.</small></span></a></li>
     <li><a href="gallery.html"><img src="assets/obj-photoset.png" alt=""><span>Past years<small>Evidence, mostly.</small></span></a></li>
-    <li><a href="guestbook.html"><img src="assets/obj-guestbook.png" alt=""><span>Guestbook<small>Sign it. Management reads these.</small></span></a></li>
+    <li><a href="guestbook.html"><img src="assets/obj-ice.png" alt=""><span>Guestbook<small>Sign it. Management reads these.</small></span></a></li>
   </ul>
 
   <nav class="lost" aria-label="Text navigation">

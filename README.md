@@ -94,10 +94,8 @@ All of these are crude generated placeholders, drawn MS Paint-style on purpose. 
 | File | Placeholder size | Notes |
 |---|---|---|
 | `assets/door-portajohn.png` | 600×1000 | The gate door. Tall. The "PLEASE KNOCK" text is overlaid by the page. |
-| `assets/camp-bg.png` | 1600×800 (2:1) | The campsite. Keep it **2:1**, because the hotspots are positioned in percentages of this box. |
-| `assets/obj-van.png` | 520×280 | Transparent. Links to gear. |
+| `assets/camp-bg.png` | 1600×800 (2:1) | The campsite. Keep it **2:1**, because the hotspots are positioned in percentages of this box. The "GET OFF AT SSAZ" line in its bottom-right corner is painted into the image, so add it to the real art too if you want to keep it. |
 | `assets/obj-weather.png` | 260×220 | Transparent. Links to NOAA. |
-| `assets/obj-guestbook.png` | 220×380 | Transparent. Links to guestbook. |
 | `assets/photos/placeholder-01…12.png` | 400×300 | Stand-ins for gallery photos and the snapshot strips. |
 
 Real art already in place on the campsite (camp.html):
@@ -108,6 +106,8 @@ Real art already in place on the campsite (camp.html):
 | `assets/howdy-cleator.jpg` | Register. Also used in the Management rail on the register page. |
 | `assets/obj-photoset.png` | Gallery. |
 | `assets/obj-rider.png` | Trailforks. |
+| `assets/obj-rigs.png` | Gear. |
+| `assets/obj-ice.png` | Guestbook. |
 
 `assets/obj-postcard.png` is the old cartoon postcard. Nothing uses it anymore.
 
