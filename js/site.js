@@ -1,6 +1,4 @@
-/* SSAZ 2027 site-wide junk: chiptune, sound effects, mute button, phone toast, snapshot strips.
-   The tune is an original composition ("Bumble Bee Stomp", Management, 2027), synthesized live
-   with WebAudio so there is no audio file to license, host, or blame. */
+/* SSAZ 2027 site-wide junk: door sound effect, phone toast, snapshot strips. */
 
 (function () {
   "use strict";
@@ -11,21 +9,8 @@
     set: function (k, v) { try { window.localStorage.setItem(k, v); } catch (e) { /* whatever */ } }
   };
 
-  // ---------- audio ----------
-  var ctx = null, master = null, musicBus = null, timer = null, playing = false;
-  var nextTime = 0, step = 0;
-  var BPM = 138, EIGHTH = 60 / BPM / 2;
-
-  // melody in MIDI note numbers, one per eighth note, 0 = rest. 8 bars, then it loops. Forever. Sorry.
-  var LEAD = [
-    72, 0, 76, 79, 76, 0, 72, 74,   76, 76, 74, 72, 69, 0, 67, 0,
-    72, 0, 76, 79, 81, 79, 76, 74,  72, 0, 0, 67, 72, 0, 0, 0,
-    77, 0, 81, 84, 81, 77, 76, 74,  79, 0, 83, 86, 83, 79, 77, 76,
-    76, 0, 72, 69, 72, 76, 79, 76,  74, 72, 71, 67, 74, 0, 79, 0
-  ];
-  var ROOTS = [48, 48, 45, 43, 41, 43, 45, 43]; // C C Am G | F G Am G
-
-  function mtof(m) { return 440 * Math.pow(2, (m - 69) / 12); }
+  // ---------- door sound effect (synthesized with WebAudio, no audio files) ----------
+  var ctx = null, master = null;
 
   function ensureCtx() {
     if (ctx) return ctx;
@@ -33,25 +18,21 @@
     if (!AC) return null;
     ctx = new AC();
     master = ctx.createGain();
-    master.gain.value = isMuted() ? 0 : 1;
     master.connect(ctx.destination);
-    musicBus = ctx.createGain();
-    musicBus.gain.value = 0.55;
-    musicBus.connect(master);
     return ctx;
   }
 
-  function tone(type, freq, t, dur, vol, dest) {
+  function tone(type, freq, t, dur, vol) {
     var o = ctx.createOscillator(), g = ctx.createGain();
     o.type = type; o.frequency.value = freq;
     g.gain.setValueAtTime(vol, t);
     g.gain.exponentialRampToValueAtTime(0.0008, t + dur);
-    o.connect(g); g.connect(dest || musicBus);
+    o.connect(g); g.connect(master);
     o.start(t); o.stop(t + dur + 0.02);
   }
 
   var noiseBuf = null;
-  function noise(t, dur, vol, hp, dest) {
+  function noise(t, dur, vol, hp) {
     if (!noiseBuf) {
       noiseBuf = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
       var d = noiseBuf.getChannelData(0);
@@ -62,35 +43,8 @@
     f.type = "highpass"; f.frequency.value = hp;
     g.gain.setValueAtTime(vol, t);
     g.gain.exponentialRampToValueAtTime(0.0008, t + dur);
-    s.connect(f); f.connect(g); g.connect(dest || musicBus);
+    s.connect(f); f.connect(g); g.connect(master);
     s.start(t); s.stop(t + dur + 0.02);
-  }
-
-  function scheduleStep(i, t) {
-    var n = LEAD[i % LEAD.length];
-    if (n) tone("square", mtof(n), t, EIGHTH * 0.9, 0.07);
-    var bar = Math.floor(i / 8) % 8, beat = i % 8;
-    var root = ROOTS[bar] + (beat % 2 ? 12 : 0);
-    tone("triangle", mtof(root), t, EIGHTH * 0.95, 0.22);
-    if (beat === 0 || beat === 4) tone("sine", 70, t, 0.18, 0.5);      // kick
-    if (beat === 2 || beat === 6) noise(t, 0.12, 0.18, 1200);          // snare
-    noise(t, 0.03, 0.05, 7000);                                        // hat
-  }
-
-  function tick() {
-    while (nextTime < ctx.currentTime + 0.15) {
-      scheduleStep(step, nextTime);
-      step++;
-      nextTime += EIGHTH;
-    }
-  }
-
-  function startMusic() {
-    if (playing || !ensureCtx()) return;
-    playing = true;
-    if (ctx.state === "suspended") ctx.resume();
-    nextTime = ctx.currentTime + 0.08;
-    timer = setInterval(tick, 40);
   }
 
   // Sound effects for the gate: knock-knock-knock, creeeak, FLUSH.
@@ -98,7 +52,7 @@
     if (!ensureCtx()) return 0;
     if (ctx.state === "suspended") ctx.resume();
     var t = ctx.currentTime + 0.02;
-    [0, 0.16, 0.32].forEach(function (d) { tone("sine", 140, t + d, 0.12, 0.7, master); noise(t + d, 0.05, 0.3, 300, master); });
+    [0, 0.16, 0.32].forEach(function (d) { tone("sine", 140, t + d, 0.12, 0.7); noise(t + d, 0.05, 0.3, 300); });
     // creak: a detuned sawtooth wandering down through a bandpass
     var o = ctx.createOscillator(), f = ctx.createBiquadFilter(), g = ctx.createGain();
     o.type = "sawtooth";
@@ -125,54 +79,6 @@
     s.connect(lp); lp.connect(fg); fg.connect(master);
     s.start(t + 1.3); s.stop(t + 2.8);
     return 2300; // ms until the flush is mostly done
-  }
-
-  function isMuted() { return store.get("ssaz-muted") === "1"; }
-
-  function setMuted(m, fromUser) {
-    store.set("ssaz-muted", m ? "1" : "0");
-    if (master) master.gain.value = m ? 0 : 1;
-    var b = document.querySelector(".mute");
-    if (b) {
-      b.setAttribute("aria-pressed", m ? "true" : "false");
-      b.setAttribute("aria-label", m ? "Unmute the sick jams" : "Mute the sick jams");
-    }
-    if (fromUser && !m && hasKnocked()) startMusic();
-  }
-
-  function hasKnocked() { return store.get("ssaz-knocked") === "1"; }
-
-  function mountMute() {
-    var b = document.createElement("button");
-    b.className = "mute";
-    b.type = "button";
-    b.innerHTML =
-      '<svg viewBox="0 0 40 40" aria-hidden="true">' +
-      '<path d="M5 15h7l9-8v26l-9-8H5z" fill="#2E3351" stroke="#000" stroke-width="2"/>' +
-      '<g class="waves" fill="none" stroke="#A03263" stroke-width="3"><path d="M25 14q4 6 0 12"/><path d="M29 10q7 10 0 20"/></g>' +
-      '<g class="x" stroke="#A03263" stroke-width="4"><path d="M26 14l10 12M36 14l-10 12"/></g></svg>';
-    var lbl = document.createElement("div");
-    lbl.className = "mute-label";
-    lbl.textContent = "sound on/off";
-    b.addEventListener("click", function () { setMuted(!isMuted(), true); });
-    document.body.appendChild(b);
-    document.body.appendChild(lbl);
-    setMuted(isMuted());
-  }
-
-  // On inner pages, the music resumes if you already knocked. Browsers may still demand a
-  // click first, so the first click/keypress anywhere kicks it.
-  function resumeMusicIfKnocked() {
-    if (!hasKnocked() || isMuted()) return;
-    startMusic();
-    var kick = function () {
-      if (ctx && ctx.state === "suspended") ctx.resume();
-      if (!playing && !isMuted()) startMusic();
-      window.removeEventListener("pointerdown", kick);
-      window.removeEventListener("keydown", kick);
-    };
-    window.addEventListener("pointerdown", kick);
-    window.addEventListener("keydown", kick);
   }
 
   // ---------- phone toast ----------
@@ -215,12 +121,10 @@
     });
   }
 
-  window.SSAZ = { startMusic: startMusic, sfxDoor: sfxDoor, store: store, isMuted: isMuted, setMuted: setMuted };
+  window.SSAZ = { sfxDoor: sfxDoor, store: store };
 
   document.addEventListener("DOMContentLoaded", function () {
-    mountMute();
     mountStrips();
     phoneToast();
-    if (!document.body.hasAttribute("data-gate")) resumeMusicIfKnocked();
   });
 })();

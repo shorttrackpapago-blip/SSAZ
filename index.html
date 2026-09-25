@@ -107,8 +107,6 @@
   door.addEventListener("click", function () {
     if (going) return;
     going = true;
-    s.set("ssaz-knocked", "1");
-    window.SSAZ.startMusic();          // this click is the gesture that unlocks audio
     var ms = window.SSAZ.sfxDoor() || 900;
     door.classList.add("opening");
     setTimeout(function () { window.location.href = "camp.html"; }, Math.min(ms, 2300));

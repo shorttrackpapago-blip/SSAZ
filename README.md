@@ -8,7 +8,7 @@ It's plain HTML, CSS, and vanilla JS, with no build step and no dependencies bey
 
 | File | What it is |
 |---|---|
-| `index.html` | The porta-john gate. It has the age/narc check, the hit counter, and the knock that starts the music. |
+| `index.html` | The porta-john gate. It has the age/narc check, the hit counter, and a knock-creak-flush sound when you click the door. |
 | `narc.html` | The dead end you get for clicking "I'm a narc". |
 | `camp.html` | The clickable campsite. This is the main navigation. |
 | `itinerary.html` | The plan (loosely). |
@@ -37,7 +37,7 @@ python -m http.server 8000
 
 Then open http://localhost:8000/ssaz2027/ (or whatever this folder is named).
 
-Opening `index.html` straight from disk (`file://`) mostly works too, but the Atabook iframe and some browsers' audio rules behave better over http.
+Opening `index.html` straight from disk (`file://`) mostly works too, but the Atabook iframe behaves better over http.
 
 ## Deploy to GitHub Pages
 
@@ -119,15 +119,9 @@ If real art comes in at different proportions, adjust the hotspot positions in t
 
 The GIFs in `assets/gif/` are original, generated for this site, and free to use.
 
-## Music
+## Sound
 
-The background tune is an original chiptune called "Bumble Bee Stomp". It isn't an audio file: `js/site.js` synthesizes it live with the Web Audio API (square-wave lead, triangle bass, noise drums). That keeps it tiny and original, and there's nothing to license.
-
-- Clicking the porta-john door is the user gesture that lets the browser play audio. The knock, creak, and flush are synthesized the same way.
-- On the inner pages, the music resumes automatically if the visitor already knocked. Some browsers want a fresh click first, so the first click or keypress anywhere starts it.
-- The speaker button in the bottom-right corner mutes and unmutes. The choice is saved in `localStorage`.
-
-To change the tune, edit the `LEAD` (melody, MIDI note numbers, one per eighth note) and `ROOTS` (bass, one per bar) arrays in `js/site.js`.
+There's no background music. The only sound is the knock-creak-flush effect when someone clicks the porta-john door. `js/site.js` synthesizes it with the Web Audio API (`sfxDoor`), so there's no audio file. To remove it, delete the `window.SSAZ.sfxDoor()` call in `index.html`.
 
 ## Facts checklist
 
