@@ -2,7 +2,7 @@
    GALLERY PHOTOS — the only list you need to edit.
    1. Drop the image into assets/photos/
    2. Add a line below: { file: "name.jpg", caption: "joke" }
-   3. Delete the placeholder lines once real photos show up.
+   3. Delete a line to take a photo off the wall.
    Order here = order on the clothesline.
    ============================================================ */
 var PHOTOS = [
@@ -14,10 +14,10 @@ var PHOTOS = [
   { file: "saguaro.jpg", caption: "Home is where the van breaks down" },
   { file: "band1.jpg", caption: "Music for the people" },
   { file: "brd-mega.jpg", caption: "Management... managing" },
-  { file: "placeholder-09.png", caption: "Group photo (nobody knows who took it)" },
-  { file: "placeholder-10.png", caption: "Hosting Competition aftermath (redacted)" },
-  { file: "placeholder-11.png", caption: "Cleator Yacht Club regatta" },
-  { file: "placeholder-12.png", caption: "Stars, or a concussion" }
+  { file: "tria4.jpg", caption: "This guy won't be in attendance, so you're good" },
+  { file: "vista.jpg", caption: "Scenic views and shit" },
+  { file: "windmill2.jpg", caption: "Don't climb the windmills, or do, wtf cares, we all die anyway" },
+  { file: "hab.jpg", caption: "Hike a bike is mountain biking" }
 ];
 
 (function () {

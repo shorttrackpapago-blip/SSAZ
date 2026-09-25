@@ -84,7 +84,7 @@ Until the URL is filled in, the page shows a fake DOS error explaining that the 
    ```js
    { file: "2019-bonfire.jpg", caption: "Nobody remembers this" },
    ```
-3. Delete the `placeholder-XX.png` lines, and the placeholder files, once you have real ones.
+3. To take a photo off the wall, delete its line. The `placeholder-XX.png` files are no longer in the gallery, but the snapshot strips still use them (see below).
 
 The small "snapshot strips" at the bottom of each page also use `assets/photos/placeholder-01.png` through `placeholder-12.png`. You can replace those files with real photos under the same names, or edit the `STRIPS` captions and file logic in `js/site.js`.
 
