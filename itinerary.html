@@ -23,6 +23,10 @@
   .stamp { display: inline-block; border: 4px double var(--berry); color: var(--berry); font-family: var(--cond); font-size: 26px; padding: 2px 10px; transform: rotate(-8deg); margin: 6px 0; }
   .sunday { text-align: center; }
   .sunday .bubble { font-size: clamp(26px, 3.4vw, 40px); }
+  .nearby { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .nearby h4 { font-size: 20px !important; margin-top: 2px !important; }
+  .items a { font-size: 12.5px; }
+  @media (max-width: 768px) { .nearby { grid-template-columns: 1fr; } }
   .crash { margin: 16px 0 2px; text-align: center; }
   .crash img { display: block; width: 88%; max-width: 220px; margin: 0 auto; filter: drop-shadow(4px 4px 0 var(--navy)); transform-origin: 50% 100%; animation: woozy 3s ease-in-out infinite; }
   .crash:hover img { animation: woozy-hard .35s steps(2) infinite; }
@@ -104,6 +108,38 @@
         <p class="bubble">Go home, ya filthy animal.</p>
         <p class="cond" style="font-size:20px;margin-top:6px">Leave no trace. Leave no man behind.</p>
         <p style="font-size:11.5px">(Check the porta-john. Check under the van. Count your friends, then count them again.)</p>
+      </section>
+
+      <section class="panel span2 tilt-l" aria-labelledby="gh">
+        <h2 id="gh" class="cond day misreg">Getting here</h2>
+        <p><b>Where is "here"?</b> Bumble Bee, Arizona: a dot on the map roughly an hour north of Phoenix off I-17, then down a dirt road until your phone gives up on you. Bumble Bee Ranch is at the end of that road. If you hit Cleator, you went too far. If you hit Crown King, you went <i>way</i> too far and should stay for a beer.</p>
+        <ul class="items">
+          <li><b>The airport</b> <a href="https://www.skyharbor.com/" target="_blank" rel="noopener">Phoenix Sky Harbor (PHX) ↗</a><span class="joke">Fly in, rent something with clearance, tell the rental company nothing.</span></li>
+          <li><b>The venue</b> <a href="http://www.bumblebeeranch.com/" target="_blank" rel="noopener">Bumble Bee Ranch ↗</a> · <a href="https://maps.app.goo.gl/TC1K6T5UgyTHHR3D6" target="_blank" rel="noopener">Directions ↗</a><span class="joke">Load the map before you leave the pavement. Cell service out here is a rumor.</span></li>
+          <li><b>Your mom's house</b> <a href="https://maps.app.goo.gl/gHsz3qyc2R7C7HeS7" target="_blank" rel="noopener">Directions ↗</a><span class="joke">Closer than you'd think. She says hi.</span></li>
+        </ul>
+      </section>
+
+      <section class="info" aria-labelledby="acc">
+        <h3 id="acc">Accommodations</h3>
+        <p><b>Camping.</b> Acres of flat-ish desert for tents and RVs. <b>No hookups:</b> bring your own water, power, and dignity (optional). The road in is dirt, but it's fine for vans, smaller motorhomes, trailers, and, we have personally witnessed this, a Honda Civic. If a Civic can make it, so can your Sprinter.</p>
+        <p><b>Soft people.</b> The nearest town, store, and actual bed is <b>Black Canyon City, 11 miles</b> from the venue. Gas, ice, beer, and a motel mattress. <a href="https://maps.app.goo.gl/T5S1N2v3yQw85Tuj7" target="_blank" rel="noopener">Black Canyon City ↗</a></p>
+      </section>
+
+      <section class="panel span3 tilt-r" aria-labelledby="nb">
+        <h2 id="nb" class="cond day misreg">Nearby sites (if you're visiting)</h2>
+        <div class="nearby">
+          <div>
+            <h4>Cleator Yacht Club</h4>
+            <p>A nautical-themed bar in the middle of the desert, in a near-ghost town with about eight permanent residents, and no water anywhere near it. There are no yachts. There is no club. There is a bar, and it has been serving dusty ATV riders and confused tourists for decades. Wear your captain's hat. Ask where the boats are docked. The whole town went up for sale in 2020, so if you've always wanted to be an admiral, now's your chance.</p>
+            <p style="font-size:11.5px">(We ride there Saturday. See above. Hydrate accordingly.)</p>
+          </div>
+          <div>
+            <h4>Crown King</h4>
+            <p>An old gold-mining town high in the Bradshaw Mountains, 28 miles west of I-17 up a road that will shake your fillings loose. Tiny, weird, and cooler than the desert floor in every sense. Worth the drive if your vehicle and your kidneys can take it.</p>
+            <p><a href="https://en.wikipedia.org/wiki/Crown_King,_Arizona" target="_blank" rel="noopener">Crown King on Wikipedia ↗</a></p>
+          </div>
+        </div>
       </section>
     </div>
 
