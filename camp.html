@@ -55,14 +55,15 @@
   .hot:hover::after, .hot:focus-visible::after { display: block; }
   .hot.tip-below::after { bottom: auto; top: 100%; transform: translate(-50%, 4px); }
 
-  .h-bonfire   { left: 43%; top: 42%; width: 18%; }
-  .h-postcard  { left: 6%;  top: 58%; width: 15%; transform: rotate(-7deg); }
+  /* left / top / width are % of the 2:1 scene. Upper row: photos, weather, rider. Ground: postcard, guestbook, fire, van. */
+  .h-photoset  { left: 1%;   top: 3%;  width: 19%; }
+  .h-weather   { left: 37%;  top: 2%;  width: 14%; }
+  .h-rider     { left: 74%;  top: 6%;  width: 17%; }
+  .h-postcard  { left: 4%;   top: 57%; width: 17%; transform: rotate(-7deg); }
   .h-postcard img { background: #fff; padding: 3%; border: 2px solid #111; box-shadow: 3px 3px 0 #2E3351; }
-  .h-van       { left: 62%; top: 60%; width: 25%; }
-  .h-weather   { left: 72%; top: 5%;  width: 14%; }
-  .h-cactus    { left: 88.5%; top: 58%; width: 10.5%; }
-  .h-clothes   { left: 22%; top: 43%; width: 21%; }
-  .h-guestbook { left: 26%; top: 67%; width: 7.5%; }
+  .h-guestbook { left: 23.5%; top: 63%; width: 9%; }
+  .h-bonfire   { left: 35%;  top: 33%; width: 22%; }
+  .h-van       { left: 60%;  top: 56%; width: 30%; }
   .h-postcard:hover, .h-postcard:focus-visible { animation: wiggle-card .3s steps(2) infinite; }
   @keyframes wiggle-card { 0% { transform: rotate(-10deg); } 100% { transform: rotate(-4deg); } }
 
@@ -110,8 +111,8 @@
       <a class="hot h-weather tip-below bounce" href="https://forecast.weather.gov/MapClick.php?lat=34.2059&amp;lon=-112.1488" target="_blank" rel="noopener" data-label="WEATHER (it's the desert, bring layers)">
         <img src="assets/obj-weather.png" alt="The sun and a storm cloud: NOAA weather forecast for Bumble Bee (opens in a new tab)">
       </a>
-      <a class="hot h-clothes" href="gallery.html" data-label="PAST YEARS (evidence)">
-        <img src="assets/obj-clothesline.png" alt="A clothesline of polaroids: photos from past years">
+      <a class="hot h-photoset tip-below" href="gallery.html" data-label="PAST YEARS (evidence)">
+        <img src="assets/obj-photoset.png" alt="A pile of photos from past years: the gallery">
       </a>
       <a class="hot h-bonfire bounce" href="itinerary.html" data-label="THE PLAN (loosely)">
         <img src="assets/obj-bonfire-jump.png" alt="A rider jumping a bike over the bonfire: the itinerary">
@@ -125,8 +126,8 @@
       <a class="hot h-van" href="gear.html" data-label="RIGS &amp; KIT">
         <img src="assets/obj-van.png" alt="A van with bikes on the rack: gear and rigs">
       </a>
-      <a class="hot h-cactus" href="https://www.trailforks.com/region/black-canyon-city/" target="_blank" rel="noopener" data-label="TRAILS (Trailforks) →">
-        <img src="assets/obj-cactus-sign.png" alt="A cactus with a trail sign: Black Canyon City trails on Trailforks (opens in a new tab)">
+      <a class="hot h-rider tip-below bounce" href="https://www.trailforks.com/region/black-canyon-city/" target="_blank" rel="noopener" data-label="TRAILS (Trailforks) →">
+        <img src="assets/obj-rider.png" alt="A rider heading out on the trail: Black Canyon City trails on Trailforks (opens in a new tab)">
       </a>
     </div>
   </div>
@@ -141,8 +142,8 @@
     <li><a href="register.html"><img src="assets/howdy-cleator.jpg" alt=""><span>Register<small>$120 cash, by mail. Yes, mail.</small></span></a></li>
     <li><a href="gear.html"><img src="assets/obj-van.png" alt=""><span>Rigs &amp; kit<small>Your derailleur is not invited.</small></span></a></li>
     <li><a href="https://forecast.weather.gov/MapClick.php?lat=34.2059&amp;lon=-112.1488" target="_blank" rel="noopener"><img src="assets/obj-weather.png" alt=""><span>Weather ↗<small>75° at noon, frost on your tent at 5am.</small></span></a></li>
-    <li><a href="https://www.trailforks.com/region/black-canyon-city/" target="_blank" rel="noopener"><img src="assets/obj-cactus-sign.png" alt=""><span>Trails ↗<small>Black Canyon City on Trailforks.</small></span></a></li>
-    <li><a href="gallery.html"><img src="assets/obj-clothesline.png" alt=""><span>Past years<small>Evidence, mostly.</small></span></a></li>
+    <li><a href="https://www.trailforks.com/region/black-canyon-city/" target="_blank" rel="noopener"><img src="assets/obj-rider.png" alt=""><span>Trails ↗<small>Black Canyon City on Trailforks.</small></span></a></li>
+    <li><a href="gallery.html"><img src="assets/obj-photoset.png" alt=""><span>Past years<small>Evidence, mostly.</small></span></a></li>
     <li><a href="guestbook.html"><img src="assets/obj-guestbook.png" alt=""><span>Guestbook<small>Sign it. Management reads these.</small></span></a></li>
   </ul>
 

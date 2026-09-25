@@ -95,14 +95,21 @@ All of these are crude generated placeholders, drawn MS Paint-style on purpose. 
 |---|---|---|
 | `assets/door-portajohn.png` | 600×1000 | The gate door. Tall. The "PLEASE KNOCK" text is overlaid by the page. |
 | `assets/camp-bg.png` | 1600×800 (2:1) | The campsite. Keep it **2:1**, because the hotspots are positioned in percentages of this box. |
-| `assets/obj-bonfire-jump.png` | 380×420 | Transparent. Links to itinerary. |
-| `assets/obj-postcard.png` | 360×240 | Transparent. Links to register. |
 | `assets/obj-van.png` | 520×280 | Transparent. Links to gear. |
 | `assets/obj-weather.png` | 260×220 | Transparent. Links to NOAA. |
-| `assets/obj-cactus-sign.png` | 260×380 | Transparent. Links to Trailforks. |
-| `assets/obj-clothesline.png` | 520×240 | Transparent. Links to gallery. |
 | `assets/obj-guestbook.png` | 220×380 | Transparent. Links to guestbook. |
 | `assets/photos/placeholder-01…12.png` | 400×300 | Stand-ins for gallery photos and the snapshot strips. |
+
+Real art already in place on the campsite (camp.html):
+
+| File | Links to |
+|---|---|
+| `assets/obj-bonfire-jump.png` | Itinerary. Also the hero image on the itinerary page. |
+| `assets/howdy-cleator.jpg` | Register. Also used in the Management rail on the register page. |
+| `assets/obj-photoset.png` | Gallery. |
+| `assets/obj-rider.png` | Trailforks. |
+
+`assets/obj-postcard.png` is the old cartoon postcard. Nothing uses it anymore.
 
 If real art comes in at different proportions, adjust the hotspot positions in the `<style>` block at the top of `camp.html`. Look for `.h-bonfire`, `.h-van`, and so on. The values are `left`, `top`, and `width`, in % of the scene.
 
