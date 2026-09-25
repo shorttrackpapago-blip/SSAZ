@@ -113,6 +113,8 @@ Real art already in place on the campsite (camp.html):
 
 `assets/obj-postcard.png` is the old cartoon postcard. Nothing uses it anymore.
 
+The gear page cards use the brands' own logos, supplied by the organizers, in `assets/brands/`: `oddity.png`, `mone.png`, `paul.png` and `rage-cycles.png`.
+
 If real art comes in at different proportions, adjust the hotspot positions in the `<style>` block at the top of `camp.html`. Look for `.h-bonfire`, `.h-van`, and so on. The values are `left`, `top`, and `width`, in % of the scene.
 
 `assets/logo.png` is the real logo, resized from `ssaz27.png`. The page colors were sampled from it:
