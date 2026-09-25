@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>The Plan (Loosely)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Reenie+Beanie&family=Titan+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<style>
+  .day { font-size: 44px; color: var(--berry); margin: 0; }
+  .date { display: inline-block; background: var(--navy); color: var(--paper); font-family: var(--cond); font-size: 16px; padding: 1px 7px; transform: rotate(-2deg); margin-bottom: 6px; }
+  .items { list-style: none; padding: 0 !important; }
+  .items li { border-bottom: 2px dotted var(--navy); padding: 5px 0 5px 22px; position: relative; }
+  .items li::before { content: ""; position: absolute; left: 2px; top: 9px; width: 11px; height: 11px; border-radius: 50%; background: var(--berry); border: 2px solid var(--navy); }
+  .items b { font-family: var(--cond); font-weight: normal; text-transform: uppercase; font-size: 17px; }
+  .items .joke { display: block; font-size: 11.5px; color: #555; }
+  .time { background: var(--yellow); border: 2px solid var(--navy); padding: 0 4px; font-family: var(--cond); font-size: 15px; }
+  .racecall { font-family: var(--bubble); font-size: 34px; color: var(--yellow); -webkit-text-stroke: 2px var(--navy); paint-order: stroke fill; text-shadow: 3px 3px 0 var(--navy); transform: rotate(-3deg); display: inline-block; margin: 2px 0 4px; }
+  .redacted { background: #000; color: #000; padding: 0 3px; user-select: none; }
+  .stamp { display: inline-block; border: 4px double var(--berry); color: var(--berry); font-family: var(--cond); font-size: 26px; padding: 2px 10px; transform: rotate(-8deg); margin: 6px 0; }
+  .sunday { text-align: center; }
+  .sunday .bubble { font-size: clamp(26px, 3.4vw, 40px); }
+  @media (max-width: 768px) { .day { font-size: 36px; } }
+</style>
+</head>
+<body>
+<div class="catalog">
+  <a class="sticker" href="camp.html"><img src="assets/logo.png" alt="Singlespeed Arizona 2027 — The Sequel. Back to camp."></a>
+  <nav class="topbar" aria-label="Pages">
+    <a href="camp.html">← Camp</a><a href="itinerary.html" aria-current="page">Plan</a><a href="register.html">Register</a><a href="gear.html">Gear</a><a href="gallery.html">Gallery</a><a href="guestbook.html">Guestbook</a>
+  </nav>
+
+  <header class="banner">
+    <h1 class="bubble">The plan<br>(loosely)</h1>
+    <span class="kicker">Fri Feb 5 – Sun Feb 7, 2027 · Bumble Bee Ranch Adventures and Event Center, Bumble Bee, AZ</span>
+  </header>
+
+  <main class="sheet">
+    <div class="vert" aria-hidden="true">The plan · subject to whim · the plan · subject to beer</div>
+
+    <div class="cols">
+      <section class="hero span3" aria-labelledby="hero-t">
+        <img src="assets/obj-bonfire-jump.png" alt="Crude drawing of Kaolin jumping a bike over the bonfire">
+        <div>
+          <div class="cond" style="color:var(--yellow);font-size:18px">Friday night · main event · do not try this at home</div>
+          <h2 id="hero-t" class="bubble big">Kaolin jumps the bonfire</h2>
+          <p style="margin:6px 0 0">One man. One gear. One very large fire. Scientists have been unable to explain it. Doctors have been unable to stop it. Bring a phone and film it vertically like a coward.</p>
+          <img class="flames" src="assets/gif/flames.gif" alt="">
+        </div>
+      </section>
+
+      <section class="panel tilt-l" aria-labelledby="fri">
+        <h2 id="fri" class="cond day misreg">Friday</h2>
+        <span class="date">Feb 5</span>
+        <ul class="items">
+          <li><b>Welcome ride</b><span class="joke">"Easy spin." It will not be an easy spin.</span></li>
+          <li><b>Welcome campfire</b><span class="joke">Bring a chair. Bring a beer. Bring a second beer for the guy who forgot his.</span></li>
+          <li><b>Kaolin jumps the bonfire</b><span class="joke">See above. See everything. You cannot unsee it.</span></li>
+        </ul>
+      </section>
+
+      <section class="panel span2 tilt-r" aria-labelledby="sat">
+        <h2 id="sat" class="cond day misreg">Saturday</h2>
+        <span class="date">Feb 6</span>
+        <div class="racecall" aria-hidden="true">"RACE DAY!"</div>
+        <ul class="items">
+          <li><b>Karl wakes everyone up shouting "RACE DAY!"</b><span class="joke">It is not a race. It has never been a race. Karl does not care. Earplugs won't save you.</span></li>
+          <li><span class="time">10:00 AM</span> <b>Ride start</b><span class="joke">10:00 Management Time, so like 10:40.</span></li>
+          <li><b>Stop at the Cleator Yacht Club</b><span class="joke">The watering hole. There is no water and there are no yachts. Hydrate accordingly.</span></li>
+          <li><b>Dinner provided</b><span class="joke">Saturday night. Real food, made by people who aren't you. Your $120 at work.</span></li>
+          <li><b>Live music</b><span class="joke">Band TBD. If you have a band and a generator, call nobody, just show up.</span></li>
+          <li><b>The Hosting Competition</b><span class="joke">Decides who wins hosting rights for 2028. See the box. Ask no questions.</span></li>
+        </ul>
+      </section>
+
+      <section class="info berry span2" aria-labelledby="hc">
+        <h3 id="hc">The Hosting Competition</h3>
+        <p>Saturday night, somebody wins the right (burden) (honor) (burden) to host Single Speed Arizona 2028.</p>
+        <p>The format is <b>a secret until the event.</b> Not a secret like "we haven't figured it out." A secret like <span class="redacted">XXXXXXXXXXXXXXXXXXXX</span> nobody talks about it.</p>
+        <p>Can you train for it? <span class="redacted">XXXXXXX</span> No. Should you be worried? Yes.</p>
+        <div class="stamp">CLASSIFIED</div>
+      </section>
+
+      <section class="info rose" aria-labelledby="wx">
+        <h3 id="wx">Weather</h3>
+        <p><b>February in the desert: 75° at noon, frost on your tent at 5am.</b></p>
+        <p>Pack a puffy. Pack sunscreen. Pack both into the same bag and feel smart.</p>
+        <p><a href="https://forecast.weather.gov/MapClick.php?lat=34.2059&amp;lon=-112.1488" target="_blank" rel="noopener">NOAA forecast for Bumble Bee ↗</a><br>
+        <a href="https://www.trailforks.com/region/black-canyon-city/" target="_blank" rel="noopener">Trails on Trailforks ↗</a></p>
+      </section>
+
+      <section class="panel span3 sunday" aria-labelledby="sun">
+        <h2 id="sun" class="cond day misreg">Sunday <span class="date" style="vertical-align:middle">Feb 7</span></h2>
+        <p class="bubble">Go home, ya filthy animal.</p>
+        <p class="cond" style="font-size:20px;margin-top:6px">Leave no trace. Leave no man behind.</p>
+        <p style="font-size:11.5px">(Check the porta-john. Check under the van. Count your friends, then count them again.)</p>
+      </section>
+    </div>
+
+    <aside class="mgmt" aria-labelledby="mg">
+      <h3 id="mg">A word from Management</h3>
+      <p>Friends. Degenerates. People who own more titanium than furniture.</p>
+      <p>Welcome to the sequel. Sequels are usually worse. We intend to honor that tradition.</p>
+      <p>Everything on this page is a plan in the sense that a bar napkin is a contract. Times are approximate. Karl is not. Karl is exact.</p>
+      <p>Be cool to the ranch. Be cool to each other. Be cool to whoever is on fire.</p>
+      <p>And if you tell anyone about this, we'll know. We always know.</p>
+      <div class="sig">— Management.</div>
+    </aside>
+  </main>
+
+  <div class="snapstrip" data-strip="itinerary"></div>
+
+  <footer class="footer">
+    <div class="legal">© 2027 Management. All rights reserved. No refunds. No kids. No gears.</div>
+    <div class="bestviewed">Best viewed in Netscape Navigator at 800×600.</div>
+  </footer>
+  <div class="after-footer"></div>
+</div>
+<script src="js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Register</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Reenie+Beanie&family=Titan+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<style>
+  .postcard {
+    position: relative;
+    background: #fbf6e6;
+    border: 3px solid var(--navy);
+    box-shadow: 10px 10px 0 var(--navy);
+    padding: 22px;
+    display: grid;
+    grid-template-columns: 1.1fr 3px 1fr;
+    gap: 22px;
+    transform: rotate(-.8deg);
+    margin: 6px 4px 18px;
+  }
+  .postcard::before { content: "POST CARD"; position: absolute; top: 6px; left: 50%; transform: translateX(-50%); font-family: var(--cond); letter-spacing: .4em; font-size: 14px; color: var(--berry); }
+  .divider { background: var(--navy); }
+  .msg { font-family: var(--hand); font-size: 17px; line-height: 1.45; color: #25306b; padding-top: 12px; }
+  .msg p { margin: 0 0 10px; }
+  .msg .big { font-size: 30px; color: var(--berry); line-height: 1.1; }
+  .msg u { text-decoration-thickness: 3px; text-decoration-color: var(--berry); }
+  .addr-side { position: relative; padding-top: 110px; }
+  .stamp {
+    position: absolute; right: 0; top: 10px;
+    width: 96px; height: 116px;
+    background: var(--berry);
+    border: 6px dotted #fbf6e6;
+    outline: 3px solid var(--berry);
+    color: var(--paper);
+    display: grid; place-items: center; text-align: center;
+    font-family: var(--cond); font-size: 13px; line-height: 1.05; padding: 6px;
+  }
+  .stamp .cents { font-family: var(--bubble); font-size: 26px; color: var(--yellow); }
+  .postmark {
+    position: absolute; right: 60px; top: 30px;
+    width: 120px; height: 120px; border-radius: 50%;
+    border: 3px solid rgba(46, 51, 81, .75);
+    color: rgba(46, 51, 81, .8);
+    display: grid; place-items: center; text-align: center;
+    font-family: var(--cond); font-size: 12px; line-height: 1.1;
+    transform: rotate(-14deg);
+  }
+  .postmark::after { content: ""; position: absolute; left: 90px; top: 30px; width: 110px; height: 60px; background: repeating-linear-gradient(0deg, rgba(46,51,81,.7) 0 3px, transparent 3px 11px); border-radius: 0 50% 50% 0 / 0 100% 100% 0; opacity: .8; }
+  .to { font-family: var(--hand); font-size: 25px; line-height: 1.25; color: #1b2258; }
+  .to .line { border-bottom: 2px solid var(--navy); padding: 4px 0 2px; }
+  .to small { font-family: var(--body); font-size: 11px; color: #666; display: block; margin-bottom: 2px; }
+  .fee { display: inline-block; background: var(--yellow); border: 3px solid var(--navy); font-family: var(--cond); font-size: 28px; padding: 2px 10px; transform: rotate(-3deg); margin: 4px 0; }
+  .checklist li { margin-bottom: 6px; }
+  .get li { font-size: 14px; }
+  @media (max-width: 768px) {
+    .postcard { grid-template-columns: 1fr; transform: none; box-shadow: 6px 6px 0 var(--navy); padding: 16px; }
+    .divider { height: 3px; }
+    .addr-side { padding-top: 130px; }
+    .postmark { right: auto; left: 0; top: 4px; }
+    .stamp { top: 4px; }
+    .postmark::after { display: none; }
+    .msg { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="catalog">
+  <a class="sticker" href="camp.html"><img src="assets/logo.png" alt="Singlespeed Arizona 2027 — The Sequel. Back to camp."></a>
+  <nav class="topbar" aria-label="Pages">
+    <a href="camp.html">← Camp</a><a href="itinerary.html">Plan</a><a href="register.html" aria-current="page">Register</a><a href="gear.html">Gear</a><a href="gallery.html">Gallery</a><a href="guestbook.html">Guestbook</a>
+  </nav>
+
+  <header class="banner">
+    <h1 class="bubble">Greetings from the<br>Cleator Yacht Club</h1>
+    <span class="kicker">Registration: by mail. Payment: cash. Welcome to 1987.</span>
+  </header>
+
+  <main class="sheet blue">
+    <div class="vert" aria-hidden="true">No form · no app · no venmo · no exceptions</div>
+
+    <div class="cols">
+      <div class="span3">
+        <article class="postcard" aria-label="How to register">
+          <div class="msg">
+            <p class="big">Wish you were here!<br>(Mail $120 and you will be.)</p>
+            <p>Dear degenerate,</p>
+            <p>The entry fee is <b>$120, CASH ONLY.</b> Put it in an envelope like an adult.</p>
+            <p>In that envelope, include:</p>
+            <p>1. The <u>registrant name(s)</u><br>2. Your <u>email address, NEATLY WRITTEN</u></p>
+            <p>Print it. Block letters. If we can't read your email we can't email you, and if we can't email you, you're uninvited. We will not guess whether that's a "u" or a "v." We will just drink your $120.</p>
+            <p>See you <b>Feb 5–7, 2027</b> at <b>Bumble Bee Ranch Adventures and Event Center, Bumble Bee, AZ.</b></p>
+            <p>xoxo, Management</p>
+          </div>
+          <div class="divider" aria-hidden="true"></div>
+          <div class="addr-side">
+            <div class="postmark" aria-hidden="true">BUMBLE BEE<br>AZ<br>FEB 5 2027</div>
+            <div class="stamp" aria-hidden="true"><div><span class="cents">$120</span><br>CASH<br>ONLY</div></div>
+            <div class="to">
+              <small>Mail to:</small>
+              <div class="line">Kaolin</div>
+              <div class="line">6061 E Cave Creek Rd Ste 7</div>
+              <div class="line">Cave Creek, AZ 85331</div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <section class="info" aria-labelledby="t1">
+        <h3 id="t1">The fine print</h3>
+        <div class="fee">$120 · CASH ONLY</div>
+        <ul class="checklist">
+          <li>Cash. Not a check. Not a Venmo. Not "I'll get you at camp."</li>
+          <li>Registrant name(s). Everybody you're paying for.</li>
+          <li>Your email, <b>NEATLY WRITTEN.</b></li>
+          <li>Mail it to Kaolin (address on the postcard).</li>
+        </ul>
+      </section>
+
+      <section class="panel tilt-l" aria-labelledby="t2">
+        <h3 id="t2" class="cond misreg">What $120 gets you</h3>
+        <ul class="get">
+          <li><span class="dot"></span> Camping</li>
+          <li><span class="dot"></span> Saturday dinner</li>
+          <li><span class="dot"></span> Live music</li>
+          <li><span class="dot"></span> A fire someone jumps over</li>
+          <li><span class="dot"></span> Questionable company</li>
+        </ul>
+        <p style="font-size:11px">Does not include: dignity, a shower, gears.</p>
+      </section>
+
+      <section class="info rose" aria-labelledby="t3">
+        <h3 id="t3">Where &amp; when</h3>
+        <p><b>Fri Feb 5 – Sun Feb 7, 2027</b></p>
+        <p><b>Bumble Bee Ranch Adventures and Event Center</b><br>Bumble Bee, AZ · on the Black Canyon Trail</p>
+        <p>Three days, two nights. Adults only. 21+. No kids, no narcs.</p>
+      </section>
+    </div>
+
+    <aside class="mgmt" aria-labelledby="mg">
+      <h3 id="mg">Why mail?</h3>
+      <p>Because a website with a form would be indexed, and a website that gets indexed would get found, and then your boss finds out what you did in Bumble Bee.</p>
+      <p>Also, the ritual of licking a stamp weeds out the uncommitted.</p>
+      <p>No refunds. If you don't come, your $120 buys somebody else a beer and they toast your cowardice.</p>
+      <div class="sig">— Management.</div>
+      <p style="margin-top:14px;text-align:center"><img src="assets/gif/mail.gif" width="64" height="64" alt=""></p>
+    </aside>
+  </main>
+
+  <div class="snapstrip" data-strip="register"></div>
+
+  <footer class="footer">
+    <div class="legal">© 2027 Management. All rights reserved. No refunds. No kids. No gears.</div>
+    <div class="bestviewed">Best viewed in Netscape Navigator at 800×600.</div>
+  </footer>
+  <div class="after-footer"></div>
+</div>
+<script src="js/site.js"></script>
+</body>
+</html>

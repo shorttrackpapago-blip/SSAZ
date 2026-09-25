@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Occupied</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Reenie+Beanie&family=Titan+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<style>
+  body { min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+  .gate-wrap { flex: 1; width: 100%; max-width: 900px; display: grid; grid-template-columns: 1fr minmax(240px, 380px) 1fr; gap: 16px; align-items: center; padding: 20px 14px 90px; }
+  .door-btn { grid-column: 2; border: 0; padding: 0; background: none; cursor: pointer; position: relative; animation: rattle 4s steps(2) infinite; }
+  .door-btn img { display: block; width: 100%; height: auto; max-height: 82vh; object-fit: contain; filter: drop-shadow(10px 10px 0 #000); }
+  .door-btn:hover { background: none; animation: rattle .25s steps(2) infinite; }
+  .door-btn .knock { position: absolute; left: 50%; top: 40%; transform: translate(-50%, -50%) rotate(-4deg); font-size: clamp(26px, 5vw, 44px); white-space: nowrap; pointer-events: none; }
+  .door-btn.opening { animation: opendoor 1.8s ease-in forwards; }
+  @keyframes rattle { 0%, 92% { transform: none; } 94% { transform: rotate(-1deg) translateX(-3px); } 97% { transform: rotate(1deg) translateX(3px); } }
+  @keyframes opendoor { 20% { transform: rotate(-2deg); } 100% { transform: perspective(900px) rotateY(-80deg); transform-origin: left; opacity: .2; } }
+  .side { color: var(--paper); text-align: center; font-size: 12px; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+  .side .cond { font-size: 22px; color: var(--yellow); }
+  .lcd { display: inline-flex; gap: 2px; background: #000; padding: 5px 6px; border: 3px inset #777; }
+  .lcd span { font-family: "Courier New", monospace; font-weight: bold; font-size: 26px; color: #4dff4d; background: #0b1f0b; padding: 0 3px; text-shadow: 0 0 6px #4dff4d; }
+  .counter-cap { font-size: 11px; color: var(--ridge); }
+  .gate { position: fixed; inset: 0; z-index: 150; background: rgba(46, 51, 81, .92); display: grid; place-items: center; padding: 16px; }
+  .gate[hidden] { display: none; }
+  .gate .win { width: min(94vw, 460px); background: #c0c0c0; border: 3px outset #eee; box-shadow: 8px 8px 0 #000; font: 14px Tahoma, Arial, sans-serif; }
+  .gate .tb { background: #000080; color: #fff; font-weight: bold; padding: 4px 8px; }
+  .gate .bd { padding: 16px; text-align: center; }
+  .gate h1 { font-size: clamp(30px, 7vw, 44px); margin: 4px 0 12px; }
+  .gate .btns { display: flex; gap: 14px; justify-content: center; margin-top: 16px; flex-wrap: wrap; }
+  .bottom { position: fixed; left: 0; right: 0; bottom: 0; background: var(--berry); color: var(--paper); border-top: 4px solid var(--navy); text-align: center; padding: 6px 70px 8px 10px; font-size: 12px; }
+  @media (max-width: 768px) {
+    .gate-wrap { grid-template-columns: 1fr; padding-top: 110px; }
+    .door-btn { grid-column: 1; max-width: 300px; margin: 0 auto; }
+    .side.left { order: 2; } .side.right { order: 3; }
+  }
+</style>
+</head>
+<body data-gate>
+<a class="sticker" href="index.html"><img src="assets/logo.png" alt="Singlespeed Arizona 2027 — The Sequel. Black Canyon Trail."></a>
+
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <div class="win">
+    <div class="tb">SSAZ_BOUNCER.EXE</div>
+    <div class="bd">
+      <h1 id="gate-title" class="bubble">Hold up.</h1>
+      <p><b>You must be 21+ and not a narc.</b></p>
+      <p>If you're reading this, somebody vouched for you. That person is now responsible for everything you do. Don't make them regret it (you will).</p>
+      <div class="btns">
+        <button type="button" class="btn95" id="im-in">I'm in</button>
+        <a class="btn95" href="narc.html" style="text-decoration:none">I'm a narc</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="gate-wrap">
+  <div class="side left">
+    <div class="cond misreg">Single Speed Arizona<br>2027 — The Sequel</div>
+    <img src="assets/gif/construction.gif" width="176" height="64" alt="Under construction">
+    <img src="assets/gif/digger.gif" width="80" height="80" alt="">
+    <div>This site is <span class="blink">ALWAYS</span> under construction. Like the trail. Like your life.</div>
+  </div>
+
+  <button type="button" class="door-btn" id="door" aria-label="Knock on the porta-john door to enter the site">
+    <img src="assets/door-portajohn.png" alt="">
+    <span class="knock bubble">Please knock</span>
+  </button>
+
+  <div class="side right">
+    <div class="cond">You are visitor #</div>
+    <div class="lcd" id="counter" aria-live="polite"></div>
+    <div class="counter-cap">(we counted. we always count.)</div>
+    <img src="assets/gif/skull.gif" width="64" height="64" alt="">
+    <div>Best viewed in <b>Netscape Navigator</b> at <b>800×600</b>.<br>Sound on. Pants on.</div>
+  </div>
+</main>
+
+<div class="bottom">© 2027 Management. All rights reserved. No refunds. No kids. No gears.</div>
+
+<script src="js/site.js"></script>
+<script>
+(function () {
+  // hit counter: fake, proud of it
+  var s = window.SSAZ.store;
+  var n = parseInt(s.get("ssaz-hits"), 10);
+  if (!(n >= 69420)) n = 69420;
+  n += 1 + Math.floor(Math.random() * 7);
+  s.set("ssaz-hits", String(n));
+  var digits = String(n).padStart(6, "0");
+  document.getElementById("counter").innerHTML = digits.split("").map(function (d, i) {
+    return (i === 3 ? '<span aria-hidden="true">,</span>' : "") + "<span>" + d + "</span>";
+  }).join("");
+
+  var gate = document.getElementById("gate");
+  var door = document.getElementById("door");
+  document.getElementById("im-in").addEventListener("click", function () {
+    gate.hidden = true;
+    door.focus();
+  });
+  document.getElementById("im-in").focus();
+
+  var going = false;
+  door.addEventListener("click", function () {
+    if (going) return;
+    going = true;
+    s.set("ssaz-knocked", "1");
+    window.SSAZ.startMusic();          // this click is the gesture that unlocks audio
+    var ms = window.SSAZ.sfxDoor() || 900;
+    door.classList.add("opening");
+    setTimeout(function () { window.location.href = "camp.html"; }, Math.min(ms, 2300));
+  });
+})();
+</script>
+</body>
+</html>

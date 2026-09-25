@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Camp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Reenie+Beanie&family=Titan+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<style>
+  .scene-wrap { margin: 0 -6px; border: 4px solid var(--navy); background: var(--navy); }
+  .scene {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2 / 1;
+    background: url("assets/camp-bg.png") center / 100% 100% no-repeat;
+    overflow: visible;
+  }
+  .hot {
+    position: absolute;
+    display: block;
+    background: none;
+    transition: transform .12s steps(2), filter .12s;
+  }
+  .hot img { display: block; width: 100%; height: auto; pointer-events: none; }
+  .hot:hover, .hot:focus-visible {
+    background: none;
+    z-index: 10;
+    filter: drop-shadow(0 0 0 #fff) drop-shadow(3px 0 0 #FFD628) drop-shadow(-3px 0 0 #FFD628) drop-shadow(0 3px 0 #FFD628) drop-shadow(0 -3px 0 #FFD628);
+    animation: wiggle .3s steps(2) infinite;
+  }
+  .hot.bounce:hover, .hot.bounce:focus-visible { animation: bounce .45s steps(3) infinite; }
+  .hot:focus-visible { outline: 4px dashed #FFD628; outline-offset: 4px; }
+  @keyframes wiggle { 0% { transform: rotate(-3deg); } 100% { transform: rotate(3deg); } }
+  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+  /* clunky tooltip */
+  .hot::after {
+    content: attr(data-label);
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    transform: translate(-50%, -4px);
+    background: #ffffe1;
+    color: #000;
+    border: 1px solid #000;
+    box-shadow: 2px 2px 0 #000;
+    font: bold 12px Tahoma, Arial, sans-serif;
+    padding: 2px 6px;
+    white-space: nowrap;
+    display: none;
+    z-index: 20;
+  }
+  .hot:hover::after, .hot:focus-visible::after { display: block; }
+  .hot.tip-below::after { bottom: auto; top: 100%; transform: translate(-50%, 4px); }
+
+  .h-bonfire   { left: 43%; top: 42%; width: 18%; }
+  .h-postcard  { left: 8%;  top: 57%; width: 13%; transform: rotate(-7deg); }
+  .h-van       { left: 62%; top: 60%; width: 25%; }
+  .h-weather   { left: 72%; top: 5%;  width: 14%; }
+  .h-cactus    { left: 88.5%; top: 58%; width: 10.5%; }
+  .h-clothes   { left: 22%; top: 43%; width: 21%; }
+  .h-guestbook { left: 26%; top: 67%; width: 7.5%; }
+  .h-postcard:hover, .h-postcard:focus-visible { animation: wiggle-card .3s steps(2) infinite; }
+  @keyframes wiggle-card { 0% { transform: rotate(-10deg); } 100% { transform: rotate(-4deg); } }
+
+  .instructions { display: flex; gap: 10px; align-items: center; justify-content: space-between; background: var(--paper); border: 4px solid var(--navy); border-top: 0; margin: 0 -6px; padding: 8px 12px; flex-wrap: wrap; }
+  .instructions .cond { font-size: 20px; }
+  .lost { background: var(--rose); border: 4px solid var(--navy); border-top: 0; margin: 0 -6px; padding: 10px 12px; }
+  .lost .cond { font-size: 18px; }
+  .lost ul { list-style: none; padding: 0; margin: 6px 0 0; display: flex; flex-wrap: wrap; gap: 6px 14px; }
+
+  .chunky { display: none; }
+  @media (max-width: 768px) {
+    .scene-wrap, .instructions { display: none; }
+    .chunky { display: grid; gap: 10px; margin: 12px -2px 0; padding: 0; list-style: none; }
+    .chunky a {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--paper); color: var(--navy); text-decoration: none;
+      border: 4px solid var(--navy); box-shadow: 6px 6px 0 var(--berry);
+      padding: 10px 12px;
+      font-family: var(--cond); text-transform: uppercase; font-size: 24px; line-height: 1.05;
+    }
+    .chunky a small { display: block; font-family: var(--body); text-transform: none; font-size: 14px; color: var(--berry); }
+    .chunky img { width: 64px; height: 64px; object-fit: contain; flex: none; }
+    .chunky li:nth-child(odd) a { transform: rotate(-1deg); }
+    .chunky li:nth-child(even) a { transform: rotate(1deg); background: var(--lav); }
+  }
+</style>
+</head>
+<body>
+<div class="catalog">
+  <a class="sticker" href="index.html"><img src="assets/logo.png" alt="Singlespeed Arizona 2027 — The Sequel. Back to the door."></a>
+  <div class="topbar">
+    <img src="assets/gif/new.gif" width="70" height="50" alt="New!">
+    <span>Feb 5–7, 2027 · Bumble Bee, AZ</span>
+  </div>
+
+  <div class="banner">
+    <h1 class="bubble">Welcome to camp</h1>
+    <span class="kicker">Click stuff. Everything's a link. Probably.</span>
+  </div>
+
+  <div class="marquee" aria-hidden="true"><span>★ SINGLE SPEED ARIZONA 2027 — THE SEQUEL ★ FEB 5–7 ★ BUMBLE BEE RANCH ★ $120 CASH ★ NO KIDS ★ NO GEARS ★ NO NARCS ★ KAOLIN WILL JUMP THE FIRE ★ KARL WILL YELL ★ YOU WILL FEEL IT ON MONDAY ★</span></div>
+
+  <div class="scene-wrap">
+    <div class="scene" role="group" aria-label="Campsite at dusk. Click things.">
+      <a class="hot h-weather tip-below bounce" href="https://forecast.weather.gov/MapClick.php?lat=34.2059&amp;lon=-112.1488" target="_blank" rel="noopener" data-label="WEATHER (it's the desert, bring layers)">
+        <img src="assets/obj-weather.png" alt="The sun and a storm cloud: NOAA weather forecast for Bumble Bee (opens in a new tab)">
+      </a>
+      <a class="hot h-clothes" href="gallery.html" data-label="PAST YEARS (evidence)">
+        <img src="assets/obj-clothesline.png" alt="A clothesline of polaroids: photos from past years">
+      </a>
+      <a class="hot h-bonfire bounce" href="itinerary.html" data-label="THE PLAN (loosely)">
+        <img src="assets/obj-bonfire-jump.png" alt="A rider jumping a bike over the bonfire: the itinerary">
+      </a>
+      <a class="hot h-postcard" href="register.html" data-label="REGISTER ($120 cash, by mail)">
+        <img src="assets/obj-postcard.png" alt="A Cleator Yacht Club postcard: registration and payment">
+      </a>
+      <a class="hot h-guestbook" href="guestbook.html" data-label="SIGN THE GUESTBOOK!!!">
+        <img src="assets/obj-guestbook.png" alt="A clipboard nailed to a fence post: the guestbook">
+      </a>
+      <a class="hot h-van" href="gear.html" data-label="RIGS &amp; KIT">
+        <img src="assets/obj-van.png" alt="A van with bikes on the rack: gear and rigs">
+      </a>
+      <a class="hot h-cactus" href="https://www.trailforks.com/region/black-canyon-city/" target="_blank" rel="noopener" data-label="TRAILS (Trailforks) →">
+        <img src="assets/obj-cactus-sign.png" alt="A cactus with a trail sign: Black Canyon City trails on Trailforks (opens in a new tab)">
+      </a>
+    </div>
+  </div>
+
+  <div class="instructions">
+    <span class="cond">Hover things. Click things. Touch nothing else.</span>
+    <span class="gifrow"><img src="assets/gif/wheel.gif" width="40" height="40" alt=""><img src="assets/gif/skull.gif" width="40" height="40" alt=""><img src="assets/gif/wheel.gif" width="40" height="40" alt=""></span>
+  </div>
+
+  <ul class="chunky" aria-label="Campsite links">
+    <li><a href="itinerary.html"><img src="assets/obj-bonfire-jump.png" alt=""><span>The plan (loosely)<small>Itinerary. Fire. Yelling.</small></span></a></li>
+    <li><a href="register.html"><img src="assets/obj-postcard.png" alt=""><span>Register<small>$120 cash, by mail. Yes, mail.</small></span></a></li>
+    <li><a href="gear.html"><img src="assets/obj-van.png" alt=""><span>Rigs &amp; kit<small>Your derailleur is not invited.</small></span></a></li>
+    <li><a href="https://forecast.weather.gov/MapClick.php?lat=34.2059&amp;lon=-112.1488" target="_blank" rel="noopener"><img src="assets/obj-weather.png" alt=""><span>Weather ↗<small>75° at noon, frost on your tent at 5am.</small></span></a></li>
+    <li><a href="https://www.trailforks.com/region/black-canyon-city/" target="_blank" rel="noopener"><img src="assets/obj-cactus-sign.png" alt=""><span>Trails ↗<small>Black Canyon City on Trailforks.</small></span></a></li>
+    <li><a href="gallery.html"><img src="assets/obj-clothesline.png" alt=""><span>Past years<small>Evidence, mostly.</small></span></a></li>
+    <li><a href="guestbook.html"><img src="assets/obj-guestbook.png" alt=""><span>Guestbook<small>Sign it. Management reads these.</small></span></a></li>
+  </ul>
+
+  <nav class="lost" aria-label="Text navigation">
+    <span class="cond">lost? click here, dummy:</span>
+    <ul>
+      <li><a href="itinerary.html">Itinerary</a></li>
+      <li><a href="register.html">Register &amp; pay</a></li>
+      <li><a href="gear.html">Gear</a></li>
+      <li><a href="https://forecast.weather.gov/MapClick.php?lat=34.2059&amp;lon=-112.1488" target="_blank" rel="noopener">Weather (NOAA) ↗</a></li>
+      <li><a href="https://www.trailforks.com/region/black-canyon-city/" target="_blank" rel="noopener">Trails (Trailforks) ↗</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="guestbook.html">Guestbook</a></li>
+    </ul>
+  </nav>
+
+  <footer class="footer">
+    <div class="legal">© 2027 Management. All rights reserved. No refunds. No kids. No gears.</div>
+    <div class="bestviewed">Best viewed in Netscape Navigator at 800×600. February in the desert: 75° at noon, frost on your tent at 5am.</div>
+  </footer>
+  <div class="after-footer"></div>
+</div>
+<script src="js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Past Years</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Reenie+Beanie&family=Titan+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<style>
+  .cork {
+    background-color: #c89a64;
+    background-image: radial-gradient(rgba(90, 55, 25, .35) 1.5px, transparent 2px), radial-gradient(rgba(255, 230, 190, .25) 1px, transparent 1.5px);
+    background-size: 9px 9px, 13px 13px;
+    background-position: 0 0, 4px 6px;
+    border: 10px solid #6b4424;
+    outline: 3px solid var(--navy);
+    padding: 26px 16px 20px;
+  }
+  .wall { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 26px 18px; }
+  .polaroid { position: relative; background: #fff; padding: 9px 9px 8px; box-shadow: 5px 5px 0 rgba(0,0,0,.45); transform: rotate(var(--tilt, 0deg)); transition: transform .12s steps(2); }
+  .polaroid:hover { transform: rotate(0deg) scale(1.08); z-index: 5; }
+  .polaroid a { display: block; background: none; }
+  .polaroid img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; background: #222; }
+  .polaroid .cap { display: block; font-family: var(--scrawl); font-size: 25px; line-height: .95; color: #1b2258; padding-top: 7px; min-height: 40px; }
+  .polaroid .yr { position: absolute; right: 10px; bottom: 6px; font-family: var(--hand); font-size: 13px; color: var(--berry); }
+  .pin { position: absolute; top: -8px; left: 50%; width: 16px; height: 16px; margin-left: -8px; border-radius: 50%; background: var(--berry); border: 2px solid var(--navy); box-shadow: 2px 2px 0 rgba(0,0,0,.4); }
+  .polaroid:nth-child(3n) .pin { background: var(--yellow); }
+  .polaroid:nth-child(4n) .pin { background: var(--lav); }
+  @media (max-width: 768px) { .wall { grid-template-columns: repeat(2, 1fr); gap: 18px 12px; } .polaroid .cap { font-size: 21px; } }
+</style>
+</head>
+<body>
+<div class="catalog">
+  <a class="sticker" href="camp.html"><img src="assets/logo.png" alt="Singlespeed Arizona 2027 — The Sequel. Back to camp."></a>
+  <nav class="topbar" aria-label="Pages">
+    <a href="camp.html">← Camp</a><a href="itinerary.html">Plan</a><a href="register.html">Register</a><a href="gear.html">Gear</a><a href="gallery.html" aria-current="page">Gallery</a><a href="guestbook.html">Guestbook</a>
+  </nav>
+
+  <header class="banner">
+    <h1 class="bubble">Past years</h1>
+    <span class="kicker">Well over a decade of evidence. Some of it admissible.</span>
+  </header>
+
+  <main class="sheet no-rail blue">
+    <div class="vert" aria-hidden="true">What happens in Bumble Bee gets pinned to a corkboard</div>
+    <div>
+      <div class="info rose" style="margin-bottom:12px">
+        <h3>The wall of shame</h3>
+        <p>Real photos are coming once people dig them out of their phones and decide they're not legally binding. Until then, enjoy these artist's renderings. Click a polaroid to see it big. <img src="assets/gif/new.gif" width="70" height="50" alt="New!" style="vertical-align:middle"></p>
+      </div>
+      <div class="cork">
+        <ul class="wall" id="wall" aria-label="Photos from past years"></ul>
+      </div>
+    </div>
+  </main>
+
+  <div class="snapstrip" data-strip="gallery"></div>
+
+  <footer class="footer">
+    <div class="legal">© 2027 Management. All rights reserved. No refunds. No kids. No gears.</div>
+    <div class="bestviewed">Best viewed in Netscape Navigator at 800×600.</div>
+  </footer>
+  <div class="after-footer"></div>
+</div>
+<script src="js/site.js"></script>
+<script src="js/gallery.js"></script>
+</body>
+</html>

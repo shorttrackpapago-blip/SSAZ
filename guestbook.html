@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Guestbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Reenie+Beanie&family=Titan+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<style>
+  .gb-head { text-align: center; }
+  .gb-head .bubble { font-size: clamp(30px, 5vw, 56px); color: var(--yellow); }
+  .gb-frame { background: #000; border: 6px ridge #c0c0c0; padding: 6px; }
+  .gb-frame iframe { display: block; width: 100%; height: 720px; border: 0; background: #fff; }
+  .gb-empty { background: #000; color: #4dff4d; font-family: "Courier New", monospace; padding: 20px; font-size: 14px; line-height: 1.5; }
+  .gb-empty code { color: #ff6; }
+  .rainbow { font-family: "Comic Sans MS", var(--hand); font-weight: bold; font-size: 18px; }
+  .rainbow span:nth-child(6n+1) { color: #ff4d4d; } .rainbow span:nth-child(6n+2) { color: #ffa500; } .rainbow span:nth-child(6n+3) { color: #ffff4d; }
+  .rainbow span:nth-child(6n+4) { color: #4dff4d; } .rainbow span:nth-child(6n+5) { color: #4dd2ff; } .rainbow span:nth-child(6n+6) { color: #d24dff; }
+  @media (max-width: 768px) { .gb-frame iframe { height: 620px; } }
+</style>
+</head>
+<body>
+<div class="catalog">
+  <a class="sticker" href="camp.html"><img src="assets/logo.png" alt="Singlespeed Arizona 2027 — The Sequel. Back to camp."></a>
+  <nav class="topbar" aria-label="Pages">
+    <a href="camp.html">← Camp</a><a href="itinerary.html">Plan</a><a href="register.html">Register</a><a href="gear.html">Gear</a><a href="gallery.html">Gallery</a><a href="guestbook.html" aria-current="page">Guestbook</a>
+  </nav>
+
+  <header class="banner">
+    <h1 class="bubble">Guestbook</h1>
+    <span class="kicker">Say something nice. Or don't. We're not your mom.</span>
+  </header>
+
+  <main class="sheet no-rail">
+    <div class="vert" aria-hidden="true">Sign it · sign it · sign it · sign it · sign it</div>
+    <div>
+      <div class="info gb-head" style="margin-bottom:12px">
+        <div class="gifrow">
+          <img src="assets/gif/star.gif" width="60" height="60" alt="">
+          <h2 class="bubble" style="margin:0">Sign my guestbook!!!</h2>
+          <img src="assets/gif/star.gif" width="60" height="60" alt="">
+        </div>
+        <p class="rainbow" aria-label="Thanks for visiting my homepage!"><span>T</span><span>h</span><span>a</span><span>n</span><span>k</span><span>s</span> <span>f</span><span>o</span><span>r</span> <span>v</span><span>i</span><span>s</span><span>i</span><span>t</span><span>i</span><span>n</span><span>g</span> <span>m</span><span>y</span> <span>h</span><span>o</span><span>m</span><span>e</span><span>p</span><span>a</span><span>g</span><span>e</span><span>!</span></p>
+        <p>Keep it clean-ish. No real names, no addresses, no photos of anybody's butt. This thing is on the internet, even if the internet can't find it.</p>
+        <div class="gifrow"><img src="assets/gif/construction.gif" width="176" height="64" alt="Under construction"><img src="assets/gif/skull.gif" width="64" height="64" alt=""><img src="assets/gif/wheel.gif" width="64" height="64" alt=""></div>
+      </div>
+
+      <div class="gb-frame" id="gb"></div>
+    </div>
+  </main>
+
+  <div class="snapstrip" data-strip="guestbook"></div>
+
+  <footer class="footer">
+    <div class="legal">© 2027 Management. All rights reserved. No refunds. No kids. No gears.</div>
+    <div class="bestviewed">Best viewed in Netscape Navigator at 800×600.</div>
+  </footer>
+  <div class="after-footer"></div>
+</div>
+<script src="js/site.js"></script>
+<script>
+  /* ======================= GUESTBOOK CONFIG =======================
+     Paste your Atabook guestbook URL here (see README, "Guestbook setup").
+     Example: "https://ssaz2027.atabook.org/"
+     Leave it empty and the page shows setup instructions instead.   */
+  var GUESTBOOK_URL = "";
+  /* ================================================================ */
+
+  (function () {
+    var box = document.getElementById("gb");
+    if (GUESTBOOK_URL) {
+      var f = document.createElement("iframe");
+      f.src = GUESTBOOK_URL;
+      f.title = "Guestbook (Atabook)";
+      f.loading = "lazy";
+      f.referrerPolicy = "no-referrer";
+      box.appendChild(f);
+    } else {
+      box.innerHTML = '<div class="gb-empty">C:\\SSAZ\\GUESTBOOK&gt; <span class="blink">_</span><br><br>' +
+        'ERROR: guestbook not plugged in yet.<br>Webmaster: make a free guestbook at atabook.org, then paste its URL into ' +
+        '<code>GUESTBOOK_URL</code> in guestbook.html. Instructions in README.md.<br><br>' +
+        'Everybody else: check back later. Or write your message on a napkin and hand it to Kaolin.</div>';
+    }
+  })();
+</script>
+</body>
+</html>
