@@ -116,16 +116,17 @@ The gear page cards use the brands' own logos, supplied by the organizers, in `a
 
 If real art comes in at different proportions, adjust the hotspot positions in the `<style>` block at the top of `camp.html`. Look for `.h-bonfire`, `.h-van`, and so on. The values are `left`, `top`, and `width`, in % of the scene.
 
-`assets/logo.png` is the real logo (the pontoon-boat skeleton version), resized from `ssazlogo.png` with the white around the shield made transparent. The page colors were sampled from it:
+`assets/logo.png` is the real logo (the rainbow pontoon-boat skeleton version), with the white around the shield made transparent. The page colors were sampled from it. The CSS variable names are left over from the first logo; their roles haven't changed:
 
-| Role | Hex |
-|---|---|
-| Navy | `#2E3351` |
-| Berry | `#A03263` |
-| Rose | `#B57CAE` |
-| Lavender | `#A79CCA` |
-| Ridge blue-gray | `#B8C3D6` |
-| Paper | `#F4F1E8` |
+| Variable | Role | Hex |
+|---|---|---|
+| `--navy` | Dark fields, outlines, body text (deep purple) | `#411382` |
+| `--berry` | Banners, accents (outline red) | `#CC1218` |
+| `--rose` | Secondary fields, info boxes (orange) | `#FC8200` |
+| `--lav` | Panels (light purple) | `#A55BD4` |
+| `--ridge` | Blue fields | `#0161C9` |
+| `--yellow` | Highlights, hover glow | `#FFDE06` |
+| `--paper` | Content panels | `#F4F1E8` |
 
 The GIFs in `assets/gif/` are original, generated for this site, and free to use.
 
