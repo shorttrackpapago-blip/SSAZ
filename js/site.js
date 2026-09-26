@@ -282,7 +282,27 @@
     { src: "roadies.png", alt: "Three roadies riding toward you, grinning" },
     { src: "clunker.png", alt: "A guy in denim hunched over an old clunker bike" },
     { src: "segura.png", alt: "Tom Segura with a microphone saying \"Bikes!\" (opens a YouTube video in a new tab)", href: "https://www.youtube.com/watch?v=LOvj5iiCmO8&pp=ygUQdG9tIHNlZ3VyYSBiaWtlcw%3D%3D" },
-    { src: "gears.png", alt: "A mustachioed 80s mountain biker saying \"Fuck your gears\"" }
+    { src: "gears.png", alt: "A mustachioed 80s mountain biker saying \"Fuck your gears\"" },
+    { src: "crew-01.png", alt: "Two guys grinning, one with arms crossed" },
+    { src: "crew-02.png", alt: "Two guys arm in arm, one giving a thumbs up with a beer" },
+    { src: "crew-03.png", alt: "A band playing on a corrugated-metal stage" },
+    { src: "crew-04.png", alt: "A guy with dreads flexing both arms and yelling" },
+    { src: "crew-05.png", alt: "A crowd standing around a roaring bonfire at night" },
+    { src: "crew-06.png", alt: "A rider in a green helmet squirting a bottle into their mouth" },
+    { src: "crew-07.png", alt: "Three riders posing, one taking a swig" },
+    { src: "crew-08.png", alt: "Three friends posing, one holding a can" },
+    { src: "crew-09.png", alt: "A rider getting worked on at a massage table" },
+    { src: "crew-10.png", alt: "Two riders in helmets grinning at the camera" },
+    { src: "crew-11.png", alt: "A rider in giant purple shield sunglasses and a patched denim vest" },
+    { src: "crew-12.png", alt: "A rider leaning on her handlebars, smiling" },
+    { src: "crew-13.png", alt: "Two riders on the trail, one in a blazer" },
+    { src: "crew-14.png", alt: "Two riders coming down the trail" },
+    { src: "crew-15.png", alt: "A van with bikes on the back rack" },
+    { src: "crew-16.png", alt: "Two riders charging toward the camera" },
+    { src: "crew-17.png", alt: "A rider sitting cross-legged while someone holds things over his head" },
+    { src: "crew-18.png", alt: "A rider on a teal bike" },
+    { src: "crew-19.png", alt: "A rider in plaid grinning on the trail" },
+    { src: "crew-20.png", alt: "A rider descending the trail" }
   ];
 
   function mountRoamers() {
@@ -290,15 +310,16 @@
     if (!host) return;
     // on the campsite they'd sit on top of the clickable scene, so only show them there when they fit in the gutters
     if (document.querySelector(".scene") && window.innerWidth < 1360) return;
-    var pool = ROAMERS.slice(), picks = [];
-    while (picks.length < 2 && pool.length) picks.push(pool.splice(Math.floor(Math.random() * pool.length), 1)[0]);
+    var COUNT = 4, pool = ROAMERS.slice(), picks = [];
+    while (picks.length < COUNT && pool.length) picks.push(pool.splice(Math.floor(Math.random() * pool.length), 1)[0]);
     var firstLeft = Math.random() < 0.5;
     picks.forEach(function (r, i) {
       var el = document.createElement(r.href ? "a" : "div");
       if (r.href) { el.href = r.href; el.target = "_blank"; el.rel = "noopener"; }
-      el.className = "roamer " + ((i === 0) === firstLeft ? "left" : "right");
-      // one in the upper half of the page, one in the lower half, each at a random height
-      el.style.top = (i === 0 ? 18 + Math.random() * 25 : 55 + Math.random() * 30).toFixed(1) + "%";
+      el.className = "roamer " + ((i % 2 === 0) === firstLeft ? "left" : "right");
+      // split the page into COUNT bands top to bottom, drop one in each at a random height, sides alternating
+      var band = 80 / picks.length;
+      el.style.top = (12 + i * band + Math.random() * (band - 8)).toFixed(1) + "%";
       el.style.setProperty("--tilt", (Math.random() * 12 - 6).toFixed(1) + "deg");
       el.innerHTML = '<img src="assets/roamers/' + r.src + '" alt="' + r.alt.replace(/"/g, "&quot;") + '">';
       host.appendChild(el);
