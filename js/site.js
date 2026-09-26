@@ -302,7 +302,12 @@
     { src: "crew-17.png", alt: "A rider sitting cross-legged while someone holds things over his head" },
     { src: "crew-18.png", alt: "A rider on a teal bike" },
     { src: "crew-19.png", alt: "A rider in plaid grinning on the trail" },
-    { src: "crew-20.png", alt: "A rider descending the trail" }
+    { src: "crew-20.png", alt: "A rider descending the trail" },
+    { src: "crew-21.png", alt: "A barefoot rider carrying his bike on his shoulder" },
+    { src: "crew-22.png", alt: "A rider riding no-handed with arms spread wide" },
+    { src: "crew-23.png", alt: "A rider on a green fat bike charging the trail" },
+    { src: "crew-24.png", alt: "A smiling rider on a pink hardtail" },
+    { src: "crew-25.png", alt: "A rider in a yellow helmet coming down the trail" }
   ];
 
   function mountRoamers() {

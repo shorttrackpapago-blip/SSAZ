@@ -136,7 +136,7 @@ There's no background music. The only sound is the knock-creak-flush effect when
 
 ## Roamers (random cutouts)
 
-25 cutouts live in `assets/roamers/` (the five originals plus `crew-01` to `crew-20`). Every inner page shows 4 of them, picked at random on each load, spread top to bottom with sides alternating (`COUNT` in `mountRoamers`). On wide screens they sit in the page margins; on narrower screens they peek in from the screen edge. Segura links to his "Bikes" YouTube clip. The list is `ROAMERS` in `js/site.js`: add `{ src: "file.png", alt: "..." }` for a new one, plus `href` if it should be a link. On the camp page they only appear on wide screens, so they never cover the clickable scene.
+30 cutouts live in `assets/roamers/` (the five originals plus `crew-01` to `crew-25`). Every inner page shows 4 of them, picked at random on each load, spread top to bottom with sides alternating (`COUNT` in `mountRoamers`). On wide screens they sit in the page margins; on narrower screens they peek in from the screen edge. Segura links to his "Bikes" YouTube clip. The list is `ROAMERS` in `js/site.js`: add `{ src: "file.png", alt: "..." }` for a new one, plus `href` if it should be a link. On the camp page they only appear on wide screens, so they never cover the clickable scene.
 
 ## Spokey (our Clippy)
 
