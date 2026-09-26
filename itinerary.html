@@ -27,6 +27,11 @@
   .nearby h4 { font-size: 20px !important; margin-top: 2px !important; }
   .items a { font-size: 12.5px; }
   @media (max-width: 768px) { .nearby { grid-template-columns: 1fr; } }
+  .items li.has-thumb { display: flow-root; }
+  .li-thumb { float: right; width: 130px; margin: 2px 2px 6px 10px; background: #fff; padding: 4px 4px 12px; border: 2px solid #111; box-shadow: 3px 3px 0 var(--navy); transform: rotate(3deg); transition: transform .12s steps(2); }
+  .li-thumb:hover, .li-thumb:focus-visible { background: #fff; transform: rotate(0deg) scale(1.12); position: relative; z-index: 5; }
+  .li-thumb img { display: block; width: 100%; height: auto; }
+  @media (max-width: 768px) { .li-thumb { width: 110px; } }
   .crash { margin: 16px 0 2px; text-align: center; }
   .crash img { display: block; width: 88%; max-width: 220px; margin: 0 auto; filter: drop-shadow(4px 4px 0 var(--navy)); transform-origin: 50% 100%; animation: woozy 3s ease-in-out infinite; }
   .crash:hover img { animation: woozy-hard .35s steps(2) infinite; }
@@ -80,7 +85,7 @@
         <ul class="items">
           <li><b>Karl wakes everyone up shouting "RACE DAY!"</b><span class="joke">It is not a race. It has never been a race. DJ does not care. Earplugs won't save you.</span></li>
           <li><span class="time">10:00 AM</span> <b>Ride start</b><span class="joke">10:00 Management Time, so like 10:40.</span></li>
-          <li><b>Stop at the Cleator Yacht Club</b><span class="joke">The watering hole. There is no water and there are no yachts. Hydrate accordingly.</span></li>
+          <li class="has-thumb"><a class="li-thumb" href="assets/photos/cleator-jetski.jpg" target="_blank" rel="noopener"><img src="assets/photos/cleator-jetski.jpg" width="654" height="469" alt="Three women on a beached jet ski outside the Cleator Yacht Club, one chugging a drink"></a><b>Stop at the Cleator Yacht Club</b><span class="joke">The watering hole. There is no water and there are no yachts. Hydrate accordingly.</span></li>
           <li><b>Dinner provided</b><span class="joke">Saturday night. Real food, made by people who aren't you. Your $120 at work.</span></li>
           <li><b>Live music</b><span class="joke">Band TBD. If you have a band and a generator, call nobody, just show up.</span></li>
           <li><b>The Hosting Competition</b><span class="joke">Decides who wins hosting rights for 2028. See the box. Ask no questions.</span></li>
