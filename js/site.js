@@ -101,13 +101,13 @@
 
   // ---------- snapshot strips ----------
   // The row of little photos at the bottom of each inner page. No captions.
-  // To change the photos, edit this list (files live in assets/photos/). Each page shows 8,
+  // To change the photos, edit this list (files live in assets/strip/, cropped 4:3). Each page shows 8,
   // starting at a different spot in the list so the strips don't all look the same.
   var STRIP_PHOTOS = [
-    "tandem.jpg", "karl1.jpg", "paul.jpg", "wine1.jpg", "ranch.jpg", "saguaro.jpg",
-    "band1.jpg", "brd-mega.jpg", "tria4.jpg", "vista.jpg", "windmill2.jpg", "hab.jpg"
+    "band-bar.jpg", "tongue.jpg", "couple.jpg", "mountain-ride.jpg",
+    "uhaul.jpg", "plaid-grin.jpg", "vista-ride.jpg", "bus.jpg"
   ];
-  var STRIP_START = { itinerary: 0, register: 4, gear: 8, gallery: 2, guestbook: 6, misc: 10 };
+  var STRIP_START = { itinerary: 0, register: 1, gear: 2, gallery: 3, guestbook: 4, misc: 5 };
 
   function mountStrips() {
     document.querySelectorAll("[data-strip]").forEach(function (el) {
@@ -115,7 +115,7 @@
       el.setAttribute("aria-label", "Snapshot strip");
       var html = "";
       for (var i = 0; i < Math.min(8, n); i++) {
-        html += '<figure class="snap"><img src="assets/photos/' + STRIP_PHOTOS[(start + i) % n] + '" alt="" loading="lazy"></figure>';
+        html += '<figure class="snap"><img src="assets/strip/' + STRIP_PHOTOS[(start + i) % n] + '" alt="" loading="lazy"></figure>';
       }
       el.innerHTML = html;
     });

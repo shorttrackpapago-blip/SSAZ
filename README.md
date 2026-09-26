@@ -86,7 +86,7 @@ Until the URL is filled in, the page shows a fake DOS error explaining that the 
    ```
 3. To take a photo off the wall, delete its line.
 
-The small "snapshot strips" at the bottom of each inner page show 8 photos each, with no captions. They come from the `STRIP_PHOTOS` list in `js/site.js` (files in `assets/photos/`), and `STRIP_START` sets where each page starts in that list so the strips differ. Add photos to that list to give the strips more variety.
+The small "snapshot strips" at the bottom of each inner page show 8 photos each, with no captions. They come from the `STRIP_PHOTOS` list in `js/site.js` (files in `assets/strip/`, cropped to 4:3), and `STRIP_START` sets where each page starts in that list so the strips differ. Add photos to that list to give the strips more variety.
 
 ## Placeholder art still needed
 
@@ -116,7 +116,7 @@ The gear page cards use the brands' own logos, supplied by the organizers, in `a
 
 If real art comes in at different proportions, adjust the hotspot positions in the `<style>` block at the top of `camp.html`. Look for `.h-bonfire`, `.h-van`, and so on. The values are `left`, `top`, and `width`, in % of the scene.
 
-`assets/logo.png` is the real logo, resized from `ssaz27.png`. The page colors were sampled from it:
+`assets/logo.png` is the real logo (the pontoon-boat skeleton version), resized from `ssazlogo.png` with the white around the shield made transparent. The page colors were sampled from it:
 
 | Role | Hex |
 |---|---|
