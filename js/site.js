@@ -160,7 +160,7 @@
     guestbook: ["Sign it. It's the only thing you'll finish this weekend.", "Write something nice. Or honest. Not both."],
     misc: ["You're on the Misc. page. Even the website doesn't know what to do with you.", "Read the doping section. Then look at your bottle. Sus."]
   };
-  var SPOKEY_TAUNTS = ["Nope.", "Too slow.", "Missed me.", "Hands off, pervert.", "Ha! Like your Saturday attack.", "You'll never catch me. Like the group ride.", "Personal space, please.", "Catch me on the climb. Oh wait."];
+  var SPOKEY_TAUNTS = ["Nope.", "Too slow.", "Can't mute me either.", "Missed me.", "Hands off, pervert.", "Ha! Like your Saturday attack.", "You'll never catch me. Like the group ride.", "Personal space, please.", "Catch me on the climb. Oh wait."];
 
   function pick(list, not) {
     if (list.length < 2) return list[0];
@@ -169,20 +169,21 @@
   }
 
   function mountSpokey() {
-    if (Date.now() < (parseInt(store.get("ssaz-spokey-until"), 10) || 0)) return;
     var page = (location.pathname.split("/").pop() || "index.html").replace(/\.html$/, "") || "index";
     var extra = SPOKEY[page] || [];
     var pool = SPOKEY.general.concat(extra, extra); // this page's lines come up twice as often
 
+    // He ignores the pointer completely (pointer-events: none in CSS), so he can't be hovered,
+    // clicked, or silenced. The page watches the pointer instead and he bolts before it arrives.
     var el = document.createElement("div");
     el.className = "spokey";
     el.innerHTML =
-      '<div class="spokey-bubble"><b>Spokey says:</b><p></p>' +
-      '<button type="button" class="spokey-shut">Shut up, Spokey</button></div>' +
+      '<div class="spokey-bubble"><b>Spokey says:</b><p></p></div>' +
       '<img src="assets/spokey.png" width="220" height="337" alt="Spokey, a spoke wrench with googly eyes" draggable="false">';
     document.body.appendChild(el);
-    var p = el.querySelector("p"), img = el.querySelector("img");
-    var line = pick(pool), revert = null, x = 0, y = 0;
+    var p = el.querySelector("p"), img = el.querySelector("img"), bubble = el.querySelector(".spokey-bubble");
+    var line = pick(pool), revert = null, x = 0, y = 0, lastFlee = 0;
+    var NEAR = 70; // px of personal space around him and his bubble
     p.textContent = line;
 
     function place(nx, ny) {
@@ -201,31 +202,36 @@
     // a new line every minute
     setInterval(function () { if (!revert) { line = pick(pool, line); p.textContent = line; } }, 60000);
 
-    // try to touch him and he's gone
-    function flee(e) {
+    // the area he defends: himself plus his bubble, padded by NEAR
+    function tooClose(mx, my) {
+      var a = el.getBoundingClientRect(), b = bubble.getBoundingClientRect();
+      var l = Math.min(a.left, b.left) - NEAR, t = Math.min(a.top, b.top) - NEAR;
+      var r = Math.max(a.right, b.right) + NEAR, btm = Math.max(a.bottom, b.bottom) + NEAR;
+      return mx > l && mx < r && my > t && my < btm;
+    }
+
+    function flee(mx, my) {
       var W = el.offsetWidth, H = el.offsetHeight, vw = window.innerWidth, vh = window.innerHeight;
-      var mx = e && e.clientX != null ? e.clientX : x + W / 2, my = e && e.clientY != null ? e.clientY : y + H / 2;
-      if (e && e.touches && e.touches[0]) { mx = e.touches[0].clientX; my = e.touches[0].clientY; }
       var best = null, bestD = -1;
-      for (var i = 0; i < 12; i++) {           // farthest of a dozen random spots from the cursor
+      for (var i = 0; i < 16; i++) {           // farthest of a handful of random spots from the pointer
         var cx = 6 + Math.random() * Math.max(1, vw - W - 12), cy = 6 + Math.random() * Math.max(1, vh - H - 12);
         var d = Math.hypot(cx + W / 2 - mx, cy + H / 2 - my);
         if (d > bestD) { bestD = d; best = [cx, cy]; }
       }
       place(best[0], best[1]);
+      lastFlee = Date.now();
       p.textContent = pick(SPOKEY_TAUNTS);
       clearTimeout(revert);
       revert = setTimeout(function () { revert = null; p.textContent = line; }, 2500);
     }
-    img.addEventListener("mouseenter", flee);
-    img.addEventListener("touchstart", function (e) { e.preventDefault(); flee(e); }, { passive: false });
 
-    el.querySelector(".spokey-shut").addEventListener("click", function () {
-      clearTimeout(revert); revert = 1;
-      p.textContent = "Fine. I'll be back in 10 minutes. I always come back.";
-      store.set("ssaz-spokey-until", String(Date.now() + 10 * 60 * 1000));
-      setTimeout(function () { el.remove(); }, 1600);
-    });
+    document.addEventListener("pointermove", function (e) {
+      if (Date.now() - lastFlee > 120 && tooClose(e.clientX, e.clientY)) flee(e.clientX, e.clientY);
+    }, { passive: true });
+    document.addEventListener("touchstart", function (e) {
+      var t = e.touches[0];
+      if (t && tooClose(t.clientX, t.clientY)) flee(t.clientX, t.clientY);
+    }, { passive: true });
     window.addEventListener("resize", function () { place(x, y); });
   }
 

@@ -12,9 +12,13 @@
 <style>
   .card { padding: 0; display: flex; flex-direction: column; }
   .card .pic { background: var(--ridge); border-bottom: 3px solid var(--navy); padding: 8px; position: relative; }
-  .card:nth-child(2) .pic { background: var(--rose); }
-  .card:nth-child(3) .pic { background: var(--lav); }
-  .card:nth-child(4) .pic { background: #e8c9a0; }
+  .card.mone .pic { background: var(--rose); }
+  .card.paul .pic { background: var(--lav); }
+  .card.rage .pic { background: #e8c9a0; }
+  .card.featured { grid-column: span 2; flex-direction: row; }
+  .card.featured .pic { width: 40%; height: auto; min-height: 150px; flex: none; background: var(--navy); border-bottom: 0; border-right: 3px solid var(--navy); }
+  .card.featured .pic .brand { max-width: 102px; max-height: 73px; }
+  .card.featured .tag { background: var(--yellow); color: var(--navy); }
   .card .pic { height: 150px; display: flex; align-items: center; justify-content: center; }
   .card .pic .brand { display: block; max-width: 82%; max-height: 118px; width: auto; height: auto; }
   .card .pic .brand[src$="rage-cycles.png"], .card .pic .brand[src$="paul.png"] { max-height: 112px; }
@@ -28,9 +32,9 @@
   .ratio { font-family: var(--bubble); font-size: clamp(40px, 4.4vw, 56px); white-space: nowrap; color: #fff; -webkit-text-stroke: 3px var(--navy); paint-order: stroke fill; text-shadow: 5px 5px 0 var(--navy); text-align: center; line-height: 1; margin: 6px 0; }
   .ban { text-align: center; }
   .ban svg { width: 140px; height: 140px; }
-  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
   @media (max-width: 1000px) { .cards { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 768px) { .cards { grid-template-columns: 1fr; } }
+  @media (max-width: 768px) { .cards { grid-template-columns: 1fr; } .card.featured { grid-column: auto; flex-direction: column; } .card.featured .pic { width: auto; border-right: 0; border-bottom: 3px solid var(--navy); } }
 </style>
 </head>
 <body>
@@ -52,7 +56,23 @@
 
     <div class="cols">
       <div class="span3 cards">
-        <article class="panel card">
+        <article class="panel card featured">
+          <div class="pic"><img class="brand" src="assets/brands/flat-tire.png" alt="Flat Tire Bike Shop logo"><span class="tag">HQ</span></div>
+          <div class="body">
+            <h3 class="cond">Flat Tire Bike Shop</h3>
+            <div class="sub">Cave Creek, AZ · the home shop</div>
+            <p>Full-service shop in Cave Creek, run by Kaolin and crew. Mechanics with 60-plus years of combined wrenching, and home of the "Bee Happy Bike Fit" studio, so at least one thing about your weekend will fit right.</p>
+            <p>Yes, 6061 E. Cave Creek Rd is the same address you mail your $120 to. No, that is not a coincidence.</p>
+            <table class="spec">
+              <tr><th>Spec</th><th>Rating</th></tr>
+              <tr><td>Fixes whatever you broke</td><td class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></td></tr>
+              <tr><td>Judges your gear ratio</td><td class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot off"></span><span class="dot off"></span></td></tr>
+              <tr><td>Sells derailleurs to SSAZ people</td><td class="dots"><span class="dot off"></span><span class="dot off"></span><span class="dot off"></span><span class="dot off"></span><span class="dot off"></span></td></tr>
+            </table>
+            <a class="go" href="https://flattirebikes.com/" target="_blank" rel="noopener">Visit ↗</a>
+          </div>
+        </article>
+        <article class="panel card oddity">
           <div class="pic"><img class="brand" src="assets/brands/oddity.png" alt="Oddity Cycles logo"><span class="tag">HANDMADE</span></div>
           <div class="body">
             <h3 class="cond">Oddity Cycles</h3>
@@ -68,7 +88,7 @@
           </div>
         </article>
 
-        <article class="panel card">
+        <article class="panel card mone">
           <div class="pic"><img class="brand" src="assets/brands/mone.png" alt="Moné Bikes logo"><span class="tag">$$$</span></div>
           <div class="body">
             <h3 class="cond">Moné Bikes</h3>
@@ -84,7 +104,7 @@
           </div>
         </article>
 
-        <article class="panel card">
+        <article class="panel card paul">
           <div class="pic"><img class="brand" src="assets/brands/paul.png" alt="Paul Components logo"><span class="tag">CNC</span></div>
           <div class="body">
             <h3 class="cond">Paul Components</h3>
@@ -100,7 +120,7 @@
           </div>
         </article>
 
-        <article class="panel card">
+        <article class="panel card rage">
           <div class="pic"><img class="brand" src="assets/brands/rage-cycles.png" alt="Rage Cycles logo"><span class="tag">ANGRY</span></div>
           <div class="body">
             <h3 class="cond">Rage Cycles</h3>

@@ -344,8 +344,8 @@ hr.rule { border: 0; height: 6px; background: var(--berry); margin: 10px 0; box-
 
 /* ---------- Spokey, our Clippy (see mountSpokey in js/site.js) ---------- */
 
-.spokey { position: fixed; z-index: 120; width: 76px; transition: left .22s ease-out, top .22s ease-out; }
-.spokey img { display: block; width: 100%; height: auto; cursor: not-allowed; filter: drop-shadow(3px 3px 0 #000); animation: spokey-bob 2.4s ease-in-out infinite; user-select: none; -webkit-user-drag: none; }
+.spokey { position: fixed; z-index: 120; width: 76px; pointer-events: none; transition: left .15s ease-out, top .15s ease-out; }
+.spokey img { display: block; width: 100%; height: auto; filter: drop-shadow(3px 3px 0 #000); animation: spokey-bob 2.4s ease-in-out infinite; user-select: none; -webkit-user-drag: none; }
 @keyframes spokey-bob { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-6px) rotate(3deg); } }
 .spokey-bubble {
   position: absolute; bottom: calc(100% + 14px); right: 0; width: 230px;
@@ -354,14 +354,12 @@ hr.rule { border: 0; height: 6px; background: var(--berry); margin: 10px 0; box-
   font: 12.5px/1.35 Tahoma, Verdana, Arial, sans-serif;
 }
 .spokey-bubble b { display: block; font-size: 11px; color: #000080; margin-bottom: 3px; }
-.spokey-bubble p { margin: 0 0 7px; }
+.spokey-bubble p { margin: 0; }
 .spokey-bubble::after { content: ""; position: absolute; top: 100%; right: 26px; border: 10px solid transparent; border-top-color: #ffffe1; filter: drop-shadow(0 1px 0 #000); }
 .spokey.on-left .spokey-bubble { right: auto; left: 0; }
 .spokey.on-left .spokey-bubble::after { right: auto; left: 26px; }
 .spokey.bubble-below .spokey-bubble { bottom: auto; top: calc(100% + 14px); }
 .spokey.bubble-below .spokey-bubble::after { top: auto; bottom: 100%; border-top-color: transparent; border-bottom-color: #ffffe1; filter: drop-shadow(0 -1px 0 #000); }
-.spokey-shut { font: 11px Tahoma, Arial, sans-serif; background: #c0c0c0; border: 2px outset #eee; padding: 1px 8px; cursor: pointer; color: #000; }
-.spokey-shut:active { border-style: inset; }
 
 /* ---------- phone mode ---------- */
 
