@@ -25,10 +25,11 @@
     transition: transform .12s steps(2), filter .12s;
   }
   .hot img { display: block; width: 100%; height: auto; pointer-events: none; }
+  /* yellow outline is always on so every clickable thing stands out; hover just adds the motion */
+  .hot { filter: drop-shadow(3px 0 0 #FFDE06) drop-shadow(-3px 0 0 #FFDE06) drop-shadow(0 3px 0 #FFDE06) drop-shadow(0 -3px 0 #FFDE06); }
   .hot:hover, .hot:focus-visible {
     background: none;
     z-index: 10;
-    filter: drop-shadow(0 0 0 #fff) drop-shadow(3px 0 0 #FFDE06) drop-shadow(-3px 0 0 #FFDE06) drop-shadow(0 3px 0 #FFDE06) drop-shadow(0 -3px 0 #FFDE06);
     animation: wiggle .3s steps(2) infinite;
   }
   .hot.bounce:hover, .hot.bounce:focus-visible { animation: bounce .45s steps(3) infinite; }
@@ -132,8 +133,8 @@
       <a class="hot h-wine" href="misc.html" data-label="MISC.">
         <img src="assets/obj-wine.png" alt="Two guys hoisting a box of wine at night: misc. shenanigans">
       </a>
-      <a class="hot h-van" href="gear.html" data-label="RIGS &amp; KIT">
-        <img src="assets/obj-rigs.png" alt="A tangled pile of singlespeeds: rigs and kit">
+      <a class="hot h-van" href="gear.html" data-label="BIKES 'N' SHIT">
+        <img src="assets/obj-rigs.png" alt="A tangled pile of singlespeeds: bikes 'n' shit">
       </a>
       <a class="hot h-rider tip-below bounce" href="https://www.trailforks.com/region/black-canyon-city/" target="_blank" rel="noopener" data-label="TRAILS (Trailforks) →">
         <img src="assets/obj-rider.png" alt="A rider heading out on the trail: Black Canyon City trails on Trailforks (opens in a new tab)">
@@ -149,7 +150,7 @@
   <ul class="chunky" aria-label="Campsite links">
     <li><a href="itinerary.html"><img src="assets/obj-bonfire-jump.png" alt=""><span>The plan (loosely)<small>Itinerary. Fire. Yelling.</small></span></a></li>
     <li><a href="register.html"><img src="assets/howdy-cleator.jpg" alt=""><span>Register<small>$120 cash, by mail. Yes, mail.</small></span></a></li>
-    <li><a href="gear.html"><img src="assets/obj-rigs.png" alt=""><span>Rigs &amp; kit<small>Your derailleur is not invited.</small></span></a></li>
+    <li><a href="gear.html"><img src="assets/obj-rigs.png" alt=""><span>Bikes 'n' Shit<small>Your derailleur is not invited.</small></span></a></li>
     <li><a href="https://forecast.weather.gov/MapClick.php?lat=34.2059&amp;lon=-112.1488" target="_blank" rel="noopener"><img src="assets/obj-weather.png" alt=""><span>Weather ↗<small>75° at noon, frost on your tent at 5am.</small></span></a></li>
     <li><a href="https://www.trailforks.com/region/black-canyon-city/" target="_blank" rel="noopener"><img src="assets/obj-rider.png" alt=""><span>Trails ↗<small>Black Canyon City on Trailforks.</small></span></a></li>
     <li><a href="gallery.html"><img src="assets/obj-photoset.png" alt=""><span>Past years<small>Evidence, mostly.</small></span></a></li>

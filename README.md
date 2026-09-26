@@ -13,7 +13,7 @@ It's plain HTML, CSS, and vanilla JS, with no build step and no dependencies bey
 | `camp.html` | The clickable campsite. This is the main navigation. |
 | `itinerary.html` | The plan (loosely). |
 | `register.html` | The Cleator Yacht Club postcard: $120 cash, by mail. |
-| `gear.html` | Rigs & kit. |
+| `gear.html` | Bikes 'n' Shit. |
 | `gallery.html` + `js/gallery.js` | Past years. |
 | `guestbook.html` | The Atabook guestbook embed. |
 | `misc.html` | Shenanigans: fact-checked cycling and doping quotes, lore, one-liners, silly links. |
