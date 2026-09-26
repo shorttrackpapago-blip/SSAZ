@@ -100,25 +100,24 @@
   }
 
   // ---------- snapshot strips ----------
-  var STRIPS = {
-    itinerary: ["Whose tent is this", "He said the beer was 2 miles ago", "Kaolin, pre-bonfire", "Kaolin, post-bonfire (eyebrows TBD)", "Karl, 6:02 AM, already yelling", "Cleator Yacht Club dress code", "Band TBD, vibes confirmed", "Sunday. Nobody is okay."],
-    register: ["Actual photo of the $120", "Mailbox, emotionally prepared", "Legible handwriting (rare)", "Illegible handwriting (uninvited)", "Stamp licker of the year", "Kaolin opening mail", "The Cave Creek HQ", "Your envelope, probably"],
-    gear: ["Gear ratio: vibes", "Derailleur, not invited", "Rigid fork, rigid personality", "Chainline by eyeball", "Tire pressure: yes", "Van rack, 11 bikes, 0 gears", "Spare tube (it's a beer)", "Titanium, allegedly"],
-    gallery: ["Whose tent is this", "Nobody remembers this", "Allegedly a trail", "Fire code violation #4", "The morning after the morning after", "Found one (1) sock", "Yacht Club, low tide", "Stars. Or the beer."],
-    misc: ["Hydration station", "Box wine, 5L, zero regrets", "Lance-free since forever", "Rule #5 in action", "The 2-mile beer, found", "Anti-doping control (Karl)", "Clunker archaeology", "Mug quotes, unsourced"],
-    guestbook: ["Dear diary", "Signed in blood (ketchup)", "Pen on a string, stolen", "Our webmaster", "Visitor #069,421", "Web ring? Web ring.", "Sign it or else", "Management reads these"]
-  };
+  // The row of little photos at the bottom of each inner page. No captions.
+  // To change the photos, edit this list (files live in assets/photos/). Each page shows 8,
+  // starting at a different spot in the list so the strips don't all look the same.
+  var STRIP_PHOTOS = [
+    "tandem.jpg", "karl1.jpg", "paul.jpg", "wine1.jpg", "ranch.jpg", "saguaro.jpg",
+    "band1.jpg", "brd-mega.jpg", "tria4.jpg", "vista.jpg", "windmill2.jpg", "hab.jpg"
+  ];
+  var STRIP_START = { itinerary: 0, register: 4, gear: 8, gallery: 2, guestbook: 6, misc: 10 };
 
   function mountStrips() {
     document.querySelectorAll("[data-strip]").forEach(function (el) {
-      var caps = STRIPS[el.getAttribute("data-strip")] || STRIPS.gallery;
-      var offset = (el.getAttribute("data-strip").length * 3) % 12;
+      var start = STRIP_START[el.getAttribute("data-strip")] || 0, n = STRIP_PHOTOS.length;
       el.setAttribute("aria-label", "Snapshot strip");
-      el.innerHTML = caps.map(function (c, i) {
-        var n = ((i + offset) % 12) + 1;
-        var file = "assets/photos/placeholder-" + (n < 10 ? "0" + n : n) + ".png";
-        return '<figure class="snap"><img src="' + file + '" alt="" loading="lazy"><figcaption>' + c + "</figcaption></figure>";
-      }).join("");
+      var html = "";
+      for (var i = 0; i < Math.min(8, n); i++) {
+        html += '<figure class="snap"><img src="assets/photos/' + STRIP_PHOTOS[(start + i) % n] + '" alt="" loading="lazy"></figure>';
+      }
+      el.innerHTML = html;
     });
   }
 
@@ -149,16 +148,58 @@
       "I've seen scorpions with more grit than you.",
       "Did you mail your $120? No? Typical.",
       "The fire jump is for professionals. You're a professional at nothing.",
-      "Your mom's house is on the itinerary page. She gives better directions than you do."
+      "Your mom's house is on the itinerary page. She gives better directions than you do.",
+      "Your mom.",
+      "Why don't you just give up and e-bike?",
+      "Wow, your keyboard is sticky!",
+      "I didn't know the circus was in town.",
+      "If you don't belong, don't be long.",
+      "No, your White Claw isn't invited.",
+      "Whiskey is my yoga.",
+      "I thought we had a restraining order against Ira?",
+      "Do you follow Scandinavian Jesus this closely?",
+      "Most of the people at this event don't even ride bikes.",
+      "You claim it's about \"simplicity and connection with the trail.\"",
+      "I don't think you're invited.",
+      "Shomer fucking shabbos!",
+      "Donny, you're out of your element.",
+      "If you're coming, I guess I won't be, then.",
+      "I will not abide another gear.",
+      "They peed on your rug.",
+      "I don't like you, jerk off.",
+      "Hold up, you're still wanted in Bumble Bee.",
+      "I swear if you bring another 22t on your bike, I'm cancelling the event.",
+      "You STILL work at a bike shop?",
+      "Which way would you spin me to tighten your little spoke?",
+      "Is it \"speak\" or \"spoke\"?",
+      "I've never even heard of drunkcyclist.",
+      "Why is your mom just like me? We're both in a bike shop and everyone gets a turn!",
+      "Shitter's full... already.",
+      "What are you, a fucking park ranger?",
+      "You're killing my buzz.",
+      "This isn't the website you're looking for.",
+      "Get lost, e-biker.",
+      "Why don't you do us a favor and lick the battery leads on your e-bike?",
+      "Chinga tu madre.",
+      "I'm way too faded for this.",
+      "Whose nipple do I have to twist to get a good live band?",
+      "I heart nipples... get it?!",
+      "I'm one constitutional crisis away from leaving.",
+      "You're not fooling anyone with that denim.",
+      "What's that crust in your mustache?",
+      "Dangit, Bobby.",
+      "If I could kick, I would kick your ass.",
+      "Everyone has to believe in something. I believe I'll have another beer.",
+      "Yeah, yeah, yeah, you've got a nickname. Real original."
     ],
     index: ["Knock already. The line's getting long.", "It's a porta-john. What did you expect, a lobby?"],
     camp: ["Click the fire guy. Or don't. I'm a wrench, not a cop.", "Everything here is a link except your fitness."],
     itinerary: ["\"Loosely\" planned. Like your training.", "You read the whole schedule? Nerd. You'll still miss the start."],
-    register: ["It looks like you're trying to pay cash by mail. In this economy?", "Write your email neatly. I've seen your handwriting."],
+    register: ["There's a reason it's called a teddy bear cholla. Go ahead, give it a nice hug.", "It looks like you're trying to pay cash by mail. In this economy?", "Write your email neatly. I've seen your handwriting."],
     gear: ["A new bike won't make you faster. It'll make you broke and slow.", "Your gear list is longer than your ride will be."],
-    gallery: ["Don't look for yourself in these. We cropped you out.", "These photos are AI generated. So is your fitness."],
+    gallery: ["Tandems are singlespeeds.", "Don't look for yourself in these. We cropped you out.", "These photos are AI generated. So is your fitness."],
     guestbook: ["Sign it. It's the only thing you'll finish this weekend.", "Write something nice. Or honest. Not both."],
-    misc: ["You're on the Misc. page. Even the website doesn't know what to do with you.", "Read the doping section. Then look at your bottle. Sus."]
+    misc: ["I'm trying to warn you, this is just a porn site.", "Where's all the ladies' porn?", "You're on the Misc. page. Even the website doesn't know what to do with you.", "Read the doping section. Then look at your bottle. Sus."]
   };
   var SPOKEY_TAUNTS = ["Nope.", "Too slow.", "Can't mute me either.", "Missed me.", "Hands off, pervert.", "Ha! Like your Saturday attack.", "You'll never catch me. Like the group ride.", "Personal space, please.", "Catch me on the climb. Oh wait."];
 

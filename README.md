@@ -84,9 +84,9 @@ Until the URL is filled in, the page shows a fake DOS error explaining that the 
    ```js
    { file: "2019-bonfire.jpg", caption: "Nobody remembers this" },
    ```
-3. To take a photo off the wall, delete its line. The `placeholder-XX.png` files are no longer in the gallery, but the snapshot strips still use them (see below).
+3. To take a photo off the wall, delete its line.
 
-The small "snapshot strips" at the bottom of each page also use `assets/photos/placeholder-01.png` through `placeholder-12.png`. You can replace those files with real photos under the same names, or edit the `STRIPS` captions and file logic in `js/site.js`.
+The small "snapshot strips" at the bottom of each inner page show 8 photos each, with no captions. They come from the `STRIP_PHOTOS` list in `js/site.js` (files in `assets/photos/`), and `STRIP_START` sets where each page starts in that list so the strips differ. Add photos to that list to give the strips more variety.
 
 ## Placeholder art still needed
 
@@ -97,7 +97,6 @@ All of these are crude generated placeholders, drawn MS Paint-style on purpose. 
 | `assets/door-portajohn.png` | 600×1000 | The gate door. Tall. The "PLEASE KNOCK" text is overlaid by the page. "SCHITT'S SHITTERS LLC" is painted on the roof, so put it on the real art too if you want to keep it. |
 | `assets/camp-bg.png` | 1600×800 (2:1) | The campsite. Keep it **2:1**, because the hotspots are positioned in percentages of this box. The "GET OFF AT SSAZ" line in its bottom-right corner is painted into the image, so add it to the real art too if you want to keep it. |
 | `assets/obj-weather.png` | 260×220 | Transparent. Links to NOAA. |
-| `assets/photos/placeholder-01…12.png` | 400×300 | Stand-ins for gallery photos and the snapshot strips. |
 
 Real art already in place on the campsite (camp.html):
 
