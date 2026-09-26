@@ -15,10 +15,21 @@
   .card.mone .pic { background: var(--rose); }
   .card.paul .pic { background: var(--lav); }
   .card.rage .pic { background: #e8c9a0; }
-  .card.featured { grid-column: span 2; flex-direction: row; }
-  .card.featured .pic { width: 40%; height: auto; min-height: 150px; flex: none; background: var(--navy); border-bottom: 0; border-right: 3px solid var(--navy); }
-  .card.featured .pic .brand { max-width: 102px; max-height: 73px; }
-  .card.featured .tag { background: var(--yellow); color: var(--navy); }
+  .card.flattire .pic { background: var(--navy); }
+  .card.flattire .pic .brand { max-width: 102px; max-height: 73px; }
+  .card.flattire .tag { background: var(--yellow); color: var(--navy); }
+  /* the gear-calculator mascot tile: the whole tile is the link */
+  .card.calc { color: var(--navy); text-decoration: none; font-weight: normal; }
+  .card.calc:hover, .card.calc:focus-visible { background: var(--paper); color: var(--navy); }
+  .card.calc .pic { flex: 1; height: auto; min-height: 230px; background: var(--yellow); }
+  .card.calc .mascot { display: block; max-height: 250px; max-width: 88%; width: auto; height: auto; filter: drop-shadow(4px 4px 0 var(--navy)); transform-origin: 50% 90%; }
+  .card.calc:hover .mascot, .card.calc:focus-visible .mascot { animation: mascot-strut .4s steps(2) infinite; }
+  @keyframes mascot-strut { 0% { transform: rotate(-6deg) translateY(0); } 100% { transform: rotate(6deg) translateY(-8px); } }
+  .card.calc .body { text-align: center; }
+  .card.calc .calc-cta { display: none; color: var(--berry); }
+  .card.calc:hover .calc-q, .card.calc:focus-visible .calc-q { display: none; }
+  .card.calc:hover .calc-cta, .card.calc:focus-visible .calc-cta { display: block; }
+  @media (prefers-reduced-motion: reduce) { .card.calc:hover .mascot { animation: none; } }
   .card .pic { height: 150px; display: flex; align-items: center; justify-content: center; }
   .card .pic .brand { display: block; max-width: 82%; max-height: 118px; width: auto; height: auto; }
   .card .pic .brand[src$="rage-cycles.png"], .card .pic .brand[src$="paul.png"] { max-height: 112px; }
@@ -34,7 +45,7 @@
   .ban svg { width: 140px; height: 140px; }
   .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
   @media (max-width: 1000px) { .cards { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 768px) { .cards { grid-template-columns: 1fr; } .card.featured { grid-column: auto; flex-direction: column; } .card.featured .pic { width: auto; border-right: 0; border-bottom: 3px solid var(--navy); } }
+  @media (max-width: 768px) { .cards { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -56,7 +67,14 @@
 
     <div class="cols">
       <div class="span3 cards">
-        <article class="panel card featured">
+        <a class="panel card calc" href="https://singlespeedsociety.com/calculator" target="_blank" rel="noopener">
+          <div class="pic"><img class="mascot" src="assets/mascot-gear.png" alt="A strutting red chainring mascot in cowboy boots"></div>
+          <div class="body">
+            <h3 class="cond calc-q">What gear should I bring?</h3>
+            <h3 class="cond calc-cta">Check out the gear calculator ↗</h3>
+          </div>
+        </a>
+        <article class="panel card flattire">
           <div class="pic"><img class="brand" src="assets/brands/flat-tire.png" alt="Flat Tire Bike Shop logo"><span class="tag">HQ</span></div>
           <div class="body">
             <h3 class="cond">Flat Tire Bike Shop</h3>
