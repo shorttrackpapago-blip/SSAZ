@@ -122,10 +122,118 @@
     });
   }
 
+  // ---------- Spokey: our Clippy. A spoke wrench who talks shit and won't be touched ----------
+  var SPOKEY = {
+    general: [
+      "You should bring tennis shoes. You're just going to walk the whole ride anyway.",
+      "The drive isn't worth it. Don't come.",
+      "It looks like you're trying to have fun. Would you like help ruining that?",
+      "One gear, and you'll still pick the wrong one.",
+      "Your wheels are out of true. So are you.",
+      "I'm a spoke wrench. I've fixed wobblier things than you. Not many.",
+      "That climb? You're walking it. I've seen your Strava.",
+      "Management told me to be nice. Management isn't here.",
+      "Your derailleur called. It's not coming either.",
+      "Maybe try a sport with fewer hills. Like napping.",
+      "Hydration tip: water exists. Nobody here has tried it.",
+      "Your tent is going to blow away. I've seen your tent.",
+      "Bring a puffy. You'll forget it anyway.",
+      "Karl's going to yell \"RACE DAY!\" at 6am and you're going to deserve it.",
+      "You'll be asleep by 9. Everyone knows.",
+      "Ride starts at 10. You'll show up at 10:40 and act like you were there.",
+      "You're going to crash on the first descent and blame the tires.",
+      "Nobody cares about your gear ratio. Especially you, around mile 3.",
+      "Leave no trace. Starting with your dignity.",
+      "Zero bars of cell service out there. Finally, some peace from you.",
+      "Stop hovering. It's needy.",
+      "I've seen scorpions with more grit than you.",
+      "Did you mail your $120? No? Typical.",
+      "The fire jump is for professionals. You're a professional at nothing.",
+      "Your mom's house is on the itinerary page. She gives better directions than you do."
+    ],
+    index: ["Knock already. The line's getting long.", "It's a porta-john. What did you expect, a lobby?"],
+    camp: ["Click the fire guy. Or don't. I'm a wrench, not a cop.", "Everything here is a link except your fitness."],
+    itinerary: ["\"Loosely\" planned. Like your training.", "You read the whole schedule? Nerd. You'll still miss the start."],
+    register: ["It looks like you're trying to pay cash by mail. In this economy?", "Write your email neatly. I've seen your handwriting."],
+    gear: ["A new bike won't make you faster. It'll make you broke and slow.", "Your gear list is longer than your ride will be."],
+    gallery: ["Don't look for yourself in these. We cropped you out.", "These photos are AI generated. So is your fitness."],
+    guestbook: ["Sign it. It's the only thing you'll finish this weekend.", "Write something nice. Or honest. Not both."],
+    misc: ["You're on the Misc. page. Even the website doesn't know what to do with you.", "Read the doping section. Then look at your bottle. Sus."]
+  };
+  var SPOKEY_TAUNTS = ["Nope.", "Too slow.", "Missed me.", "Hands off, pervert.", "Ha! Like your Saturday attack.", "You'll never catch me. Like the group ride.", "Personal space, please.", "Catch me on the climb. Oh wait."];
+
+  function pick(list, not) {
+    if (list.length < 2) return list[0];
+    var s; do { s = list[Math.floor(Math.random() * list.length)]; } while (s === not);
+    return s;
+  }
+
+  function mountSpokey() {
+    if (Date.now() < (parseInt(store.get("ssaz-spokey-until"), 10) || 0)) return;
+    var page = (location.pathname.split("/").pop() || "index.html").replace(/\.html$/, "") || "index";
+    var extra = SPOKEY[page] || [];
+    var pool = SPOKEY.general.concat(extra, extra); // this page's lines come up twice as often
+
+    var el = document.createElement("div");
+    el.className = "spokey";
+    el.innerHTML =
+      '<div class="spokey-bubble"><b>Spokey says:</b><p></p>' +
+      '<button type="button" class="spokey-shut">Shut up, Spokey</button></div>' +
+      '<img src="assets/spokey.png" width="220" height="337" alt="Spokey, a spoke wrench with googly eyes" draggable="false">';
+    document.body.appendChild(el);
+    var p = el.querySelector("p"), img = el.querySelector("img");
+    var line = pick(pool), revert = null, x = 0, y = 0;
+    p.textContent = line;
+
+    function place(nx, ny) {
+      var W = el.offsetWidth, H = el.offsetHeight, vw = window.innerWidth, vh = window.innerHeight;
+      x = Math.max(6, Math.min(nx, vw - W - 6));
+      y = Math.max(6, Math.min(ny, vh - H - 6));
+      el.style.left = x + "px";
+      el.style.top = y + "px";
+      el.classList.toggle("on-left", x + W / 2 < vw / 2);   // bubble opens toward the middle of the screen
+      el.classList.toggle("bubble-below", y < 170);        // no room above: talk from underneath
+    }
+    function home() { place(window.innerWidth - el.offsetWidth - 16, window.innerHeight - el.offsetHeight - 16); }
+    home();
+    if (!img.complete) img.addEventListener("load", home);   // re-measure once he has a real height
+
+    // a new line every minute
+    setInterval(function () { if (!revert) { line = pick(pool, line); p.textContent = line; } }, 60000);
+
+    // try to touch him and he's gone
+    function flee(e) {
+      var W = el.offsetWidth, H = el.offsetHeight, vw = window.innerWidth, vh = window.innerHeight;
+      var mx = e && e.clientX != null ? e.clientX : x + W / 2, my = e && e.clientY != null ? e.clientY : y + H / 2;
+      if (e && e.touches && e.touches[0]) { mx = e.touches[0].clientX; my = e.touches[0].clientY; }
+      var best = null, bestD = -1;
+      for (var i = 0; i < 12; i++) {           // farthest of a dozen random spots from the cursor
+        var cx = 6 + Math.random() * Math.max(1, vw - W - 12), cy = 6 + Math.random() * Math.max(1, vh - H - 12);
+        var d = Math.hypot(cx + W / 2 - mx, cy + H / 2 - my);
+        if (d > bestD) { bestD = d; best = [cx, cy]; }
+      }
+      place(best[0], best[1]);
+      p.textContent = pick(SPOKEY_TAUNTS);
+      clearTimeout(revert);
+      revert = setTimeout(function () { revert = null; p.textContent = line; }, 2500);
+    }
+    img.addEventListener("mouseenter", flee);
+    img.addEventListener("touchstart", function (e) { e.preventDefault(); flee(e); }, { passive: false });
+
+    el.querySelector(".spokey-shut").addEventListener("click", function () {
+      clearTimeout(revert); revert = 1;
+      p.textContent = "Fine. I'll be back in 10 minutes. I always come back.";
+      store.set("ssaz-spokey-until", String(Date.now() + 10 * 60 * 1000));
+      setTimeout(function () { el.remove(); }, 1600);
+    });
+    window.addEventListener("resize", function () { place(x, y); });
+  }
+
   window.SSAZ = { sfxDoor: sfxDoor, store: store };
 
   document.addEventListener("DOMContentLoaded", function () {
     mountStrips();
     phoneToast();
+    mountSpokey();
   });
 })();

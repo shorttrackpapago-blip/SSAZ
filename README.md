@@ -134,6 +134,10 @@ The GIFs in `assets/gif/` are original, generated for this site, and free to use
 
 There's no background music. The only sound is the knock-creak-flush effect when someone clicks the porta-john door. `js/site.js` synthesizes it with the Web Audio API (`sfxDoor`), so there's no audio file. To remove it, delete the `window.SSAZ.sfxDoor()` call in `index.html`.
 
+## Spokey (our Clippy)
+
+Spokey is a spoke wrench with googly eyes (`assets/spokey.png`) who shows up on every page, talks trash in a speech bubble, and runs away if you try to hover over him or tap him. He picks a random line on each page load and a new one every minute. His lines live in the `SPOKEY` object in `js/site.js`: `general` is used everywhere, and the per-page lists (`register`, `gear`, and so on) come up twice as often on their own page. `SPOKEY_TAUNTS` are what he says while running away. The "Shut up, Spokey" button hides him for 10 minutes.
+
 ## Facts checklist
 
 - Dates: Fri Feb 5 – Sun Feb 7, 2027
