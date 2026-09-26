@@ -276,11 +276,52 @@
     window.addEventListener("resize", function () { place(x, y); });
   }
 
+  // ---------- roamers: cutouts scattered around the site, 2 random ones per page load ----------
+  var ROAMERS = [
+    { src: "bikes-guy.png", alt: "A mustachioed man in a fedora and purple glasses yelling \"Bikes\"" },
+    { src: "roadies.png", alt: "Three roadies riding toward you, grinning" },
+    { src: "clunker.png", alt: "A guy in denim hunched over an old clunker bike" },
+    { src: "segura.png", alt: "Tom Segura with a microphone saying \"Bikes!\" (opens a YouTube video in a new tab)", href: "https://www.youtube.com/watch?v=LOvj5iiCmO8&pp=ygUQdG9tIHNlZ3VyYSBiaWtlcw%3D%3D" },
+    { src: "gears.png", alt: "A mustachioed 80s mountain biker saying \"Fuck your gears\"" }
+  ];
+
+  function mountRoamers() {
+    var host = document.querySelector(".catalog");
+    if (!host) return;
+    // on the campsite they'd sit on top of the clickable scene, so only show them there when they fit in the gutters
+    if (document.querySelector(".scene") && window.innerWidth < 1360) return;
+    var pool = ROAMERS.slice(), picks = [];
+    while (picks.length < 2 && pool.length) picks.push(pool.splice(Math.floor(Math.random() * pool.length), 1)[0]);
+    var firstLeft = Math.random() < 0.5;
+    picks.forEach(function (r, i) {
+      var el = document.createElement(r.href ? "a" : "div");
+      if (r.href) { el.href = r.href; el.target = "_blank"; el.rel = "noopener"; }
+      el.className = "roamer " + ((i === 0) === firstLeft ? "left" : "right");
+      // one in the upper half of the page, one in the lower half, each at a random height
+      el.style.top = (i === 0 ? 18 + Math.random() * 25 : 55 + Math.random() * 30).toFixed(1) + "%";
+      el.style.setProperty("--tilt", (Math.random() * 12 - 6).toFixed(1) + "deg");
+      el.innerHTML = '<img src="assets/roamers/' + r.src + '" alt="' + r.alt.replace(/"/g, "&quot;") + '">';
+      host.appendChild(el);
+    });
+    // push each one out into the page margin; when there's no margin, let it peek in from the screen edge
+    function tuck() {
+      var gutter = host.getBoundingClientRect().left;
+      host.querySelectorAll(".roamer").forEach(function (el) {
+        var w = el.offsetWidth;
+        var out = Math.min(w + 12, Math.max(0, gutter - 10) + 0.4 * w);
+        el.style[el.classList.contains("left") ? "left" : "right"] = -out + "px";
+      });
+    }
+    tuck();
+    window.addEventListener("resize", tuck);
+  }
+
   window.SSAZ = { sfxDoor: sfxDoor, store: store };
 
   document.addEventListener("DOMContentLoaded", function () {
     mountStrips();
     phoneToast();
     mountSpokey();
+    if (!document.body.hasAttribute("data-gate")) mountRoamers();
   });
 })();

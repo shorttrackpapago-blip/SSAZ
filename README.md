@@ -133,6 +133,10 @@ The GIFs in `assets/gif/` are original, generated for this site, and free to use
 
 There's no background music. The only sound is the knock-creak-flush effect when someone clicks the porta-john door. `js/site.js` synthesizes it with the Web Audio API (`sfxDoor`), so there's no audio file. To remove it, delete the `window.SSAZ.sfxDoor()` call in `index.html`.
 
+## Roamers (random cutouts)
+
+Five cutouts live in `assets/roamers/`. Every inner page shows 2 of them, picked at random on each load, one on each side at a random height. On wide screens they sit in the page margins; on narrower screens they peek in from the screen edge. Segura links to his "Bikes" YouTube clip. The list is `ROAMERS` in `js/site.js`: add `{ src: "file.png", alt: "..." }` for a new one, plus `href` if it should be a link. On the camp page they only appear on wide screens, so they never cover the clickable scene.
+
 ## Spokey (our Clippy)
 
 Spokey is a spoke wrench with googly eyes (`assets/spokey.png`) who shows up on every page, talks trash in a speech bubble, and can't be hovered, clicked, or silenced: he ignores the mouse entirely and bolts whenever the pointer (or a finger) gets within 70px of him or his bubble. He picks a random line on each page load and a new one every minute. His lines live in the `SPOKEY` object in `js/site.js`: `general` is used everywhere, and the per-page lists (`register`, `gear`, and so on) come up twice as often on their own page. `SPOKEY_TAUNTS` are what he says while running away. There is no off switch.
