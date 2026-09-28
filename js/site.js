@@ -307,7 +307,11 @@
     { src: "crew-22.png", alt: "A rider riding no-handed with arms spread wide" },
     { src: "crew-23.png", alt: "A rider on a green fat bike charging the trail" },
     { src: "crew-24.png", alt: "A smiling rider on a pink hardtail" },
-    { src: "crew-25.png", alt: "A rider in a yellow helmet coming down the trail" }
+    { src: "crew-25.png", alt: "A rider in a yellow helmet coming down the trail" },
+    { src: "crew-26.png", alt: "A crowd of riders standing around with beers" },
+    { src: "crew-27.png", alt: "A cartoon chili pepper in sunglasses saying \"Moto, baby!\"" },
+    { src: "crew-28.png", alt: "A rider in neon 90s kit popping a wheelie" },
+    { src: "crew-29.png", alt: "A 90s racer in a loud jersey on a yellow-forked hardtail" }
   ];
 
   function mountRoamers() {
