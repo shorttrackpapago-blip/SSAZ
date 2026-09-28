@@ -333,9 +333,9 @@ hr.rule { border: 0; height: 6px; background: var(--berry); margin: 10px 0; box-
 
 /* ---------- floating cutouts (misc, gear, guestbook) ---------- */
 
-.floater { position: absolute; right: 3%; top: 112px; width: 120px; z-index: 25; display: block; background: none; }
-.floater.wide { width: 170px; }
-.floater.slim { width: 96px; }
+.floater { position: absolute; right: 3%; top: 112px; width: 130px; z-index: 25; display: block; background: none; }
+.floater.wide { width: 184px; }
+.floater.slim { width: 104px; }
 .floater img { display: block; width: 100%; height: auto; filter: drop-shadow(5px 5px 0 var(--navy)); }
 .floater:hover, .floater:focus-visible { background: none; animation: floater-bounce .45s steps(3) infinite; }
 .floater:hover img, .floater:focus-visible img { filter: drop-shadow(3px 0 0 var(--yellow)) drop-shadow(-3px 0 0 var(--yellow)) drop-shadow(0 3px 0 var(--yellow)) drop-shadow(0 -3px 0 var(--yellow)) drop-shadow(5px 5px 0 var(--navy)); }
@@ -346,9 +346,9 @@ hr.rule { border: 0; height: 6px; background: var(--berry); margin: 10px 0; box-
 
 /* ---------- roamers (see mountRoamers in js/site.js) ---------- */
 
-.roamer { position: absolute; z-index: 24; width: 120px; display: block; background: none; transform: rotate(var(--tilt, 0deg)); }
+.roamer { position: absolute; z-index: 24; width: 130px; display: block; background: none; transform: rotate(var(--tilt, 0deg)); }
 /* left/right offsets are set by tuck() in js/site.js to fit the page margin */
-@media (max-width: 1300px) { .roamer { width: 90px; } }
+@media (max-width: 1300px) { .roamer { width: 97px; } }
 .roamer img { display: block; width: 100%; height: auto; filter: drop-shadow(4px 4px 0 var(--navy)); }
 .roamer:hover, .roamer:focus-visible { background: none; animation: floater-bounce .45s steps(3) infinite; }
 .roamer:hover img, .roamer:focus-visible img { filter: drop-shadow(3px 0 0 var(--yellow)) drop-shadow(-3px 0 0 var(--yellow)) drop-shadow(0 3px 0 var(--yellow)) drop-shadow(0 -3px 0 var(--yellow)) drop-shadow(4px 4px 0 var(--navy)); }
@@ -391,11 +391,11 @@ hr.rule { border: 0; height: 6px; background: var(--berry); margin: 10px 0; box-
   .snapstrip { grid-template-columns: repeat(2, 1fr); }
   .banner h1, .banner h2 { transform: rotate(-1.5deg); }
   .spec { font-size: 13px; }
-  .floater { width: 74px; top: 104px; right: 6px; }
-  .floater.wide { width: 100px; top: 166px; }
-  .floater.slim { width: 64px; }
+  .floater { width: 80px; top: 104px; right: 6px; }
+  .floater.wide { width: 100px; top: 166px; }  /* no room to grow on phones: headline above, rail below */
+  .floater.slim { width: 69px; }
   .catalog:has(.floater) .banner { padding-right: 104px; }
-  .roamer { width: 72px; }
+  .roamer { width: 78px; }
   .spokey { width: 56px; }
   .spokey-bubble { width: 180px; font-size: 12px; }
 }
