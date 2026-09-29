@@ -311,7 +311,7 @@
     { src: "crew-26.png", alt: "A crowd of riders standing around with beers" },
     { src: "crew-27.png", alt: "A cartoon chili pepper in sunglasses saying \"Moto, baby!\"" },
     { src: "crew-28.png", alt: "A rider in neon 90s kit popping a wheelie" },
-    { src: "crew-29.png", alt: "A 90s racer in a loud jersey on a yellow-forked hardtail" }
+    { src: "wiens.png", alt: "A 90s racer in a loud jersey on a yellow-forked hardtail (opens a speed game in a new tab)", href: "https://neal.fun/speed/", label: "think you're fast?" }
   ];
 
   function mountRoamers() {
@@ -325,6 +325,7 @@
     picks.forEach(function (r, i) {
       var el = document.createElement(r.href ? "a" : "div");
       if (r.href) { el.href = r.href; el.target = "_blank"; el.rel = "noopener"; }
+      if (r.label) el.setAttribute("data-label", r.label);
       el.className = "roamer " + ((i % 2 === 0) === firstLeft ? "left" : "right");
       // split the page into COUNT bands top to bottom, drop one in each at a random height, sides alternating
       var band = 80 / picks.length;
