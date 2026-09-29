@@ -323,7 +323,16 @@
     { src: "crew-26.png", alt: "A crowd of riders standing around with beers" },
     { src: "crew-27.png", alt: "A cartoon chili pepper in sunglasses saying \"Moto, baby!\"" },
     { src: "crew-28.png", alt: "A rider in neon 90s kit popping a wheelie" },
-    { src: "wiens.png", alt: "A 90s racer in a loud jersey on a yellow-forked hardtail (opens a speed game in a new tab)", href: "https://neal.fun/speed/", label: "think you're fast?" }
+    { src: "wiens.png", alt: "A 90s racer in a loud jersey on a yellow-forked hardtail (opens a speed game in a new tab)", href: "https://neal.fun/speed/", label: "think you're fast?" },
+    { src: "crew-30.png", alt: "A 90s rock singer in a leather vest belting into a mic" },
+    { src: "crew-31.png", alt: "A psychedelic cartoon sun with a face" },
+    { src: "crew-32.png", alt: "A 90s racer kicking a leg out mid-trail" },
+    { src: "crew-33.png", alt: "A 90s racer in blue kit on a yellow hardtail" },
+    { src: "crew-34.png", alt: "A black-and-white portrait of a tattooed guy baring his teeth" },
+    { src: "crew-35.png", alt: "A bald movie villain with his pinky to his lip" },
+    { src: "crew-36.png", alt: "A woman with a huge afro in a studded crop top" },
+    { src: "crew-37.png", alt: "A smiling 90s racer in a yellow team jersey" },
+    { src: "crew-38.png", alt: "A bearded rider with a brass eagle on his helmet" }
   ];
 
   function mountRoamers() {
