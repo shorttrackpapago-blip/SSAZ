@@ -203,16 +203,28 @@
   };
   var SPOKEY_TAUNTS = ["Nope.", "Too slow.", "Can't mute me either.", "Missed me.", "Hands off, pervert.", "Ha! Like your Saturday attack.", "You'll never catch me. Like the group ride.", "Personal space, please.", "Catch me on the climb. Oh wait."];
 
-  function pick(list, not) {
-    if (list.length < 2) return list[0];
-    var s; do { s = list[Math.floor(Math.random() * list.length)]; } while (s === not);
-    return s;
+  // Spokey never repeats himself within a browser session: every line he's said is remembered in
+  // sessionStorage (shared across pages, cleared when the tab closes). Only once he's used up the
+  // whole list does it reset, and even then never the line he just said.
+  var session = {
+    get: function (k) { try { return JSON.parse(window.sessionStorage.getItem(k)) || []; } catch (e) { return []; } },
+    set: function (k, v) { try { window.sessionStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* whatever */ } }
+  };
+  function pickFresh(list, key, preferred) {
+    var used = session.get(key), fresh = list.filter(function (l) { return used.indexOf(l) < 0; });
+    if (!fresh.length) { used = used.slice(-1); fresh = list.filter(function (l) { return used.indexOf(l) < 0; }); }
+    if (!fresh.length) fresh = list;
+    var freshPreferred = (preferred || []).filter(function (l) { return fresh.indexOf(l) >= 0; });
+    var from = freshPreferred.length && Math.random() < 0.5 ? freshPreferred : fresh; // this page's lines come up more often
+    var line = from[Math.floor(Math.random() * from.length)];
+    used.push(line); session.set(key, used);
+    return line;
   }
 
   function mountSpokey() {
     var page = (location.pathname.split("/").pop() || "index.html").replace(/\.html$/, "") || "index";
     var extra = SPOKEY[page] || [];
-    var pool = SPOKEY.general.concat(extra, extra); // this page's lines come up twice as often
+    var pool = SPOKEY.general.concat(extra);
 
     // He ignores the pointer completely (pointer-events: none in CSS), so he can't be hovered,
     // clicked, or silenced. The page watches the pointer instead and he bolts before it arrives.
@@ -223,7 +235,7 @@
       '<img src="assets/spokey.png" width="220" height="337" alt="Spokey, a spoke wrench with googly eyes" draggable="false">';
     document.body.appendChild(el);
     var p = el.querySelector("p"), img = el.querySelector("img"), bubble = el.querySelector(".spokey-bubble");
-    var line = pick(pool), revert = null, x = 0, y = 0, lastFlee = 0;
+    var line = pickFresh(pool, "ssaz-spokey-said", extra), revert = null, x = 0, y = 0, lastFlee = 0;
     var NEAR = 70; // px of personal space around him and his bubble
     p.textContent = line;
 
@@ -241,7 +253,7 @@
     if (!img.complete) img.addEventListener("load", home);   // re-measure once he has a real height
 
     // a new line every minute
-    setInterval(function () { if (!revert) { line = pick(pool, line); p.textContent = line; } }, 60000);
+    setInterval(function () { if (!revert) { line = pickFresh(pool, "ssaz-spokey-said", extra); p.textContent = line; } }, 60000);
 
     // the area he defends: himself plus his bubble, padded by NEAR
     function tooClose(mx, my) {
@@ -261,7 +273,7 @@
       }
       place(best[0], best[1]);
       lastFlee = Date.now();
-      p.textContent = pick(SPOKEY_TAUNTS);
+      p.textContent = pickFresh(SPOKEY_TAUNTS, "ssaz-spokey-taunts");
       clearTimeout(revert);
       revert = setTimeout(function () { revert = null; p.textContent = line; }, 2500);
     }
