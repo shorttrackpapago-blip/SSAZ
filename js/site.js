@@ -332,7 +332,23 @@
     { src: "crew-35.png", alt: "A bald movie villain with his pinky to his lip" },
     { src: "crew-36.png", alt: "A woman with a huge afro in a studded crop top" },
     { src: "crew-37.png", alt: "A smiling 90s racer in a yellow team jersey" },
-    { src: "crew-38.png", alt: "A bearded rider with a brass eagle on his helmet" }
+    { src: "crew-38.png", alt: "A bearded rider with a brass eagle on his helmet" },
+    { src: "crew-39.png", alt: "A cartoon guy in an orange cap and mirrored shades" },
+    { src: "crew-40.png", alt: "A cartoon guy in glasses cracking open a can" },
+    { src: "crew-41.png", alt: "A goth rock singer in a black suit" },
+    { src: "crew-42.png", alt: "A rainbow-striped novelty toy" },
+    { src: "crew-43.png", alt: "An old rocker in a headband holding a cigarette" },
+    { src: "crew-44.png", alt: "A country singer flipping off the camera" },
+    { src: "crew-45.png", alt: "A guy in a straw sombrero" },
+    { src: "crew-46.png", alt: "The Arizona Trail Association logo" },
+    { src: "crew-47.png", alt: "The Arizona state flag" },
+    { src: "crew-48.png", alt: "A long-haired cycling commentator grinning" },
+    { src: "crew-49.png", alt: "A man holding a baby kangaroo" },
+    { src: "crew-50.png", alt: "A pro rider in a green helmet and mirrored glasses" },
+    { src: "crew-51.png", alt: "A black-and-white Arizona bike company badge" },
+    { src: "crew-52.png", alt: "A cartoon superhero slumped at a desk" },
+    { src: "crew-53.png", alt: "A bare backside on a bike saddle" },
+    { src: "crew-54.png", alt: "A rider in a helmet chugging a beer" }
   ];
 
   function mountRoamers() {
