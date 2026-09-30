@@ -107,7 +107,7 @@
     "band-bar.jpg", "tongue.jpg", "couple.jpg", "mountain-ride.jpg",
     "uhaul.jpg", "plaid-grin.jpg", "vista-ride.jpg", "bus.jpg"
   ];
-  var STRIP_START = { itinerary: 0, register: 1, gear: 2, gallery: 3, guestbook: 4, misc: 5 };
+  var STRIP_START = { itinerary: 0, register: 1, gear: 2, venue: 3, guestbook: 4, misc: 5 };
 
   function mountStrips() {
     document.querySelectorAll("[data-strip]").forEach(function (el) {
@@ -197,7 +197,7 @@
     itinerary: ["\"Loosely\" planned. Like your training.", "You read the whole schedule? Nerd. You'll still miss the start."],
     register: ["There's a reason it's called a teddy bear cholla. Go ahead, give it a nice hug.", "It looks like you're trying to pay cash by mail. In this economy?", "Write your email neatly. I've seen your handwriting."],
     gear: ["A new bike won't make you faster. It'll make you broke and slow.", "Your gear list is longer than your ride will be."],
-    gallery: ["Tandems are singlespeeds.", "Don't look for yourself in these. We cropped you out.", "These photos are AI generated. So is your fitness."],
+    venue: ["Tandems are singlespeeds.", "Load the map before you lose signal. You won't.", "Bumble Bee has one road in. You'll still get lost.", "Don't look for yourself in these. We cropped you out.", "These photos are AI generated. So is your fitness."],
     guestbook: ["Sign it. It's the only thing you'll finish this weekend.", "Write something nice. Or honest. Not both."],
     misc: ["I'm trying to warn you, this is just a porn site.", "Where's all the ladies' porn?", "You're on the Misc. page. Even the website doesn't know what to do with you.", "Read the doping section. Then look at your bottle. Sus."]
   };
@@ -348,7 +348,18 @@
     { src: "crew-51.png", alt: "A black-and-white Arizona bike company badge" },
     { src: "crew-52.png", alt: "A cartoon superhero slumped at a desk" },
     { src: "crew-53.png", alt: "A bare backside on a bike saddle" },
-    { src: "crew-54.png", alt: "A rider in a helmet chugging a beer" }
+    { src: "crew-54.png", alt: "A rider in a helmet chugging a beer" },
+    { src: "crew-55.png", alt: "A long-haired guy in a bathrobe and shades, sitting slumped" },
+    { src: "crew-56.png", alt: "A small-town sheriff looking skeptical" },
+    { src: "crew-57.png", alt: "A magazine spread about the Cactus Cup race" },
+    { src: "crew-58.png", alt: "A 90s racer in a neon jersey on a green bike" },
+    { src: "crew-59.png", alt: "A rider jumping a line of guys in striped jail uniforms" },
+    { src: "crew-60.png", alt: "A Gila monster sticking its tongue out" },
+    { src: "crew-61.png", alt: "A coiled rattlesnake" },
+    { src: "crew-62.png", alt: "The Napster cat logo" },
+    { src: "crew-63.png", alt: "A Diamondback Racing team sticker" },
+    { src: "crew-64.png", alt: "A Yeti Cycles vintage badge" },
+    { src: "crew-65.png", alt: "A man with a jheri curl in a black suit" }
   ];
 
   function mountRoamers() {

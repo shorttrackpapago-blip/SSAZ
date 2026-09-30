@@ -23,10 +23,9 @@
   .stamp { display: inline-block; border: 4px double var(--yellow); color: var(--yellow); font-family: var(--cond); font-size: 26px; padding: 2px 10px; transform: rotate(-8deg); margin: 6px 0; }
   .sunday { text-align: center; }
   .sunday .bubble { font-size: clamp(26px, 3.4vw, 40px); }
-  .nearby { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .nearby h4 { font-size: 20px !important; margin-top: 2px !important; }
+  .video { position: relative; aspect-ratio: 16 / 9; background: #000; border: 3px solid var(--navy); box-shadow: 5px 5px 0 var(--berry); }
+  .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   .items a { font-size: 12.5px; }
-  @media (max-width: 768px) { .nearby { grid-template-columns: 1fr; } }
   .items li.has-thumb { display: flow-root; }
   .li-thumb { float: right; width: 130px; margin: 2px 2px 6px 10px; background: #fff; padding: 4px 4px 12px; border: 2px solid #111; box-shadow: 3px 3px 0 var(--navy); transform: rotate(3deg); transition: transform .12s steps(2); }
   .li-thumb:hover, .li-thumb:focus-visible { background: #fff; transform: rotate(0deg) scale(1.12); position: relative; z-index: 5; }
@@ -46,7 +45,7 @@
 <div class="catalog">
   <a class="sticker" href="camp.html"><img src="assets/logo.png" alt="Singlespeed Arizona 2027 — The Sequel. Back to camp."></a>
   <nav class="topbar" aria-label="Pages">
-    <a href="camp.html">← Camp</a><a href="itinerary.html" aria-current="page">Plan</a><a href="register.html">Register</a><a href="gear.html">Gear</a><a href="gallery.html">Gallery</a><a href="guestbook.html">Guestbook</a><a href="misc.html">Misc.</a>
+    <a href="camp.html">← Camp</a><a href="itinerary.html" aria-current="page">Plan</a><a href="register.html">Register</a><a href="gear.html">Gear</a><a href="venue.html">Venue</a><a href="guestbook.html">Guestbook</a><a href="misc.html">Misc.</a>
   </nav>
 
   <header class="banner">
@@ -85,11 +84,15 @@
         <ul class="items">
           <li><b>Karl wakes everyone up shouting "RACE DAY!"</b><span class="joke">It is not a race. It has never been a race. DJ does not care. Earplugs won't save you.</span></li>
           <li><span class="time">10:00 AM</span> <b>Ride start</b><span class="joke">10:00 Management Time, so like 10:40.</span></li>
-          <li class="has-thumb"><a class="li-thumb" href="assets/photos/cleator-jetski.jpg" target="_blank" rel="noopener"><img src="assets/photos/cleator-jetski.jpg" width="654" height="469" alt="Three women on a beached jet ski outside the Cleator Yacht Club, one chugging a drink"></a><b>Stop at the Cleator Yacht Club</b><span class="joke">The watering hole. There is no water and there are no yachts. Hydrate accordingly.</span></li>
+          <li class="has-thumb"><a class="li-thumb" href="assets/photos/cleator-jetski.jpg" target="_blank" rel="noopener"><img src="assets/photos/cleator-jetski.jpg" width="654" height="469" alt="Three women on a beached jet ski outside the Cleator Yacht Club, one chugging a drink"></a><b>Stop at the Cleator Yacht Club</b><span class="joke">The watering hole. There is no water and there are no yachts. Hydrate accordingly. <a href="https://www.cleatorbarandyachtclub.com/" target="_blank" rel="noopener">Cleator Bar &amp; Yacht Club ↗</a></span></li>
           <li><b>Dinner provided</b><span class="joke">Saturday night. Real food, made by people who aren't you. Your $120 at work.</span></li>
           <li><b>Live music</b><span class="joke">Band TBD. If you have a band and a generator, call nobody, just show up.</span></li>
           <li><b>The Hosting Competition</b><span class="joke">Decides who wins hosting rights for 2028. See the box. Ask no questions.</span></li>
         </ul>
+        <div class="video" style="margin-top:10px">
+          <iframe src="https://www.youtube-nocookie.com/embed/fA5DOnJWx-o" title="Cleator Bar and Yacht Club (drone video)" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <p style="font-size:11.5px;margin:6px 0 0">The Yacht Club, from the air. Still no water.</p>
       </section>
 
       <section class="info berry span2" aria-labelledby="hc">
@@ -100,12 +103,10 @@
         <div class="stamp">CLASSIFIED</div>
       </section>
 
-      <section class="info rose" aria-labelledby="wx">
-        <h3 id="wx">Weather</h3>
-        <p><b>February in the desert: 75° at noon, frost on your tent at 5am.</b></p>
-        <p>Pack a puffy. Pack sunscreen. Pack both into the same bag and feel smart.</p>
-        <p><a href="https://forecast.weather.gov/MapClick.php?lat=34.2059&amp;lon=-112.1488" target="_blank" rel="noopener">NOAA forecast for Bumble Bee ↗</a><br>
-        <a href="https://www.trailforks.com/region/black-canyon-city/" target="_blank" rel="noopener">Trails on Trailforks ↗</a></p>
+      <section class="info rose" aria-labelledby="wh">
+        <h3 id="wh">Where the hell is this?</h3>
+        <p>Directions, weather, camping, and the nearest real bed all moved to <a href="venue.html">the Venue page</a>.</p>
+        <p>Short version: Bumble Bee Ranch, an hour north of Phoenix, down a dirt road. Bring a puffy.</p>
       </section>
 
       <section class="panel span3 sunday" aria-labelledby="sun">
@@ -113,38 +114,6 @@
         <p class="bubble">Go home, ya filthy animal.</p>
         <p class="cond" style="font-size:20px;margin-top:6px">Leave no trace. Leave no man behind.</p>
         <p style="font-size:11.5px">(Check the porta-john. Check under the van. Count your friends, then count them again.)</p>
-      </section>
-
-      <section class="panel span2 tilt-l" aria-labelledby="gh">
-        <h2 id="gh" class="cond day misreg">Getting here</h2>
-        <p><b>Where is "here"?</b> Bumble Bee, Arizona: a dot on the map roughly an hour north of Phoenix off I-17, then down a dirt road until your phone gives up on you. Bumble Bee Ranch is at the end of that road. If you hit Cleator, you went too far. If you hit Crown King, you went <i>way</i> too far and should stay for a beer.</p>
-        <ul class="items">
-          <li><b>The airport</b> <a href="https://www.skyharbor.com/" target="_blank" rel="noopener">Phoenix Sky Harbor (PHX) ↗</a><span class="joke">Fly in, rent something with clearance, tell the rental company nothing.</span></li>
-          <li><b>The venue</b> <a href="http://www.bumblebeeranch.com/" target="_blank" rel="noopener">Bumble Bee Ranch ↗</a> · <a href="https://maps.app.goo.gl/TC1K6T5UgyTHHR3D6" target="_blank" rel="noopener">Directions ↗</a><span class="joke">Load the map before you leave the pavement. Cell service out here is a rumor.</span></li>
-          <li><b>Your mom's house</b> <a href="https://maps.app.goo.gl/gHsz3qyc2R7C7HeS7" target="_blank" rel="noopener">Directions ↗</a><span class="joke">Closer than you'd think. She says hi.</span></li>
-        </ul>
-      </section>
-
-      <section class="info" aria-labelledby="acc">
-        <h3 id="acc">Accommodations</h3>
-        <p><b>Camping.</b> Acres of flat-ish desert for tents and RVs. <b>No hookups:</b> bring your own water, power, and dignity (optional). The road in is dirt, but it's fine for vans, smaller motorhomes, trailers, and, we have personally witnessed this, a Honda Civic. If a Civic can make it, so can your Sprinter.</p>
-        <p><b>Soft people.</b> The nearest town, store, and actual bed is <b>Black Canyon City, 11 miles</b> from the venue. Gas, ice, beer, and a motel mattress. <a href="https://maps.app.goo.gl/T5S1N2v3yQw85Tuj7" target="_blank" rel="noopener">Black Canyon City ↗</a></p>
-      </section>
-
-      <section class="panel span3 tilt-r" aria-labelledby="nb">
-        <h2 id="nb" class="cond day misreg">Nearby sites (if you're visiting)</h2>
-        <div class="nearby">
-          <div>
-            <h4>Cleator Yacht Club</h4>
-            <p>A nautical-themed bar in the middle of the desert, in a near-ghost town with about eight permanent residents, and no water anywhere near it. There are no yachts. There is no club. There is a bar, and it has been serving dusty ATV riders and confused tourists for decades. Wear your captain's hat. Ask where the boats are docked. The whole town went up for sale in 2020, so if you've always wanted to be an admiral, now's your chance.</p>
-            <p style="font-size:11.5px">(We ride there Saturday. See above. Hydrate accordingly.)</p>
-          </div>
-          <div>
-            <h4>Crown King</h4>
-            <p>An old gold-mining town high in the Bradshaw Mountains, 28 miles west of I-17 up a road that will shake your fillings loose. Tiny, weird, and cooler than the desert floor in every sense. Worth the drive if your vehicle and your kidneys can take it.</p>
-            <p><a href="https://en.wikipedia.org/wiki/Crown_King,_Arizona" target="_blank" rel="noopener">Crown King on Wikipedia ↗</a></p>
-          </div>
-        </div>
       </section>
     </div>
 

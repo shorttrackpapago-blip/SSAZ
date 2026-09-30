@@ -14,7 +14,7 @@ It's plain HTML, CSS, and vanilla JS, with no build step and no dependencies bey
 | `itinerary.html` | The plan (loosely). |
 | `register.html` | The Cleator Yacht Club postcard: $120 cash, by mail. |
 | `gear.html` | Bikes 'n' Shit. |
-| `gallery.html` + `js/gallery.js` | Past years. |
+| `venue.html` + `js/gallery.js` | The venue: ranch video, getting here, weather, camping, nearby sites, and the photo wall (2019 was also at Bumble Bee Ranch). `gallery.html` just redirects here. |
 | `guestbook.html` | The Atabook guestbook embed. |
 | `misc.html` | Shenanigans: fact-checked cycling and doping quotes, lore, one-liners, silly links. |
 | `404.html` | For GitHub Pages. |
@@ -136,7 +136,7 @@ There's no background music. The only sound is the knock-creak-flush effect when
 
 ## Roamers (random cutouts)
 
-59 cutouts live in `assets/roamers/` (the five originals, `crew-01` to `crew-28`, `wiens.png`, and `crew-30` to `crew-54`). Every inner page shows 4 of them, picked at random on each load, spread top to bottom with sides alternating (`COUNT` in `mountRoamers`). On wide screens they sit in the page margins; on narrower screens they peek in from the screen edge. Segura links to his "Bikes" YouTube clip, and Wiens links to the neal.fun speed game with a "think you're fast?" hover label. The list is `ROAMERS` in `js/site.js`: add `{ src: "file.png", alt: "..." }` for a new one, plus `href` if it should be a link and `label` for a hover tooltip. On the camp page they only appear on wide screens, so they never cover the clickable scene.
+70 cutouts live in `assets/roamers/` (the five originals, `crew-01` to `crew-28`, `wiens.png`, and `crew-30` to `crew-65`). Every inner page shows 4 of them, picked at random on each load, spread top to bottom with sides alternating (`COUNT` in `mountRoamers`). On wide screens they sit in the page margins; on narrower screens they peek in from the screen edge. Segura links to his "Bikes" YouTube clip, and Wiens links to the neal.fun speed game with a "think you're fast?" hover label. The list is `ROAMERS` in `js/site.js`: add `{ src: "file.png", alt: "..." }` for a new one, plus `href` if it should be a link and `label` for a hover tooltip. On the camp page they only appear on wide screens, so they never cover the clickable scene.
 
 ## Spokey (our Clippy)
 
