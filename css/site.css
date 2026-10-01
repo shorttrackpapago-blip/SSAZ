@@ -341,7 +341,7 @@ hr.rule { border: 0; height: 6px; background: var(--berry); margin: 10px 0; box-
 .floater:hover img, .floater:focus-visible img { filter: drop-shadow(3px 0 0 var(--yellow)) drop-shadow(-3px 0 0 var(--yellow)) drop-shadow(0 3px 0 var(--yellow)) drop-shadow(0 -3px 0 var(--yellow)) drop-shadow(5px 5px 0 var(--navy)); }
 @keyframes floater-bounce { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-12px) rotate(2deg); } }
 /* optional clunky tooltip: add data-label="..." */
-.floater[data-label]::after, .roamer[data-label]::after { content: attr(data-label); position: absolute; left: 50%; top: 100%; transform: translate(-50%, 4px); background: #ffffe1; color: #000; border: 1px solid #000; box-shadow: 2px 2px 0 #000; font: bold 12px Tahoma, Arial, sans-serif; padding: 2px 6px; white-space: nowrap; display: none; }
+.floater[data-label]::after, .roamer[data-label]::after { content: attr(data-label); width: max-content; max-width: 220px; text-align: center; position: absolute; left: 50%; top: 100%; transform: translate(-50%, 4px); background: #ffffe1; color: #000; border: 1px solid #000; box-shadow: 2px 2px 0 #000; font: bold 12px Tahoma, Arial, sans-serif; padding: 2px 6px; white-space: normal; display: none; }
 .floater[data-label]:hover::after, .floater[data-label]:focus-visible::after, .roamer[data-label]:hover::after, .roamer[data-label]:focus-visible::after { display: block; }
 
 /* ---------- roamers (see mountRoamers in js/site.js) ---------- */
@@ -372,6 +372,67 @@ hr.rule { border: 0; height: 6px; background: var(--berry); margin: 10px 0; box-
 .spokey.bubble-below .spokey-bubble { bottom: auto; top: calc(100% + 14px); }
 .spokey.bubble-below .spokey-bubble::after { top: auto; bottom: 100%; border-top-color: transparent; border-bottom-color: #ffffe1; filter: drop-shadow(0 -1px 0 #000); }
 
+/* ---------- the bag of mushrooms (see mountShrooms in js/site.js) ---------- */
+
+.shroom-bag { position: absolute; z-index: 3; width: 66px; padding: 0; border: 0; background: none; cursor: pointer; animation: shroom-float 7s ease-in-out infinite; }
+.shroom-bag:hover, .shroom-bag:focus-visible { background: none; animation-duration: 1.6s; }
+.shroom-bag svg { display: block; width: 100%; height: auto; filter: drop-shadow(3px 3px 0 var(--navy)); }
+.shroom-bag .spark { position: absolute; color: #fff; font-size: 14px; line-height: 1; text-shadow: 0 0 6px var(--yellow); opacity: 0; animation: twinkle 2.6s ease-in-out infinite; pointer-events: none; }
+.shroom-bag .s1 { top: -6px; left: -8px; }
+.shroom-bag .s2 { top: 20%; right: -10px; animation-delay: .7s; color: var(--yellow); }
+.shroom-bag .s3 { bottom: 14%; left: -12px; animation-delay: 1.4s; font-size: 11px; }
+.shroom-bag .s4 { bottom: -6px; right: 4px; animation-delay: 2s; }
+@keyframes shroom-float { 0%, 100% { transform: translate(0, 0) rotate(-4deg); } 25% { transform: translate(3px, -5px) rotate(2deg); } 50% { transform: translate(-2px, -8px) rotate(5deg); } 75% { transform: translate(-4px, -3px) rotate(-1deg); } }
+@keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(.4) rotate(0); } 50% { opacity: 1; transform: scale(1.2) rotate(45deg); } }
+
+/* ---------- trip mode: html.tripping, after eating the mushrooms ---------- */
+
+.barf { position: fixed; left: 14px; bottom: 56px; z-index: 130; width: 56px; height: 56px; border-radius: 50%; border: 3px solid #000; background: #6fae2a; color: #fff; font: bold 28px/1 Arial, sans-serif; cursor: pointer; box-shadow: 3px 3px 0 #000; }
+.barf:hover, .barf:focus-visible { background: #8bc34a; }
+.barf::after { content: attr(data-label); position: absolute; left: 50%; bottom: 100%; transform: translate(-50%, -6px); background: #ffffe1; color: #000; border: 1px solid #000; box-shadow: 2px 2px 0 #000; font: bold 12px Tahoma, Arial, sans-serif; padding: 2px 6px; white-space: nowrap; display: none; }
+.barf:hover::after, .barf:focus-visible::after { display: block; }
+
+html.tripping body { animation: trip-bg 10s linear infinite; }
+/* colors run */
+html.tripping .catalog > *:not(.floater):not(.roamer):not(.sticker),
+html.tripping .gate-wrap > * { animation: trip-hue 7s linear infinite; }
+/* things go wavy and furry, borders sparkle */
+html.tripping .panel, html.tripping .info, html.tripping .hero, html.tripping .mgmt, html.tripping .card,
+html.tripping .snap, html.tripping .polaroid, html.tripping .postcard, html.tripping .banner h1, html.tripping .topbar a {
+  filter: url(#ssaz-fur);
+  animation: trip-wobble 3.4s ease-in-out infinite alternate, trip-glow 1.3s ease-in-out infinite alternate;
+}
+html.tripping .panel:nth-child(2n), html.tripping .info:nth-child(2n), html.tripping .snap:nth-child(2n), html.tripping .polaroid:nth-child(2n) { animation-delay: -1.7s, -.6s; animation-duration: 4.2s, 1.1s; }
+html.tripping .panel:nth-child(3n), html.tripping .card:nth-child(3n), html.tripping .snap:nth-child(3n) { animation-delay: -.9s, -.3s; animation-duration: 2.8s, 1.6s; }
+/* faces get distorted */
+html.tripping .catalog img, html.tripping .gate-wrap img { filter: url(#ssaz-melt) saturate(1.6); }
+/* text drips */
+html.tripping h1, html.tripping h2, html.tripping h3, html.tripping .cond, html.tripping .bubble {
+  text-shadow: 0 3px 0 #ff2bd6, 0 7px 2px #00e5ff, 0 12px 6px rgba(255, 242, 0, .7);
+}
+/* glitter over everything */
+html.tripping body::after {
+  content: ""; position: fixed; inset: 0; z-index: 110; pointer-events: none; mix-blend-mode: screen;
+  background-image: radial-gradient(circle, #fff 0 1.5px, transparent 2.5px), radial-gradient(circle, #fff200 0 1.2px, transparent 2px), radial-gradient(circle, #ff2bd6 0 1.2px, transparent 2px);
+  background-size: 140px 160px, 90px 110px, 200px 130px;
+  animation: trip-twinkle 2.4s steps(4) infinite;
+}
+html.tripping .spokey img { animation: spokey-bob 1.2s ease-in-out infinite; }
+@keyframes trip-bg { 0% { background-color: #411382; } 25% { background-color: #8a0f6b; } 50% { background-color: #0d5c6b; } 75% { background-color: #5a7a00; } 100% { background-color: #411382; } }
+@keyframes trip-hue { from { filter: hue-rotate(0deg) saturate(1.7); } to { filter: hue-rotate(360deg) saturate(1.7); } }
+@keyframes trip-wobble { 0% { rotate: -1.4deg; scale: 1; } 50% { rotate: .8deg; scale: 1.025 .98; } 100% { rotate: 1.6deg; scale: .985 1.02; } }
+@keyframes trip-glow {
+  0% { border-color: #ff2bd6; box-shadow: 0 0 6px #ff2bd6, 0 0 16px #00e5ff; }
+  50% { border-color: #00ffa2; box-shadow: 0 0 10px #00ffa2, 0 0 22px #fff200; }
+  100% { border-color: #fff200; box-shadow: 0 0 6px #fff200, 0 0 18px #ff2bd6; }
+}
+@keyframes trip-twinkle { 0% { opacity: .9; background-position: 0 0, 40px 60px, 70px 20px; } 50% { opacity: .35; } 100% { opacity: .9; background-position: 20px -40px, 10px 90px, 120px -10px; } }
+@media (prefers-reduced-motion: reduce) {
+  .shroom-bag, .shroom-bag .spark { animation: none; }
+  .shroom-bag .spark { opacity: .8; }
+  html.tripping *, html.tripping body, html.tripping body::after { animation: none !important; }
+}
+
 /* ---------- phone mode ---------- */
 
 @media (max-width: 768px) {
@@ -397,6 +458,8 @@ hr.rule { border: 0; height: 6px; background: var(--berry); margin: 10px 0; box-
   .catalog:has(.floater) .banner { padding-right: 104px; }
   .roamer { width: 78px; }
   .spokey { width: 56px; }
+  .shroom-bag { width: 46px; }
+  .barf { width: 48px; height: 48px; font-size: 24px; }
   .spokey-bubble { width: 180px; font-size: 12px; }
 }
 

@@ -47,7 +47,7 @@
     s.start(t); s.stop(t + dur + 0.02);
   }
 
-  // Sound effects for the gate: knock-knock-knock, creeeak, FLUSH.
+  // Sound effects for the gate: knock-knock-knock, creeeak, VROOM (the Roca Roller leaves for camp).
   function sfxDoor() {
     if (!ensureCtx()) return 0;
     if (ctx.state === "suspended") ctx.resume();
@@ -66,19 +66,20 @@
     g.gain.linearRampToValueAtTime(0.0001, t + 1.4);
     o.connect(f); f.connect(g); g.connect(master);
     o.start(t + 0.5); o.stop(t + 1.45);
-    // flush: noise through a closing lowpass
-    if (!noiseBuf) noise(t, 0.001, 0.0001, 100);
-    var s = ctx.createBufferSource(), lp = ctx.createBiquadFilter(), fg = ctx.createGain();
-    s.buffer = noiseBuf; s.loop = true;
-    lp.type = "lowpass";
-    lp.frequency.setValueAtTime(2600, t + 1.3);
-    lp.frequency.exponentialRampToValueAtTime(220, t + 2.6);
-    fg.gain.setValueAtTime(0.0001, t + 1.3);
-    fg.gain.linearRampToValueAtTime(0.5, t + 1.5);
-    fg.gain.exponentialRampToValueAtTime(0.0008, t + 2.7);
-    s.connect(lp); lp.connect(fg); fg.connect(master);
-    s.start(t + 1.3); s.stop(t + 2.8);
-    return 2300; // ms until the flush is mostly done
+    // engine: the Roca Roller turns over and pulls away (low sawtooth revving up through a lowpass)
+    var e = ctx.createOscillator(), e2 = ctx.createOscillator(), elp = ctx.createBiquadFilter(), eg = ctx.createGain();
+    e.type = "sawtooth"; e2.type = "square";
+    e.frequency.setValueAtTime(38, t + 1.1); e.frequency.linearRampToValueAtTime(52, t + 1.5);
+    e.frequency.linearRampToValueAtTime(44, t + 1.7); e.frequency.exponentialRampToValueAtTime(120, t + 2.6);
+    e2.frequency.setValueAtTime(19, t + 1.1); e2.frequency.exponentialRampToValueAtTime(60, t + 2.6);
+    elp.type = "lowpass"; elp.frequency.setValueAtTime(320, t + 1.1); elp.frequency.linearRampToValueAtTime(900, t + 2.6);
+    eg.gain.setValueAtTime(0.0001, t + 1.1);
+    eg.gain.linearRampToValueAtTime(0.35, t + 1.3);
+    eg.gain.linearRampToValueAtTime(0.28, t + 2.2);
+    eg.gain.exponentialRampToValueAtTime(0.0008, t + 2.8);
+    e.connect(elp); e2.connect(elp); elp.connect(eg); eg.connect(master);
+    e.start(t + 1.1); e2.start(t + 1.1); e.stop(t + 2.85); e2.stop(t + 2.85);
+    return 2200; // ms until the rig has mostly driven off
   }
 
   // ---------- phone toast ----------
@@ -192,7 +193,7 @@
       "Everyone has to believe in something. I believe I'll have another beer.",
       "Yeah, yeah, yeah, you've got a nickname. Real original."
     ],
-    index: ["Knock already. The line's getting long.", "It's a porta-john. What did you expect, a lobby?"],
+    index: ["Knock already. Kaolin's burning daylight.", "It's the Roca Roller. Wipe your feet."],
     camp: ["Click the fire guy. Or don't. I'm a wrench, not a cop.", "Everything here is a link except your fitness."],
     itinerary: ["\"Loosely\" planned. Like your training.", "You read the whole schedule? Nerd. You'll still miss the start."],
     register: ["There's a reason it's called a teddy bear cholla. Go ahead, give it a nice hug.", "It looks like you're trying to pay cash by mail. In this economy?", "Write your email neatly. I've seen your handwriting."],
@@ -201,6 +202,21 @@
     guestbook: ["Sign it. It's the only thing you'll finish this weekend.", "Write something nice. Or honest. Not both."],
     misc: ["I'm trying to warn you, this is just a porn site.", "Where's all the ladies' porn?", "You're on the Misc. page. Even the website doesn't know what to do with you.", "Read the doping section. Then look at your bottle. Sus."]
   };
+  var SPOKEY_TRIP = [
+    "Dude. I'm not a wrench anymore. I'm a guy. With feelings.",
+    "Can you hear the colors? The purple is SO loud right now.",
+    "I have hands now. Look at my hands. LOOK at them.",
+    "Whoa, your face is doing a thing.",
+    "We're all just spokes in the great wheel, man.",
+    "I trued my own wheel and now I can see time.",
+    "Is the guestbook breathing, or is that me?",
+    "Who put the cactus in the cactus?",
+    "I'm fine. Totally fine. Are the walls supposed to be furry?",
+    "Barf it up if you need to. The X is right there.",
+    "Kaolin's motorhome just winked at me.",
+    "I can taste the singlespeed.",
+    "Have you found Scandinavian Jesus yet? I think he found ME."
+  ];
   var SPOKEY_TAUNTS = ["Nope.", "Too slow.", "Can't mute me either.", "Missed me.", "Hands off, pervert.", "Ha! Like your Saturday attack.", "You'll never catch me. Like the group ride.", "Personal space, please.", "Catch me on the climb. Oh wait."];
 
   // Spokey never repeats himself within a browser session: every line he's said is remembered in
@@ -225,6 +241,7 @@
     var page = (location.pathname.split("/").pop() || "index.html").replace(/\.html$/, "") || "index";
     var extra = SPOKEY[page] || [];
     var pool = SPOKEY.general.concat(extra);
+    var normalPool = pool, normalExtra = extra, key = "ssaz-spokey-said";
 
     // He ignores the pointer completely (pointer-events: none in CSS), so he can't be hovered,
     // clicked, or silenced. The page watches the pointer instead and he bolts before it arrives.
@@ -235,7 +252,7 @@
       '<img src="assets/spokey.png" width="220" height="337" alt="Spokey, a spoke wrench with googly eyes" draggable="false">';
     document.body.appendChild(el);
     var p = el.querySelector("p"), img = el.querySelector("img"), bubble = el.querySelector(".spokey-bubble");
-    var line = pickFresh(pool, "ssaz-spokey-said", extra), revert = null, x = 0, y = 0, lastFlee = 0;
+    var line = pickFresh(pool, key, extra), revert = null, x = 0, y = 0, lastFlee = 0;
     var NEAR = 70; // px of personal space around him and his bubble
     p.textContent = line;
 
@@ -253,7 +270,18 @@
     if (!img.complete) img.addEventListener("load", home);   // re-measure once he has a real height
 
     // a new line every minute
-    setInterval(function () { if (!revert) { line = pickFresh(pool, "ssaz-spokey-said", extra); p.textContent = line; } }, 60000);
+    setInterval(function () { if (!revert) { line = pickFresh(pool, key, extra); p.textContent = line; } }, 60000);
+
+    // on mushrooms he becomes a person (still very much Spokey) with new material
+    function trip(on) {
+      img.src = on ? "assets/spokey-human.svg" : "assets/spokey.png";
+      img.alt = on ? "Spokey, now a human being with a spoke-wrench head, googly eyes and a beer" : "Spokey, a spoke wrench with googly eyes";
+      pool = on ? SPOKEY_TRIP : normalPool; extra = on ? [] : normalExtra; key = on ? "ssaz-spokey-trip" : "ssaz-spokey-said";
+      clearTimeout(revert); revert = null;
+      line = pickFresh(pool, key, extra); p.textContent = line;
+    }
+    document.addEventListener("ssaz-trip", function (e) { trip(e.detail); });
+    if (document.documentElement.classList.contains("tripping")) trip(true);
 
     // the area he defends: himself plus his bubble, padded by NEAR
     function tooClose(mx, my) {
@@ -359,7 +387,9 @@
     { src: "crew-62.png", alt: "The Napster cat logo" },
     { src: "crew-63.png", alt: "A Diamondback Racing team sticker" },
     { src: "crew-64.png", alt: "A Yeti Cycles vintage badge" },
-    { src: "crew-65.png", alt: "A man with a jheri curl in a black suit" }
+    { src: "crew-65.png", alt: "A man with a jheri curl in a black suit" },
+    { src: "sign-scandi-jesus.svg", alt: "A brown backcountry road sign: Have you found Scandinavian Jesus yet?", weight: 6 },
+    { src: "scandi-jesus.jpg", alt: "A holy card of Scandinavian Jesus, in a backwards cap with sunglasses on his head", label: "Good fuckin' job, you found me. I got nothin'" }
   ];
 
   function mountRoamers() {
@@ -368,7 +398,14 @@
     // on the campsite they'd sit on top of the clickable scene, so only show them there when they fit in the gutters
     if (document.querySelector(".scene") && window.innerWidth < 1360) return;
     var COUNT = 4, pool = ROAMERS.slice(), picks = [];
-    while (picks.length < COUNT && pool.length) picks.push(pool.splice(Math.floor(Math.random() * pool.length), 1)[0]);
+    // weighted draw without repeats; most cutouts weigh 1
+    while (picks.length < COUNT && pool.length) {
+      var total = 0, k;
+      for (k = 0; k < pool.length; k++) total += pool[k].weight || 1;
+      var roll = Math.random() * total;
+      for (k = 0; k < pool.length - 1; k++) { roll -= pool[k].weight || 1; if (roll < 0) break; }
+      picks.push(pool.splice(k, 1)[0]);
+    }
     var firstLeft = Math.random() < 0.5;
     picks.forEach(function (r, i) {
       var el = document.createElement(r.href ? "a" : "div");
@@ -395,6 +432,102 @@
     window.addEventListener("resize", tuck);
   }
 
+  // ---------- a bag of mushrooms in the header. DO NOT EAT. (click it to eat it) ----------
+  var BAG_SVG =
+    '<svg viewBox="0 0 120 150" aria-hidden="true" focusable="false">' +
+    '<rect x="10" y="16" width="100" height="128" rx="10" fill="rgba(236,246,255,.78)" stroke="#7d95a8" stroke-width="3"/>' +
+    '<rect x="14" y="26" width="92" height="4" fill="#CC1218"/><rect x="14" y="32" width="92" height="3" fill="#0161C9"/>' +
+    '<g stroke="#3d2412" stroke-width="2.5">' +
+    '<path d="M28 132 v-14 h10 v14 Z M60 136 v-16 h11 v16 Z M86 130 v-13 h10 v13 Z M46 112 v-10 h8 v10 Z" fill="#F2E6C8"/>' +
+    '<path d="M18 120 q15 -22 30 0 Z M50 122 q16 -24 32 0 Z M78 119 q15 -20 30 0 Z M38 104 q12 -18 24 0 Z" fill="#8A5A2B"/>' +
+    '</g>' +
+    '<g fill="#F2E6C8" opacity=".9"><circle cx="30" cy="114" r="2.5"/><circle cx="64" cy="114" r="3"/><circle cx="92" cy="112" r="2.5"/><circle cx="48" cy="97" r="2"/></g>' +
+    '<g transform="rotate(-5 60 64)">' +
+    '<rect x="20" y="42" width="80" height="50" rx="4" fill="#fff" stroke="#111" stroke-width="3"/>' +
+    '<path d="M50 50 l20 14 M70 50 l-20 14" stroke="#111" stroke-width="4" stroke-linecap="round"/>' +
+    '<circle cx="60" cy="52" r="7" fill="#111"/><circle cx="57" cy="51" r="1.8" fill="#fff"/><circle cx="63" cy="51" r="1.8" fill="#fff"/>' +
+    '<text x="60" y="85" text-anchor="middle" font-family="Impact, \'Arial Black\', sans-serif" font-size="15" fill="#CC1218">DO NOT EAT!</text>' +
+    '</g>' +
+    '<path d="M18 40 q4 40 0 96" stroke="#fff" stroke-width="4" fill="none" opacity=".7" stroke-linecap="round"/>' +
+    '</svg>' +
+    '<span class="spark s1">&#10022;</span><span class="spark s2">&#10022;</span><span class="spark s3">&#10023;</span><span class="spark s4">&#10022;</span>';
+
+  var TRIP_DEFS =
+    '<svg class="trip-defs" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">' +
+    '<filter id="ssaz-melt" x="-12%" y="-12%" width="124%" height="124%">' +
+    '<feTurbulence type="fractalNoise" baseFrequency="0.012 0.04" numOctaves="2" seed="7" result="n">' +
+    '<animate attributeName="baseFrequency" dur="9s" values="0.012 0.04;0.022 0.07;0.012 0.04" repeatCount="indefinite"/></feTurbulence>' +
+    '<feDisplacementMap in="SourceGraphic" in2="n" scale="24" xChannelSelector="R" yChannelSelector="G"/></filter>' +
+    '<filter id="ssaz-fur" x="-3%" y="-3%" width="106%" height="106%">' +
+    '<feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="1" seed="2" result="f"/>' +
+    '<feDisplacementMap in="SourceGraphic" in2="f" scale="5" xChannelSelector="R" yChannelSelector="G"/></filter>' +
+    '</svg>';
+
+  function setTrip(on) {
+    document.documentElement.classList.toggle("tripping", on);
+    try { on ? window.sessionStorage.setItem("ssaz-trip", "1") : window.sessionStorage.removeItem("ssaz-trip"); } catch (e) { /* whatever */ }
+    var exit = document.querySelector(".barf");
+    if (on) {
+      if (!document.querySelector(".trip-defs")) document.body.insertAdjacentHTML("beforeend", TRIP_DEFS);
+      if (!exit) {
+        exit = document.createElement("button");
+        exit.type = "button";
+        exit.className = "barf";
+        exit.setAttribute("aria-label", "Barf it up (end the trip)");
+        exit.setAttribute("data-label", "barf it up");
+        exit.innerHTML = "&#10005;";
+        exit.addEventListener("click", function () { setTrip(false); });
+        document.body.appendChild(exit);
+      }
+    } else if (exit) exit.remove();
+    var ev; try { ev = new CustomEvent("ssaz-trip", { detail: on }); } catch (e) { ev = document.createEvent("CustomEvent"); ev.initCustomEvent("ssaz-trip", false, false, on); }
+    document.dispatchEvent(ev);
+  }
+
+  function mountShrooms() {
+    var tripping = false;
+    try { tripping = window.sessionStorage.getItem("ssaz-trip") === "1"; } catch (e) { /* whatever */ }
+    var banner = document.querySelector(".banner");
+    if (banner) {
+      var bag = document.createElement("button");
+      bag.type = "button";
+      bag.className = "shroom-bag";
+      bag.setAttribute("aria-label", "A bag of mushrooms labeled DO NOT EAT. Eat them anyway.");
+      bag.innerHTML = BAG_SVG;
+      bag.addEventListener("click", function () { setTrip(true); });
+      banner.appendChild(bag);
+
+      // sit just right of the page title; if a floating cutout is in the way, sit after the tagline instead
+      var place = function () {
+        var B = banner.getBoundingClientRect(), W = bag.offsetWidth, H = bag.offsetHeight;
+        var blockers = [].slice.call(document.querySelectorAll(".floater, .roamer")).map(function (n) { return n.getBoundingClientRect(); });
+        var spots = [];
+        var textBox = function (el) {
+          if (!el) return null;
+          var r = document.createRange(); r.selectNodeContents(el);
+          var rs = [].slice.call(r.getClientRects());
+          if (!rs.length) return null;
+          return { right: Math.max.apply(null, rs.map(function (q) { return q.right; })), top: rs[0].top, bottom: rs[rs.length - 1].bottom };
+        };
+        var t = textBox(banner.querySelector("h1")), k = textBox(banner.querySelector(".kicker"));
+        if (t) spots.push({ x: t.right + 16, y: (t.top + t.bottom) / 2 - H / 2 });
+        if (k) spots.push({ x: k.right + 14, y: (k.top + k.bottom) / 2 - H / 2 });
+        var ok = function (s) {
+          if (s.x + W > B.right - 8 || s.y < B.top + 2 || s.y + H > B.bottom - 2) return false;
+          return !blockers.some(function (r) { return s.x < r.right + 10 && s.x + W > r.left - 10 && s.y < r.bottom + 12 && s.y + H > r.top - 12; }); // padded for the float
+        };
+        var pick = spots.filter(ok)[0];
+        bag.hidden = !pick;
+        if (pick) { bag.style.left = (pick.x - B.left) + "px"; bag.style.top = (pick.y - B.top) + "px"; }
+      };
+      place();
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(place);
+      window.addEventListener("load", place);
+      window.addEventListener("resize", place);
+    }
+    if (tripping) setTrip(true);
+  }
+
   window.SSAZ = { sfxDoor: sfxDoor, store: store };
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -402,5 +535,6 @@
     phoneToast();
     mountSpokey();
     if (!document.body.hasAttribute("data-gate")) mountRoamers();
+    mountShrooms();
   });
 })();

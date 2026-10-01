@@ -8,7 +8,7 @@ It's plain HTML, CSS, and vanilla JS, with no build step and no dependencies bey
 
 | File | What it is |
 |---|---|
-| `index.html` | The porta-john gate. It has the age/narc check, the hit counter, and a knock-creak-flush sound when you click the door. |
+| `index.html` | The gate: the age/narc check, the hit counter, and the Roca Roller (Kaolin's motorhome, drawn inline as SVG). Knock and it drives off to camp with a knock-creak-engine sound. |
 | `narc.html` | The dead end you get for clicking "I'm a narc". |
 | `camp.html` | The clickable campsite. This is the main navigation. |
 | `itinerary.html` | The plan (loosely). |
@@ -94,7 +94,6 @@ All of these are crude generated placeholders, drawn MS Paint-style on purpose. 
 
 | File | Placeholder size | Notes |
 |---|---|---|
-| `assets/door-portajohn.png` | 600×1000 | The gate door. Tall. The "PLEASE KNOCK" text is overlaid by the page. "SCHITT'S SHITTERS LLC" is painted on the roof, so put it on the real art too if you want to keep it. |
 | `assets/obj-weather.png` | 260×220 | Transparent. Links to NOAA. |
 
 Real art already in place on the campsite (camp.html):
@@ -132,11 +131,19 @@ The GIFs in `assets/gif/` are original, generated for this site, and free to use
 
 ## Sound
 
-There's no background music. The only sound is the knock-creak-flush effect when someone clicks the porta-john door. `js/site.js` synthesizes it with the Web Audio API (`sfxDoor`), so there's no audio file. To remove it, delete the `window.SSAZ.sfxDoor()` call in `index.html`.
+There's no background music. The only sound is the knock-creak-engine effect when someone knocks on the Roca Roller. `js/site.js` synthesizes it with the Web Audio API (`sfxDoor`), so there's no audio file. To remove it, delete the `window.SSAZ.sfxDoor()` call in `index.html`.
 
 ## Roamers (random cutouts)
 
-70 cutouts live in `assets/roamers/` (the five originals, `crew-01` to `crew-28`, `wiens.png`, and `crew-30` to `crew-65`). Every inner page shows 4 of them, picked at random on each load, spread top to bottom with sides alternating (`COUNT` in `mountRoamers`). On wide screens they sit in the page margins; on narrower screens they peek in from the screen edge. Segura links to his "Bikes" YouTube clip, and Wiens links to the neal.fun speed game with a "think you're fast?" hover label. The list is `ROAMERS` in `js/site.js`: add `{ src: "file.png", alt: "..." }` for a new one, plus `href` if it should be a link and `label` for a hover tooltip. On the camp page they only appear on wide screens, so they never cover the clickable scene.
+72 cutouts live in `assets/roamers/` (including the Scandinavian Jesus sign and the man himself) (the five originals, `crew-01` to `crew-28`, `wiens.png`, and `crew-30` to `crew-65`). Every inner page shows 4 of them, picked at random on each load, spread top to bottom with sides alternating (`COUNT` in `mountRoamers`). On wide screens they sit in the page margins; on narrower screens they peek in from the screen edge. Segura links to his "Bikes" YouTube clip, and Wiens links to the neal.fun speed game with a "think you're fast?" hover label. The list is `ROAMERS` in `js/site.js`: add `{ src: "file.png", alt: "..." }` for a new one, plus `href` if it should be a link and `label` for a hover tooltip. On the camp page they only appear on wide screens, so they never cover the clickable scene.
+
+## Mushroom mode
+
+Every page with a banner has a floating, sparkling bag of mushrooms labeled DO NOT EAT just right of the title (or after the tagline if a cutout is in the way; it hides itself when there's no room). Clicking it turns on `html.tripping`: colors cycle, panels go wavy and furry, borders glow, photos melt (SVG displacement filters), glitter falls, and Spokey turns into a person with a wrench head and new lines (`SPOKEY_TRIP`). It lasts across pages for the browser session. The green X bottom-left ("barf it up") ends it. All of it lives in `mountShrooms`/`setTrip` in `js/site.js` and the trip section of `css/site.css`; `assets/spokey-human.svg` is trip Spokey.
+
+## Scandinavian Jesus
+
+The "Have you found Scandinavian Jesus yet?" road sign (`assets/roamers/sign-scandi-jesus.svg`) is in the roamer pool with `weight: 6`, so it turns up often. The man himself (`scandi-jesus.jpg`) is weight 1, so he's rare, and hovering him says "Good fuckin' job, you found me. I got nothin'".
 
 ## Spokey (our Clippy)
 

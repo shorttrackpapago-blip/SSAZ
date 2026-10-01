@@ -7,18 +7,30 @@
 <title>Occupied</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Reenie+Beanie&family=Titan+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Reenie+Beanie&family=Rye&family=Titan+One&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css">
 <style>
   body { min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
-  .gate-wrap { flex: 1; width: 100%; max-width: 900px; display: grid; grid-template-columns: 1fr minmax(240px, 380px) 1fr; gap: 16px; align-items: center; padding: 20px 14px 90px; }
+  .gate-wrap { flex: 1; width: 100%; max-width: 1240px; display: grid; grid-template-columns: minmax(150px, 1fr) minmax(320px, 680px) minmax(150px, 1fr); gap: 16px; align-items: center; padding: 20px 14px 90px; }
   .door-btn { grid-column: 2; border: 0; padding: 0; background: none; cursor: pointer; position: relative; animation: rattle 4s steps(2) infinite; }
-  .door-btn img { display: block; width: 100%; height: auto; max-height: 82vh; object-fit: contain; filter: drop-shadow(10px 10px 0 #000); }
+  .door-btn .rr { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(8px 8px 0 #000); }
   .door-btn:hover { background: none; animation: rattle .25s steps(2) infinite; }
-  .door-btn .knock { position: absolute; left: 50%; top: 40%; transform: translate(-50%, -50%) rotate(-4deg); font-size: clamp(26px, 5vw, 44px); white-space: nowrap; pointer-events: none; }
-  .door-btn.opening { animation: opendoor 1.8s ease-in forwards; }
+  .door-btn .knock { display: block; margin-top: 6px; font-size: clamp(26px, 4.4vw, 44px); white-space: nowrap; pointer-events: none; transform: rotate(-3deg); }
+  .door-btn .knock small { display: block; font-family: var(--cond); font-size: .42em; color: var(--yellow); -webkit-text-stroke: 0; text-shadow: none; letter-spacing: .06em; margin-top: 4px; }
+  .rr .wheel { transform-box: fill-box; transform-origin: center; }
+  .rr .puff { opacity: 0; transform-box: fill-box; transform-origin: center; }
+  /* knock: the Roca Roller drives off to camp */
+  .door-btn.opening { animation: none; }
+  .door-btn.opening .rr { animation: driveoff 2s cubic-bezier(.55, 0, .9, .6) forwards; }
+  .door-btn.opening .wheel { animation: spin .25s linear infinite; }
+  .door-btn.opening .puff { animation: puff .7s ease-out infinite; }
+  .door-btn.opening .puff:nth-of-type(2) { animation-delay: .23s; }
+  .door-btn.opening .puff:nth-of-type(3) { animation-delay: .46s; }
+  .door-btn.opening .knock { opacity: 0; transition: opacity .3s; }
   @keyframes rattle { 0%, 92% { transform: none; } 94% { transform: rotate(-1deg) translateX(-3px); } 97% { transform: rotate(1deg) translateX(3px); } }
-  @keyframes opendoor { 20% { transform: rotate(-2deg); } 100% { transform: perspective(900px) rotateY(-80deg); transform-origin: left; opacity: .2; } }
+  @keyframes driveoff { 0% { transform: none; } 18% { transform: translateY(-5px) rotate(-1deg); } 30% { transform: translateX(10px); } 100% { transform: translateX(-160vw); } }
+  @keyframes spin { to { transform: rotate(-360deg); } }
+  @keyframes puff { 0% { opacity: .9; transform: translate(0, 0) scale(.4); } 100% { opacity: 0; transform: translate(60px, -30px) scale(1.6); } }
   .side { color: var(--paper); text-align: center; font-size: 12px; display: flex; flex-direction: column; gap: 12px; align-items: center; }
   .side .cond { font-size: 22px; color: var(--yellow); }
   .lcd { display: inline-flex; gap: 2px; background: #000; padding: 5px 6px; border: 3px inset #777; }
@@ -34,7 +46,7 @@
   .bottom { position: fixed; left: 0; right: 0; bottom: 0; background: var(--berry); color: var(--paper); border-top: 4px solid var(--navy); text-align: center; padding: 6px 70px 8px 10px; font-size: 12px; }
   @media (max-width: 768px) {
     .gate-wrap { grid-template-columns: 1fr; padding-top: 110px; }
-    .door-btn { grid-column: 1; max-width: 300px; margin: 0 auto; }
+    .door-btn { grid-column: 1; width: 100%; margin: 0 auto; }
     .side.left { order: 2; } .side.right { order: 3; }
   }
 </style>
@@ -65,9 +77,74 @@
     <div>This site is <span class="blink">ALWAYS</span> under construction. Like the trail. Like your life.</div>
   </div>
 
-  <button type="button" class="door-btn" id="door" aria-label="Knock on the porta-john door to enter the site">
-    <img src="assets/door-portajohn.png" alt="">
-    <span class="knock bubble">Please knock</span>
+  <button type="button" class="door-btn" id="door" aria-label="Knock on the door of the Roca Roller, Kaolin's motorhome, to enter the site">
+    <svg class="rr" viewBox="0 0 1150 500" aria-hidden="true" focusable="false">
+      <ellipse cx="520" cy="470" rx="500" ry="16" fill="rgba(0,0,0,.35)"/>
+      <!-- bikes on the hitch rack, behind the rig -->
+      <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <g stroke="#222" stroke-width="7" transform="translate(-18 -14)">
+          <circle cx="985" cy="330" r="50"/><circle cx="1085" cy="330" r="50"/>
+          <path d="M985 330 L1030 335 L1015 265 L1065 270 L1085 330 M1030 335 L1065 270 M1015 265 L985 330 M1065 270 L1070 250"/>
+        </g>
+        <g stroke="#2AA7B8" stroke-width="8">
+          <circle cx="985" cy="330" r="50" stroke="#1b1b1b" stroke-width="9"/><circle cx="1085" cy="330" r="50" stroke="#1b1b1b" stroke-width="9"/>
+          <path d="M985 330 L1030 335 L1015 265 L1065 270 L1085 330 M1030 335 L1065 270 M1015 265 L985 330"/>
+          <path d="M1065 270 L1070 248 L1088 246" stroke="#222" stroke-width="6"/>
+          <path d="M998 258 L1030 256" stroke="#222" stroke-width="8"/>
+        </g>
+      </g>
+      <rect x="930" y="378" width="90" height="12" rx="3" fill="#333"/>
+      <!-- body -->
+      <path d="M948 94 Q948 78 932 78 L235 78 Q150 78 98 98 Q54 116 46 158 Q44 186 74 196 L152 200 L114 250 Q70 258 36 300 Q20 318 20 345 L20 410 Q20 424 34 424 L934 424 Q948 424 948 410 Z" fill="#EFE8D2" stroke="#222" stroke-width="7" stroke-linejoin="round"/>
+      <!-- pastel shapes from the mural -->
+      <polygon points="252,86 540,86 252,262" fill="#8FD3F0"/>
+      <polygon points="600,176 726,150 704,222" fill="#F4A6C0"/>
+      <polygon points="430,300 520,268 470,350" fill="#F8E27A" opacity=".8"/>
+      <!-- stripes -->
+      <rect x="24" y="376" width="920" height="16" fill="#B8C0C2"/>
+      <rect x="24" y="392" width="920" height="12" fill="#3E8E9A"/>
+      <!-- cab -->
+      <path d="M156 206 L206 206 L206 276 L126 276 Z" fill="#7EC3DD" stroke="#222" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M152 204 L114 252 L120 258 L158 210 Z" fill="#5AA7C7" stroke="#222" stroke-width="4"/>
+      <path d="M122 280 L232 280 L232 404 L122 404" fill="none" stroke="#222" stroke-width="4"/>
+      <rect x="196" y="300" width="22" height="7" rx="3" fill="#888"/>
+      <rect x="78" y="118" width="74" height="36" rx="9" fill="#26323a" stroke="#222" stroke-width="4"/>
+      <text x="170" y="148" font-family="Arial, sans-serif" font-style="italic" font-weight="bold" font-size="24" fill="#3E8E9A">Tioga</text>
+      <rect x="56" y="132" width="10" height="16" rx="3" fill="#F28C28" stroke="#222" stroke-width="2"/>
+      <!-- roof AC -->
+      <rect x="470" y="58" width="96" height="22" rx="5" fill="#ddd" stroke="#222" stroke-width="5"/>
+      <!-- rear window with blinds -->
+      <rect x="846" y="108" width="82" height="96" rx="6" fill="#26323a" stroke="#222" stroke-width="5"/>
+      <path d="M852 124 H922 M852 140 H922 M852 156 H922 M852 172 H922 M852 188 H922" stroke="#46555e" stroke-width="5"/>
+      <!-- bike chain painted across the side -->
+      <path d="M840 88 C822 160 792 232 744 300" fill="none" stroke="#555" stroke-width="22" stroke-linecap="round" stroke-dasharray="20 7"/>
+      <path d="M840 88 C822 160 792 232 744 300" fill="none" stroke="#d9d9d9" stroke-width="9" stroke-linecap="round" stroke-dasharray="20 7"/>
+      <!-- black scroll filigree -->
+      <g fill="none" stroke="#111" stroke-width="3.5" stroke-linecap="round">
+        <path d="M268 360 c24 -26 62 -14 56 12 c-6 22 -38 22 -36 4 c2 -12 16 -12 18 -4"/>
+        <path d="M600 102 c22 -16 52 -6 48 14 c-4 16 -28 15 -26 2 c2 -9 13 -9 14 -2 M648 116 c20 4 34 -4 44 -16"/>
+        <path d="M880 236 c-20 14 -16 46 8 46 c18 0 20 -24 6 -26 c-10 -1 -12 10 -5 12 M888 282 c0 26 -14 44 -40 50"/>
+        <path d="M390 104 c-14 10 -10 30 6 30 c12 0 13 -15 4 -16"/>
+      </g>
+      <!-- the big lettering -->
+      <text x="540" y="226" text-anchor="middle" textLength="560" lengthAdjust="spacingAndGlyphs" font-family="Rye, 'Times New Roman', serif" font-size="122" fill="#111">ROCA ROJA</text>
+      <text x="540" y="226" text-anchor="middle" textLength="560" lengthAdjust="spacingAndGlyphs" font-family="Rye, 'Times New Roman', serif" font-size="122" fill="none" stroke="#fff" stroke-width="1.6" stroke-dasharray="3 5" opacity=".85">ROCA ROJA</text>
+      <text x="520" y="352" text-anchor="middle" textLength="520" lengthAdjust="spacingAndGlyphs" font-family="Rye, 'Times New Roman', serif" font-size="84" fill="#111">BICYCLES</text>
+      <text x="520" y="352" text-anchor="middle" textLength="520" lengthAdjust="spacingAndGlyphs" font-family="Rye, 'Times New Roman', serif" font-size="84" fill="none" stroke="#fff" stroke-width="1.4" stroke-dasharray="3 5" opacity=".85">BICYCLES</text>
+      <!-- the door you knock on -->
+      <rect x="656" y="180" width="78" height="232" rx="5" fill="none" stroke="#222" stroke-width="5"/>
+      <rect x="668" y="194" width="54" height="56" rx="4" fill="#26323a" stroke="#222" stroke-width="4"/>
+      <circle cx="722" cy="330" r="6" fill="#999" stroke="#222" stroke-width="2"/>
+      <!-- wheel wells + wheels -->
+      <path d="M118 424 a60 60 0 0 1 120 0 Z M738 424 a60 60 0 0 1 120 0 Z" fill="#1b1b1b"/>
+      <g class="wheel"><circle cx="178" cy="430" r="46" fill="#1b1b1b"/><circle cx="178" cy="430" r="20" fill="#bbb" stroke="#222" stroke-width="3"/><path d="M178 414 V446 M162 430 H194" stroke="#666" stroke-width="5"/></g>
+      <g class="wheel"><circle cx="798" cy="430" r="46" fill="#1b1b1b"/><circle cx="798" cy="430" r="20" fill="#bbb" stroke="#222" stroke-width="3"/><path d="M798 414 V446 M782 430 H814" stroke="#666" stroke-width="5"/></g>
+      <rect x="934" y="404" width="20" height="18" rx="3" fill="#555"/>
+      <circle class="puff" cx="975" cy="440" r="18" fill="#cfcfcf"/>
+      <circle class="puff" cx="975" cy="440" r="18" fill="#bdbdbd"/>
+      <circle class="puff" cx="975" cy="440" r="18" fill="#e0e0e0"/>
+    </svg>
+    <span class="knock bubble">Please knock<small>on the Roca Roller</small></span>
   </button>
 
   <div class="side right">

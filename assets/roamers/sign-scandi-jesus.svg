@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 360">
+  <!-- backcountry Forest Service-style road sign -->
+  <g stroke="#2b1a0b" stroke-width="5">
+    <rect x="68" y="150" width="24" height="210" fill="#7a5530"/>
+    <rect x="208" y="150" width="24" height="210" fill="#6d4a28"/>
+  </g>
+  <path d="M74 180 v170 M86 200 v120 M214 170 v180 M226 210 v100" stroke="#4e331a" stroke-width="2"/>
+  <rect x="12" y="18" width="276" height="194" rx="10" fill="#5B3B1E" stroke="#2b1a0b" stroke-width="6"/>
+  <rect x="24" y="30" width="252" height="170" rx="6" fill="none" stroke="#EBDDB2" stroke-width="3"/>
+  <!-- weathering -->
+  <g fill="#3f2812" opacity=".35">
+    <ellipse cx="60" cy="60" rx="28" ry="10"/><ellipse cx="240" cy="170" rx="34" ry="12"/><ellipse cx="160" cy="44" rx="40" ry="6"/>
+  </g>
+  <g font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="bold" fill="#F1E6C0" text-anchor="middle">
+    <text x="150" y="70" font-size="27" textLength="210" lengthAdjust="spacingAndGlyphs">HAVE YOU FOUND</text>
+    <text x="150" y="114" font-size="36" textLength="232" lengthAdjust="spacingAndGlyphs">SCANDINAVIAN</text>
+    <text x="150" y="160" font-size="44" textLength="150" lengthAdjust="spacingAndGlyphs">JESUS</text>
+    <text x="150" y="192" font-size="26" textLength="70" lengthAdjust="spacingAndGlyphs">YET?</text>
+  </g>
+  <!-- bullet holes, because of course -->
+  <g>
+    <circle cx="246" cy="58" r="6" fill="#C9B48A"/><circle cx="246" cy="58" r="3.5" fill="#140a02"/>
+    <circle cx="52" cy="176" r="6" fill="#C9B48A"/><circle cx="52" cy="176" r="3.5" fill="#140a02"/>
+    <circle cx="206" cy="182" r="5" fill="#C9B48A"/><circle cx="206" cy="182" r="3" fill="#140a02"/>
+  </g>
+</svg>
