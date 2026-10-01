@@ -349,6 +349,8 @@ hr.rule { border: 0; height: 6px; background: var(--berry); margin: 10px 0; box-
 .roamer { position: absolute; z-index: 24; width: 130px; display: block; background: none; transform: rotate(var(--tilt, 0deg)); }
 /* left/right offsets are set by tuck() in js/site.js to fit the page margin */
 @media (max-width: 1300px) { .roamer { width: 97px; } }
+.roamer.big { width: 163px; }   /* 1.25x, e.g. Scandinavian Jesus */
+@media (max-width: 1300px) { .roamer.big { width: 121px; } }
 .roamer img { display: block; width: 100%; height: auto; filter: drop-shadow(4px 4px 0 var(--navy)); }
 .roamer:hover, .roamer:focus-visible { background: none; animation: floater-bounce .45s steps(3) infinite; }
 .roamer:hover img, .roamer:focus-visible img { filter: drop-shadow(3px 0 0 var(--yellow)) drop-shadow(-3px 0 0 var(--yellow)) drop-shadow(0 3px 0 var(--yellow)) drop-shadow(0 -3px 0 var(--yellow)) drop-shadow(4px 4px 0 var(--navy)); }
@@ -374,7 +376,8 @@ hr.rule { border: 0; height: 6px; background: var(--berry); margin: 10px 0; box-
 
 /* ---------- the bag of mushrooms (see mountShrooms in js/site.js) ---------- */
 
-.shroom-bag { position: absolute; z-index: 3; width: 66px; padding: 0; border: 0; background: none; cursor: pointer; animation: shroom-float 7s ease-in-out infinite; }
+.shroom-bag { position: absolute; z-index: 3; width: 83px; padding: 0; border: 0; background: none; cursor: pointer; animation: shroom-float 7s ease-in-out infinite; }
+.banner.bag-shelf { padding-bottom: 128px; }   /* room for the bag when the title fills the banner */
 .shroom-bag:hover, .shroom-bag:focus-visible { background: none; animation-duration: 1.6s; }
 .shroom-bag svg { display: block; width: 100%; height: auto; filter: drop-shadow(3px 3px 0 var(--navy)); }
 .shroom-bag .spark { position: absolute; color: #fff; font-size: 14px; line-height: 1; text-shadow: 0 0 6px var(--yellow); opacity: 0; animation: twinkle 2.6s ease-in-out infinite; pointer-events: none; }
@@ -457,8 +460,10 @@ html.tripping .spokey img { animation: spokey-bob 1.2s ease-in-out infinite; }
   .floater.slim { width: 69px; }
   .catalog:has(.floater) .banner { padding-right: 104px; }
   .roamer { width: 78px; }
+  .roamer.big { width: 98px; }
   .spokey { width: 56px; }
-  .shroom-bag { width: 46px; }
+  .shroom-bag { width: 58px; }
+  .banner.bag-shelf { padding-bottom: 104px; }
   .barf { width: 48px; height: 48px; font-size: 24px; }
   .spokey-bubble { width: 180px; font-size: 12px; }
 }

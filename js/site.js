@@ -389,7 +389,7 @@
     { src: "crew-64.png", alt: "A Yeti Cycles vintage badge" },
     { src: "crew-65.png", alt: "A man with a jheri curl in a black suit" },
     { src: "sign-scandi-jesus.svg", alt: "A brown backcountry road sign: Have you found Scandinavian Jesus yet?", weight: 6 },
-    { src: "scandi-jesus.jpg", alt: "A holy card of Scandinavian Jesus, in a backwards cap with sunglasses on his head", label: "Good fuckin' job, you found me. I got nothin'" }
+    { src: "scandi-jesus.jpg", alt: "A holy card of Scandinavian Jesus, in a backwards cap with sunglasses on his head", label: "Good fuckin' job, you found me. I got nothin'", big: true }
   ];
 
   function mountRoamers() {
@@ -411,6 +411,7 @@
       var el = document.createElement(r.href ? "a" : "div");
       if (r.href) { el.href = r.href; el.target = "_blank"; el.rel = "noopener"; }
       if (r.label) el.setAttribute("data-label", r.label);
+      if (r.big) el.classList.add("big");
       el.className = "roamer " + ((i % 2 === 0) === firstLeft ? "left" : "right");
       // split the page into COUNT bands top to bottom, drop one in each at a random height, sides alternating
       var band = 80 / picks.length;
@@ -499,24 +500,30 @@
 
       // sit just right of the page title; if a floating cutout is in the way, sit after the tagline instead
       var place = function () {
-        var B = banner.getBoundingClientRect(), W = bag.offsetWidth, H = bag.offsetHeight;
-        var blockers = [].slice.call(document.querySelectorAll(".floater, .roamer")).map(function (n) { return n.getBoundingClientRect(); });
-        var spots = [];
-        var textBox = function (el) {
-          if (!el) return null;
-          var r = document.createRange(); r.selectNodeContents(el);
-          var rs = [].slice.call(r.getClientRects());
+        var B = banner.getBoundingClientRect(), W = bag.offsetWidth || 58, H = bag.offsetHeight || 73, PAD = 12;
+        var rects = function (el) { if (!el) return []; var r = document.createRange(); r.selectNodeContents(el); return [].slice.call(r.getClientRects()); };
+        var titleR = rects(banner.querySelector("h1")), kickR = rects(banner.querySelector(".kicker"));
+        // things the bag must not cover: floating cutouts, the title, the tagline
+        var blockers = [].slice.call(document.querySelectorAll(".floater, .roamer")).map(function (n) { return n.getBoundingClientRect(); }).concat(titleR, kickR);
+        var free = function (x, y) {
+          if (x < B.left + 6 || x + W > B.right - 6 || y < B.top + 4 || y + H > B.bottom - 4) return false;
+          return !blockers.some(function (r) { return x < r.right + PAD && x + W > r.left - PAD && y < r.bottom + PAD && y + H > r.top - PAD; });
+        };
+        var beside = function (rs) {   // just right of a block of text, nudged up/down if needed
           if (!rs.length) return null;
-          return { right: Math.max.apply(null, rs.map(function (q) { return q.right; })), top: rs[0].top, bottom: rs[rs.length - 1].bottom };
+          var x = Math.max.apply(null, rs.map(function (q) { return q.right; })) + 16;
+          var mid = (rs[0].top + rs[rs.length - 1].bottom) / 2 - H / 2;
+          for (var d = 0; d <= 60; d += 6) {
+            if (free(x, mid - d)) return { x: x, y: mid - d };
+            if (free(x, mid + d)) return { x: x, y: mid + d };
+          }
+          return null;
         };
-        var t = textBox(banner.querySelector("h1")), k = textBox(banner.querySelector(".kicker"));
-        if (t) spots.push({ x: t.right + 16, y: (t.top + t.bottom) / 2 - H / 2 });
-        if (k) spots.push({ x: k.right + 14, y: (k.top + k.bottom) / 2 - H / 2 });
-        var ok = function (s) {
-          if (s.x + W > B.right - 8 || s.y < B.top + 2 || s.y + H > B.bottom - 2) return false;
-          return !blockers.some(function (r) { return s.x < r.right + 10 && s.x + W > r.left - 10 && s.y < r.bottom + 12 && s.y + H > r.top - 12; }); // padded for the float
-        };
-        var pick = spots.filter(ok)[0];
+        var pick = beside(titleR) || beside(kickR);
+        if (!pick && !banner.classList.contains("bag-shelf")) { banner.classList.add("bag-shelf"); return place(); }   // grow a strip under the tagline
+        for (var y = B.bottom - H - 6; !pick && y >= B.top + 4; y -= 8)
+          for (var x = B.left + 16; !pick && x + W <= B.right - 6; x += 12)
+            if (free(x, y)) pick = { x: x, y: y };
         bag.hidden = !pick;
         if (pick) { bag.style.left = (pick.x - B.left) + "px"; bag.style.top = (pick.y - B.top) + "px"; }
       };
@@ -524,6 +531,7 @@
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(place);
       window.addEventListener("load", place);
       window.addEventListener("resize", place);
+      [].forEach.call(document.querySelectorAll(".floater img, .roamer img"), function (im) { if (!im.complete) im.addEventListener("load", place); });
     }
     if (tripping) setTrip(true);
   }
