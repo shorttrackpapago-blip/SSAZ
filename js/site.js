@@ -104,7 +104,7 @@
   // To change the photos, edit this list (files live in assets/strip/, cropped 4:3). Each page shows 8,
   // starting at a different spot in the list so the strips don't all look the same.
   var STRIP_PHOTOS = [
-    "band-bar.jpg", "tongue.jpg", "couple.jpg", "mountain-ride.jpg",
+    "band-bar.jpg", "tongue.jpg", "group-stop.jpg", "mountain-ride.jpg",
     "uhaul.jpg", "plaid-grin.jpg", "vista-ride.jpg", "bus.jpg"
   ];
   var STRIP_START = { itinerary: 0, register: 1, gear: 2, venue: 3, guestbook: 4, misc: 5 };
