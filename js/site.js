@@ -388,44 +388,73 @@
     { src: "crew-63.png", alt: "A Diamondback Racing team sticker" },
     { src: "crew-64.png", alt: "A Yeti Cycles vintage badge" },
     { src: "crew-65.png", alt: "A man with a jheri curl in a black suit" },
-    { src: "sign-scandi-jesus.svg", alt: "A brown backcountry road sign: Have you found Scandinavian Jesus yet?", weight: 6 },
+    { src: "sign-scandi-jesus.svg", alt: "A brown backcountry road sign: Have you found Scandinavian Jesus yet?" },
     { src: "scandi-jesus.jpg", alt: "A holy card of Scandinavian Jesus, in a backwards cap with sunglasses on his head", label: "Good fuckin' job, you found me. I got nothin'", big: true }
   ];
 
   function mountRoamers() {
     var host = document.querySelector(".catalog");
     if (!host) return;
-    // on the campsite they'd sit on top of the clickable scene, so only show them there when they fit in the gutters
-    if (document.querySelector(".scene") && window.innerWidth < 1360) return;
-    var COUNT = 4, pool = ROAMERS.slice(), picks = [];
-    // weighted draw without repeats; most cutouts weigh 1
-    while (picks.length < COUNT && pool.length) {
-      var total = 0, k;
-      for (k = 0; k < pool.length; k++) total += pool[k].weight || 1;
-      var roll = Math.random() * total;
-      for (k = 0; k < pool.length - 1; k++) { roll -= pool[k].weight || 1; if (roll < 0) break; }
-      picks.push(pool.splice(k, 1)[0]);
+    var COUNT = 4, picks = [], forced = [];
+    var bySrc = function (src) { return ROAMERS.filter(function (r) { return r.src === src; })[0]; };
+    var SIGN = bySrc("sign-scandi-jesus.svg"), JESUS = bySrc("scandi-jesus.jpg");
+    var isCamp = !!document.querySelector(".scene");
+
+    // Scandinavian Jesus quest: everyone sees the sign on the camp page; the next page they
+    // open after that shows the man himself. Stage lives in localStorage: 0 -> 1 (saw sign) -> 2 (found him).
+    var stage = store.get("ssaz-sj") || "0";
+    if (isCamp && stage !== "2") { forced.push(SIGN); store.set("ssaz-sj", "1"); }
+    else if (!isCamp && stage === "1") { forced.push(JESUS); store.set("ssaz-sj", "2"); }
+
+    // on the campsite they'd sit on top of the clickable scene, so unless the screen is wide enough
+    // for the gutters, only the forced sign shows (parked by the banner instead of in a gutter)
+    var narrowCamp = isCamp && window.innerWidth < 1360;
+    if (narrowCamp && !forced.length) return;
+
+    // no repeats until you've seen them all: remember what's been shown (per browser) and draw
+    // from the unseen ones in random order; when they run out, start a fresh cycle
+    var seen = [];
+    try { seen = JSON.parse(store.get("ssaz-roamers-seen") || "[]") || []; } catch (e) { seen = []; }
+    var shuffle = function (a) { for (var n = a.length - 1; n > 0; n--) { var m = Math.floor(Math.random() * (n + 1)), t = a[n]; a[n] = a[m]; a[m] = t; } return a; };
+    var notIn = function (list) { return function (r) { return list.indexOf(r.src) < 0; }; };
+    picks = forced.slice();
+    if (!narrowCamp) {
+      var want = COUNT - picks.length, taken = picks.map(function (r) { return r.src; });
+      var fresh = shuffle(ROAMERS.filter(notIn(seen.concat(taken))));
+      var draw = fresh.slice(0, want);
+      if (draw.length < want) {   // cycle complete: everything has been seen, start over
+        seen = [];
+        var used = taken.concat(draw.map(function (r) { return r.src; }));
+        draw = draw.concat(shuffle(ROAMERS.filter(notIn(used))).slice(0, want - draw.length));
+      }
+      picks = picks.concat(draw);
     }
+    picks.forEach(function (r) { if (seen.indexOf(r.src) < 0) seen.push(r.src); });
+    store.set("ssaz-roamers-seen", JSON.stringify(seen));
+
     var firstLeft = Math.random() < 0.5;
     picks.forEach(function (r, i) {
       var el = document.createElement(r.href ? "a" : "div");
       if (r.href) { el.href = r.href; el.target = "_blank"; el.rel = "noopener"; }
+      el.className = "roamer " + ((i % 2 === 0) === firstLeft ? "left" : "right");
       if (r.label) el.setAttribute("data-label", r.label);
       if (r.big) el.classList.add("big");
-      el.className = "roamer " + ((i % 2 === 0) === firstLeft ? "left" : "right");
+      if (narrowCamp) { el.classList.add("parked"); el.style.removeProperty("top"); }
       // split the page into COUNT bands top to bottom, drop one in each at a random height, sides alternating
       var band = 80 / picks.length;
       el.style.top = (12 + i * band + Math.random() * (band - 8)).toFixed(1) + "%";
       el.style.setProperty("--tilt", (Math.random() * 12 - 6).toFixed(1) + "deg");
+      if (narrowCamp) el.style.top = "";
       el.innerHTML = '<img src="assets/roamers/' + r.src + '" alt="' + r.alt.replace(/"/g, "&quot;") + '">';
       host.appendChild(el);
     });
     // push each one out into the page margin; when there's no margin, let it peek in from the screen edge
     function tuck() {
       var gutter = host.getBoundingClientRect().left;
-      host.querySelectorAll(".roamer").forEach(function (el) {
+      host.querySelectorAll(".roamer:not(.parked)").forEach(function (el) {
         var w = el.offsetWidth;
         var out = Math.min(w + 12, Math.max(0, gutter - 10) + 0.4 * w);
+        if (gutter > 0.6 * w) out = Math.min(out, gutter - 6 - 0.1 * w);   // real margin: stay fully on screen, overlap the page edge a little instead
         el.style[el.classList.contains("left") ? "left" : "right"] = -out + "px";
       });
     }
@@ -536,6 +565,21 @@
     if (tripping) setTrip(true);
   }
 
+  // desktop banner cutouts are big (1.5x): stretch the banner so the cutout never hangs over the page below
+  function fitBannerFloater() {
+    var fl = document.querySelector(".floater"), banner = document.querySelector(".banner");
+    if (!fl || !banner) return;
+    var fit = function () {
+      banner.style.minHeight = "";
+      if (window.innerWidth <= 1300) return;
+      var need = fl.getBoundingClientRect().bottom - banner.getBoundingClientRect().top + 14;
+      if (need > banner.offsetHeight) banner.style.minHeight = Math.ceil(need) + "px";
+    };
+    fit();
+    var im = fl.querySelector("img"); if (im && !im.complete) im.addEventListener("load", fit);
+    window.addEventListener("resize", fit);
+  }
+
   window.SSAZ = { sfxDoor: sfxDoor, store: store };
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -543,6 +587,7 @@
     phoneToast();
     mountSpokey();
     if (!document.body.hasAttribute("data-gate")) mountRoamers();
+    fitBannerFloater();
     mountShrooms();
   });
 })();

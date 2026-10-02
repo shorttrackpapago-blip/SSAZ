@@ -135,7 +135,7 @@ There's no background music. The only sound is the knock-creak-engine effect whe
 
 ## Roamers (random cutouts)
 
-72 cutouts live in `assets/roamers/` (including the Scandinavian Jesus sign and the man himself) (the five originals, `crew-01` to `crew-28`, `wiens.png`, and `crew-30` to `crew-65`). Every inner page shows 4 of them, picked at random on each load, spread top to bottom with sides alternating (`COUNT` in `mountRoamers`). On wide screens they sit in the page margins; on narrower screens they peek in from the screen edge. Segura links to his "Bikes" YouTube clip, and Wiens links to the neal.fun speed game with a "think you're fast?" hover label. The list is `ROAMERS` in `js/site.js`: add `{ src: "file.png", alt: "..." }` for a new one, plus `href` if it should be a link and `label` for a hover tooltip. On the camp page they only appear on wide screens, so they never cover the clickable scene.
+72 cutouts live in `assets/roamers/` (including the Scandinavian Jesus sign and the man himself) (the five originals, `crew-01` to `crew-28`, `wiens.png`, and `crew-30` to `crew-65`). Every inner page shows 4 of them. They're drawn at random but never repeat until a visitor has seen all of them (tracked per browser in localStorage as `ssaz-roamers-seen`), then a fresh cycle starts. They're placed spread top to bottom with sides alternating (`COUNT` in `mountRoamers`). On wide screens they sit in the page margins; on narrower screens they peek in from the screen edge. Segura links to his "Bikes" YouTube clip, and Wiens links to the neal.fun speed game with a "think you're fast?" hover label. The list is `ROAMERS` in `js/site.js`: add `{ src: "file.png", alt: "..." }` for a new one, plus `href` if it should be a link and `label` for a hover tooltip. On the camp page they only appear on wide screens, so they never cover the clickable scene.
 
 ## Mushroom mode
 
@@ -143,7 +143,7 @@ Every page with a banner has a floating, sparkling bag of mushrooms labeled DO N
 
 ## Scandinavian Jesus
 
-The "Have you found Scandinavian Jesus yet?" road sign (`assets/roamers/sign-scandi-jesus.svg`) is in the roamer pool with `weight: 6`, so it turns up often. The man himself (`scandi-jesus.jpg`) is weight 1, so he's rare, and hovering him says "Good fuckin' job, you found me. I got nothin'".
+Everyone sees the "Have you found Scandinavian Jesus yet?" road sign (`assets/roamers/sign-scandi-jesus.svg`) on the camp page. On screens too narrow for side margins it parks at the right end of the camp banner. The very next page they open shows the man himself (`scandi-jesus.jpg`, 1.25x the other cutouts); hovering him says "Good fuckin' job, you found me. I got nothin'". After that he's back in the normal rotation. Progress is remembered per browser in localStorage (`ssaz-sj`: 0, then 1 after the sign, then 2 after Jesus).
 
 ## Spokey (our Clippy)
 

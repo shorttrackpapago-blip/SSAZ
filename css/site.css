@@ -351,6 +351,17 @@ hr.rule { border: 0; height: 6px; background: var(--berry); margin: 10px 0; box-
 @media (max-width: 1300px) { .roamer { width: 97px; } }
 .roamer.big { width: 163px; }   /* 1.25x, e.g. Scandinavian Jesus */
 @media (max-width: 1300px) { .roamer.big { width: 121px; } }
+/* camp page on screens without gutters: the quest sign parks at the right end of the banner */
+.roamer.parked { right: 3%; top: 112px; width: 120px; z-index: 25; }
+.catalog:has(.roamer.parked) .banner { padding-right: 150px; }
+/* desktop: every floating cutout 1.5x */
+@media (min-width: 1301px) {
+  .floater { width: 195px; }
+  .floater.wide { width: 276px; }
+  .floater.slim { width: 156px; }
+  .roamer { width: 195px; }
+  .roamer.big { width: 245px; }
+}
 .roamer img { display: block; width: 100%; height: auto; filter: drop-shadow(4px 4px 0 var(--navy)); }
 .roamer:hover, .roamer:focus-visible { background: none; animation: floater-bounce .45s steps(3) infinite; }
 .roamer:hover img, .roamer:focus-visible img { filter: drop-shadow(3px 0 0 var(--yellow)) drop-shadow(-3px 0 0 var(--yellow)) drop-shadow(0 3px 0 var(--yellow)) drop-shadow(0 -3px 0 var(--yellow)) drop-shadow(4px 4px 0 var(--navy)); }
@@ -461,6 +472,8 @@ html.tripping .spokey img { animation: spokey-bob 1.2s ease-in-out infinite; }
   .catalog:has(.floater) .banner { padding-right: 104px; }
   .roamer { width: 78px; }
   .roamer.big { width: 98px; }
+  .roamer.parked { width: 80px; top: 104px; right: 6px; }
+  .catalog:has(.roamer.parked) .banner { padding-right: 100px; }
   .spokey { width: 56px; }
   .shroom-bag { width: 58px; }
   .banner.bag-shelf { padding-bottom: 104px; }
