@@ -388,6 +388,7 @@
     { src: "crew-63.png", alt: "A Diamondback Racing team sticker" },
     { src: "crew-64.png", alt: "A Yeti Cycles vintage badge" },
     { src: "crew-65.png", alt: "A man with a jheri curl in a black suit" },
+    { src: "crew-66.png", alt: "A plastic lawn penguin gazing at the sky" },
     { src: "sign-scandi-jesus.svg", alt: "A brown backcountry road sign: Have you found Scandinavian Jesus yet?" },
     { src: "scandi-jesus.jpg", alt: "A holy card of Scandinavian Jesus, in a backwards cap with sunglasses on his head", label: "Good fuckin' job, you found me. I got nothin'", big: true }
   ];
