@@ -59,7 +59,40 @@
   .to small { font-family: var(--body); font-size: 11px; color: #666; display: block; margin-bottom: 2px; }
   .fee { display: inline-block; background: var(--yellow); color: var(--navy); border: 3px solid var(--navy); font-family: var(--cond); font-size: 28px; padding: 2px 10px; transform: rotate(-3deg); margin: 4px 0; }
   .checklist li { margin-bottom: 6px; }
+  /* registration steps: big, numbered, spaced so nobody screws it up */
+  .steps { margin: 4px 0 12px; padding: 0 0 0 4px; list-style: none; counter-reset: step; }
+  .steps > li { counter-increment: step; position: relative; padding: 0 0 0 42px; margin: 0 0 14px; }
+  .steps > li::before { content: counter(step); position: absolute; left: 0; top: -2px; width: 30px; height: 30px; border-radius: 50%; background: var(--berry); color: #fff; font: 18px/30px var(--cond); text-align: center; border: 2px solid var(--navy); }
+  .steps ul { margin: 6px 0 0; padding-left: 18px; list-style: disc; }
+  .steps ul li { margin: 0 0 4px; }
+  .msg .steps > li { font-size: 17px; }
+  .or { display: inline-block; font-family: var(--cond); font-size: 13px; letter-spacing: .1em; color: var(--berry); margin: 0 4px; }
+  .fine { font-family: var(--body); font-size: 13.5px; line-height: 1.45; }
+  .fine .steps > li::before { background: var(--yellow); color: var(--navy); }
+  .fine .note { border-top: 2px dashed var(--rose); padding-top: 8px; margin-top: 4px; }
+  .notincl { margin-top: 10px; padding: 8px 10px; background: #fff3c4; border: 2px dashed var(--navy); font-size: 12.5px; line-height: 1.4; }
+  .notincl b { font-family: var(--cond); font-weight: normal; font-size: 15px; text-transform: uppercase; }
+  /* the example check, paper-clipped to the postcard */
+  .check {
+    grid-column: 1 / -1; position: relative; margin: 6px 6px 2px;
+    background: repeating-linear-gradient(0deg, rgba(1, 97, 201, .05) 0 2px, transparent 2px 6px), #eaf4ec;
+    border: 2px solid #6f8f7a; border-radius: 6px; box-shadow: 4px 4px 0 rgba(65, 19, 130, .35);
+    padding: 14px 18px 12px; transform: rotate(1.2deg);
+    font-family: var(--body); color: #1d2b22; font-size: 12px;
+  }
+  .check::before { content: "EXAMPLE CHECK"; position: absolute; top: -12px; left: 18px; background: var(--berry); color: #fff; font: 12px/1 var(--cond); letter-spacing: .12em; padding: 4px 8px; transform: rotate(-3deg); border: 2px solid var(--navy); }
+  .check::after { content: ""; position: absolute; top: -16px; right: 36px; width: 16px; height: 42px; border: 3px solid #8a8f96; border-radius: 9px; transform: rotate(8deg); }
+  .check .row { display: flex; align-items: flex-end; gap: 8px; margin-top: 10px; }
+  .check .lbl { white-space: nowrap; font-size: 10.5px; text-transform: uppercase; letter-spacing: .04em; color: #4b6355; }
+  .check .fill { flex: 1; border-bottom: 1.5px solid #4b6355; font-family: var(--hand); font-size: 19px; line-height: 1.1; color: #10235c; padding: 0 4px; min-width: 0; }
+  .check .amt { flex: 0 0 auto; border: 1.5px solid #4b6355; background: #fff; padding: 2px 8px; font-family: var(--hand); font-size: 19px; color: #10235c; }
+  .check .top { display: flex; justify-content: space-between; font-size: 10.5px; color: #4b6355; }
+  .check .callout { background: var(--yellow); outline: 2px solid var(--berry); outline-offset: 2px; border-radius: 2px; }
+  .check .micr { margin-top: 10px; font-family: "Courier New", monospace; font-size: 12px; letter-spacing: .12em; color: #4b6355; }
+  .check .sig { font-family: var(--scrawl); font-size: 24px; color: #10235c; }
+  .get { list-style: none; padding-left: 2px !important; }
   .get li { font-size: 14px; }
+  .fine .or { color: var(--yellow); }
   .howdy { margin: 16px 0 4px; background: #fff; padding: 5px 5px 18px; border: 2px solid #111; box-shadow: 4px 4px 0 var(--navy); transform: rotate(3deg); }
   .howdy img { display: block; width: 100%; height: auto; }
   .cholla { display: block; margin: 18px auto 4px; text-align: center; background: none; text-decoration: none; }
@@ -78,6 +111,9 @@
     .stamp { top: 4px; }
     .postmark::after { display: none; }
     .msg { font-size: 18px; }
+    .check { transform: none; padding: 14px 12px 10px; }
+    .check .row { flex-wrap: wrap; }
+    .check .fill { font-size: 17px; }
   }
 </style>
 </head>
@@ -90,7 +126,7 @@
 
   <header class="banner">
     <h1 class="bubble">Greetings from the<br>Cleator Yacht Club</h1>
-    <span class="kicker">Registration: by mail. Payment: cash. Welcome to 1987.</span>
+    <span class="kicker">Registration: by mail. Payment: cash or check. Welcome to 1987.</span>
   </header>
 
   <main class="sheet blue">
@@ -101,10 +137,14 @@
         <article class="postcard" aria-label="How to register">
           <div class="msg">
             <p class="big">Wish you were here!<br>(Mail $120 and you will be.)</p>
-            <p>Dear degenerate,</p>
-            <p>The entry fee is <b>$120, CASH ONLY.</b> Put it in an envelope like an adult.</p>
-            <p>In that envelope, include:</p>
-            <p>1. The <u>registrant name(s)</u><br>2. Your <u>email address, NEATLY WRITTEN</u></p>
+            <p>Dear degenerate, the entry fee is <b>$120 per rider, cash or check.</b> Put it in an envelope like an adult:</p>
+            <ol class="steps">
+              <li><b>$120 per rider</b>, cash <span class="or">or</span> check.
+                <ul><li>Checks payable to <u>Roca Roja Bicycles</u>.</li><li>Memo line: <u>SSAZ + every registrant's name</u> (see the example check below).</li></ul></li>
+              <li>A note with the <u>registrant name(s)</u>.</li>
+              <li>Your <u>email address, NEATLY WRITTEN</u>.</li>
+              <li><b>Bringing a +1 who isn't riding?</b> Fine. Add <b>$50 per non-rider</b> so they can eat too, and put their name on the note.</li>
+            </ol>
             <p>Print it. Block letters. If we can't read your email we can't email you, and if we can't email you, you're uninvited. We will not guess whether that's a "u" or a "v." We will just drink your $120.</p>
             <p>See you <b>Feb 5–7, 2027</b> at <b>Bumble Bee Ranch Adventures and Event Center, Bumble Bee, AZ.</b></p>
             <p>xoxo, Management</p>
@@ -112,7 +152,7 @@
           <div class="divider" aria-hidden="true"></div>
           <div class="addr-side">
             <div class="postmark" aria-hidden="true">BUMBLE BEE<br>AZ<br>FEB 5 2027</div>
-            <div class="stamp" aria-hidden="true"><div><span class="cents">$120</span><br>CASH<br>ONLY</div></div>
+            <div class="stamp" aria-hidden="true"><div><span class="cents">$120</span><br>CASH<br>OR CHECK</div></div>
             <div class="to">
               <small>Mail to:</small>
               <div class="line">Kaolin</div>
@@ -120,32 +160,51 @@
               <div class="line">Cave Creek, AZ 85331</div>
             </div>
           </div>
+          <div class="check" role="img" aria-label="Example check: Pay to the order of Roca Roja Bicycles, $120.00, memo SSAZ plus the registrants' names">
+            <div class="top"><span>YOUR NAME HERE<br>123 Dirt Rd, Anywhere USA</span><span>No. 1001<br>Date <span class="fill" style="font-size:15px">Jan 2, 2027</span></span></div>
+            <div class="row"><span class="lbl">Pay to the<br>order of</span><span class="fill"><span class="callout">Roca Roja Bicycles</span></span><span class="amt">$ 120.00</span></div>
+            <div class="row"><span class="fill">One hundred twenty and 00/100</span><span class="lbl">Dollars</span></div>
+            <div class="row"><span class="lbl">Memo</span><span class="fill"><span class="callout">SSAZ + Jane Doe, John Doe</span></span><span class="lbl">&nbsp;</span><span class="fill sig">J. Doe</span></div>
+            <div class="micr">&#9286;000000000&#9286; 0000000000&#9288; 1001</div>
+          </div>
         </article>
       </div>
 
-      <section class="info" aria-labelledby="t1">
-        <h3 id="t1">The fine print</h3>
-        <div class="fee">$120 · CASH ONLY</div>
-        <ul class="checklist">
-          <li>Cash. Not a check. Not a Venmo. Not "I'll get you at camp."</li>
-          <li>Registrant name(s). Everybody you're paying for.</li>
-          <li>Your email, <b>NEATLY WRITTEN.</b></li>
-          <li>Mail it to Kaolin (address on the postcard).</li>
-        </ul>
+      <section class="info span2 fine" aria-labelledby="t1">
+        <h3 id="t1">How to register (read it twice)</h3>
+        <div class="fee">$120 per rider · cash or check</div>
+        <ol class="steps">
+          <li><b>Pay $120 per rider.</b> Cash <span class="or">or</span> check. Not Venmo. Not "I'll get you at camp."
+            <ul>
+              <li>Check payable to: <b>Roca Roja Bicycles</b></li>
+              <li>Memo line: <b>SSAZ + the name(s) of everyone you're paying for</b><br>e.g. "SSAZ + Jane Doe, John Doe"</li>
+            </ul></li>
+          <li><b>Include a note</b> with every registrant's name.</li>
+          <li><b>Include your email address, NEATLY WRITTEN.</b> Block letters.</li>
+          <li><b>+1s are fine.</b> To add someone who isn't riding so they can take part in the food, send an <b>additional $50 per non-rider</b> and put their name on the note (and in the memo if paying by check).</li>
+          <li><b>Mail it to:</b> Kaolin, 6061 E Cave Creek Rd Ste 7, Cave Creek, AZ 85331.</li>
+        </ol>
+        <p class="note"><b>Example:</b> two riders and one non-rider = $120 + $120 + $50 = <b>$290</b>, memo "SSAZ + Jane Doe, John Doe, Pat Doe".</p>
       </section>
 
       <section class="panel tilt-l" aria-labelledby="t2">
         <h3 id="t2" class="cond misreg">What $120 gets you</h3>
         <ul class="get">
-          <li><span class="dot"></span> Camping</li>
           <li><span class="dot"></span> A shower</li>
           <li><span class="dot"></span> Bathroom</li>
           <li><span class="dot"></span> Saturday dinner</li>
+          <li><span class="dot"></span> Sunday breakfast</li>
           <li><span class="dot"></span> Live music</li>
           <li><span class="dot"></span> A fire someone jumps over</li>
           <li><span class="dot"></span> Questionable company</li>
+          <li><span class="dot"></span> Partial nudity; not the kind you're looking for</li>
+          <li><span class="dot"></span> A hangover</li>
         </ul>
-        <p style="font-size:11px">Does not include: dignity, gears.</p>
+        <p style="font-size:11px">Does not include: dignity, gears, or camping (see below).</p>
+        <div class="notincl"><b>Camping is separate</b><br>
+          $15 per vehicle, per night<br>
+          RV with hookups: $45 per vehicle, per night<br>
+          Paid directly to the ranch staff when you arrive. Not in the envelope.</div>
       </section>
 
       <section class="info rose" aria-labelledby="t3">
