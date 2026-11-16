@@ -147,7 +147,7 @@
       "Zero bars of cell service out there. Finally, some peace from you.",
       "Stop hovering. It's needy.",
       "I've seen scorpions with more grit than you.",
-      "Did you mail your $120? No? Typical.",
+      "Did you mail your $130? No? Typical.",
       "The fire jump is for professionals. You're a professional at nothing.",
       "Your mom's house is on the itinerary page. She gives better directions than you do.",
       "Your mom.",

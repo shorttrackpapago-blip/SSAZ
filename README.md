@@ -12,7 +12,7 @@ It's plain HTML, CSS, and vanilla JS, with no build step and no dependencies bey
 | `narc.html` | The dead end you get for clicking "I'm a narc". |
 | `camp.html` | The clickable campsite. This is the main navigation. |
 | `itinerary.html` | The plan (loosely). |
-| `register.html` | The Cleator Yacht Club postcard: $120 cash, by mail. |
+| `register.html` | The Cleator Yacht Club postcard: $130 cash, by mail. |
 | `gear.html` | Bikes 'n' Shit. |
 | `venue.html` + `js/gallery.js` | The venue: ranch video, getting here, weather, camping, nearby sites, and the photo wall (2019 was also at Bumble Bee Ranch). `gallery.html` just redirects here. |
 | `guestbook.html` | The Atabook guestbook embed. |
@@ -153,7 +153,7 @@ Spokey is a spoke wrench with googly eyes (`assets/spokey.png`) who shows up on 
 
 - Dates: Fri Feb 5 – Sun Feb 7, 2027
 - Venue: Bumble Bee Ranch Adventures and Event Center, Bumble Bee, AZ, on the Black Canyon Trail
-- Fee: $120 per rider, cash or check (payable to Roca Roja Bicycles, memo "SSAZ + names"), +$50 per non-riding +1, by mail to Flat Tire Bike Shop, 6061 E Cave Creek Rd Ste 7, Cave Creek, AZ 85331. Registrant name(s) and a neatly written email go on the postcard. Camping is extra ($15/vehicle/night, RV hookups $45), paid to the ranch on arrival.
+- Fee: $130 per rider, cash or check (payable to Roca Roja Bicycles, memo "SSAZ + names"), +$50 per non-riding +1, by mail to Flat Tire Bike Shop, 6061 E Cave Creek Rd Ste 7, Cave Creek, AZ 85331. Registrant name(s) and a neatly written email go on the postcard. Camping is extra ($15/vehicle/night, RV hookups $45), paid to the ranch on arrival.
 - Saturday ride start: 8:00 AM.
 - Weather: https://forecast.weather.gov/MapClick.php?lat=34.2059&lon=-112.1488. These coordinates are within about 200 m of Bumble Bee's town center (34.2047, -112.1481), and NOAA serves it from the Flagstaff office.
 - Trails: https://www.trailforks.com/region/black-canyon-city/
