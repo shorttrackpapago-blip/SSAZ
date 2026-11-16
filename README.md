@@ -8,7 +8,7 @@ It's plain HTML, CSS, and vanilla JS, with no build step and no dependencies bey
 
 | File | What it is |
 |---|---|
-| `index.html` | The gate: the age/narc check, the hit counter, and the Roca Roller (Kaolin's motorhome, drawn inline as SVG). Knock and it drives off to camp with a knock-creak-engine sound. |
+| `index.html` | The gate: the age/narc check ("I'm in" flashes the logo full-screen for a second, then fades to the page), the big logo, the hit counter, and the Roca Roller (Kaolin's motorhome, drawn inline as SVG). Knock and it drives off to camp with a knock-creak-engine sound. |
 | `narc.html` | The dead end you get for clicking "I'm a narc". |
 | `camp.html` | The clickable campsite. This is the main navigation. |
 | `itinerary.html` | The plan (loosely). |

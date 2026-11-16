@@ -47,10 +47,29 @@
   .gate .bd { padding: 16px; text-align: center; }
   .gate h1 { font-size: clamp(30px, 7vw, 44px); margin: 4px 0 12px; }
   .gate .btns { display: flex; gap: 14px; justify-content: center; margin-top: 16px; flex-wrap: wrap; }
+  /* the logo, big, above the Roca Roller */
+  .gate-wrap { row-gap: 6px; }
+  .side { grid-row: 1 / span 2; }
+  .hero-logo { grid-column: 2; grid-row: 1; justify-self: center; width: clamp(190px, 24vw, 290px); transform: rotate(-5deg); filter: drop-shadow(7px 7px 0 #000); transition: transform .15s steps(2); }
+  .hero-logo:hover { transform: rotate(3deg) scale(1.05); background: none; }
+  .hero-logo img { display: block; width: 100%; height: auto; }
+  .door-btn { grid-row: 2; }
+  /* "I'm in": the logo fills the screen for a second, then fades to the page */
+  .splash { position: fixed; inset: 0; z-index: 200; background: var(--navy); display: grid; place-items: center; padding: 20px; opacity: 1; transition: opacity .9s ease; }
+  .splash[hidden] { display: none; }
+  .splash img { width: min(82vw, 66vh); height: auto; filter: drop-shadow(10px 10px 0 #000); animation: splash-in .6s cubic-bezier(.2, 1.6, .4, 1) both; }
+  .splash.out { opacity: 0; pointer-events: none; }
+  .splash.out img { transform: scale(1.15); transition: transform .9s ease; }
+  @keyframes splash-in { 0% { transform: scale(.3) rotate(-20deg); opacity: 0; } 100% { transform: scale(1) rotate(-3deg); opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .splash img { animation: none; } .splash, .splash.out img { transition: none; } }
+  body[data-gate] > .sticker { display: none; }
   .bottom { position: fixed; left: 0; right: 0; bottom: 0; background: var(--berry); color: var(--paper); border-top: 4px solid var(--navy); text-align: center; padding: 6px 70px 8px 10px; font-size: 12px; }
   @media (max-width: 768px) {
     .gate-wrap { grid-template-columns: 1fr; padding-top: 110px; }
-    .door-btn { grid-column: 1; width: 100%; margin: 0 auto; }
+    .door-btn { grid-column: 1; grid-row: auto; width: 100%; margin: 0 auto; }
+    .gate-wrap { padding-top: 24px; }
+    .hero-logo { grid-column: 1; grid-row: auto; width: min(62vw, 240px); }
+    .side { grid-row: auto; }
     .side.left { order: 2; } .side.right { order: 3; }
   }
 </style>
@@ -73,7 +92,11 @@
   </div>
 </div>
 
+<div class="splash" id="splash" hidden aria-hidden="true"><img src="assets/logo.png" alt=""></div>
+
 <main class="gate-wrap">
+  <a class="hero-logo" href="index.html"><img src="assets/logo.png" width="392" height="480" alt="Singlespeed Arizona 2027 — The Sequel. Black Canyon Trail."></a>
+
   <div class="side left">
     <div class="cond misreg">Single Speed Arizona<br>2027 — The Sequel</div>
     <img src="assets/gif/construction.gif" width="176" height="64" alt="Under construction">
@@ -180,7 +203,13 @@
   var door = document.getElementById("door");
   document.getElementById("im-in").addEventListener("click", function () {
     gate.hidden = true;
-    door.focus();
+    var splash = document.getElementById("splash");
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    splash.hidden = false;
+    setTimeout(function () {
+      splash.classList.add("out");
+      setTimeout(function () { splash.hidden = true; door.focus(); }, reduce ? 0 : 950);
+    }, reduce ? 600 : 1600);
   });
   document.getElementById("im-in").focus();
 
