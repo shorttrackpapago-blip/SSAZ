@@ -153,6 +153,7 @@ Spokey is a spoke wrench with googly eyes (`assets/spokey.png`) who shows up on 
 
 - Dates: Fri Feb 5 – Sun Feb 7, 2027
 - Venue: Bumble Bee Ranch Adventures and Event Center, Bumble Bee, AZ, on the Black Canyon Trail
-- Fee: $120, cash only, by mail to Kaolin, 6061 E Cave Creek Rd Ste 7, Cave Creek, AZ 85331. Include the registrant name(s) and a neatly written email.
+- Fee: $120 per rider, cash or check (payable to Roca Roja Bicycles, memo "SSAZ + names"), +$50 per non-riding +1, by mail to Flat Tire Bike Shop, 6061 E Cave Creek Rd Ste 7, Cave Creek, AZ 85331. Registrant name(s) and a neatly written email go on the postcard. Camping is extra ($15/vehicle/night, RV hookups $45), paid to the ranch on arrival.
+- Saturday ride start: 8:00 AM.
 - Weather: https://forecast.weather.gov/MapClick.php?lat=34.2059&lon=-112.1488. These coordinates are within about 200 m of Bumble Bee's town center (34.2047, -112.1481), and NOAA serves it from the Flagstaff office.
 - Trails: https://www.trailforks.com/region/black-canyon-city/

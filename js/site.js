@@ -140,7 +140,7 @@
       "Bring a puffy. You'll forget it anyway.",
       "Karl's going to yell \"RACE DAY!\" at 6am and you're going to deserve it.",
       "You'll be asleep by 9. Everyone knows.",
-      "Ride starts at 10. You'll show up at 10:40 and act like you were there.",
+      "Ride starts at 8. You'll show up at 8:40 and act like you were there.",
       "You're going to crash on the first descent and blame the tires.",
       "Nobody cares about your gear ratio. Especially you, around mile 3.",
       "Leave no trace. Starting with your dignity.",
