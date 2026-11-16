@@ -33,7 +33,7 @@ body {
   font-family: var(--body);
   font-size: 13px;
   line-height: 1.25;
-  overflow-x: hidden;
+  overflow-x: clip;  /* clip, not hidden: hidden turns body into a second scroll box (double scrollbar) */
 }
 
 a { color: var(--berry); font-weight: bold; }
