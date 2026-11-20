@@ -412,7 +412,7 @@ html.tripping .catalog > *:not(.floater):not(.roamer):not(.sticker),
 html.tripping .gate-wrap > * { animation: trip-hue 7s linear infinite; }
 /* things go wavy and furry, borders sparkle */
 html.tripping .panel, html.tripping .info, html.tripping .hero, html.tripping .mgmt, html.tripping .card,
-html.tripping .snap, html.tripping .polaroid, html.tripping .postcard, html.tripping .banner h1, html.tripping .topbar a {
+html.tripping .snap, html.tripping .polaroid, html.tripping .envelope, html.tripping .note-paper, html.tripping .check, html.tripping .banner h1, html.tripping .topbar a {
   filter: url(#ssaz-fur);
   animation: trip-wobble 3.4s ease-in-out infinite alternate, trip-glow 1.3s ease-in-out infinite alternate;
 }

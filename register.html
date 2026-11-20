@@ -14,28 +14,33 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Reenie+Beanie&family=Titan+One&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css">
 <style>
-  .postcard {
-    position: relative;
-    background: #fbf6e6;
-    border: 3px solid var(--navy);
-    box-shadow: 10px 10px 0 var(--navy);
-    padding: 22px;
-    display: grid;
-    grid-template-columns: 1.1fr 3px 1fr;
-    gap: 22px;
-    transform: rotate(-.8deg);
-    margin: 6px 4px 18px;
+  /* the example: a sealed envelope, then what goes inside it */
+  .envelope {
+    position: relative; max-width: 760px; aspect-ratio: 2.3 / 1; margin: 6px auto 34px;
+    background: linear-gradient(160deg, #fdf9ee, #f3ead3);
+    border: 3px solid var(--navy); box-shadow: 10px 10px 0 var(--navy);
+    transform: rotate(-.8deg); color: #2B0B5E;
   }
-  .postcard::before { content: "POST CARD"; position: absolute; top: 6px; left: 50%; transform: translateX(-50%); font-family: var(--cond); letter-spacing: .4em; font-size: 14px; color: var(--berry); }
-  .divider { background: var(--navy); }
-  .msg { font-family: var(--hand); font-size: 17px; line-height: 1.45; color: #2B0B5E; padding-top: 12px; }
-  .msg p { margin: 0 0 10px; }
+  .envelope .from { position: absolute; left: 22px; top: 18px; font-family: var(--hand); font-size: 17px; line-height: 1.25; }
+  .envelope .sealed { position: absolute; left: 22px; bottom: 14px; font-family: var(--cond); font-size: 13px; letter-spacing: .08em; color: var(--berry); transform: rotate(-2deg); }
+  .envelope .to { position: absolute; left: 36%; top: 44%; width: 52%; }
+  .inside-title { text-align: center; font-family: var(--cond); font-size: 18px; letter-spacing: .1em; color: var(--yellow); margin: 0 0 10px; }
+  .inside { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 26px; align-items: start; max-width: 860px; margin: 0 auto 14px; }
+  .note-paper {
+    position: relative; background: repeating-linear-gradient(180deg, transparent 0 25px, rgba(1, 97, 201, .28) 25px 26px), #fffef6;
+    background-position: 0 30px; border: 2px solid #b9b1a0; box-shadow: 6px 6px 0 rgba(65, 19, 130, .45);
+    padding: 26px 18px 14px 34px; transform: rotate(-2deg);
+  }
+  .note-paper::before { content: ""; position: absolute; left: 22px; top: 0; bottom: 0; border-left: 2px solid rgba(204, 18, 24, .45); }
+  .note-paper::after { content: "THE NOTE"; position: absolute; top: -12px; left: 18px; background: var(--berry); color: #fff; font: 12px/1 var(--cond); letter-spacing: .12em; padding: 4px 8px; transform: rotate(-3deg); border: 2px solid var(--navy); }
+  .msg { font-family: var(--hand); font-size: 17px; line-height: 1.53; color: #2B0B5E; }
+  .msg p { margin: 0; }
+  .msg p + p { margin-top: 13px; }
   .msg .big { font-size: 30px; color: var(--berry); line-height: 1.1; }
   .msg u { text-decoration-thickness: 3px; text-decoration-color: var(--berry); }
-  .addr-side { position: relative; padding-top: 110px; }
   .stamp {
-    position: absolute; right: 0; top: 10px;
-    width: 96px; height: 116px;
+    position: absolute; right: 18px; top: 16px;
+    width: 84px; height: 100px;
     background: var(--berry);
     border: 6px dotted #fbf6e6;
     outline: 3px solid var(--berry);
@@ -45,16 +50,16 @@
   }
   .stamp .cents { font-family: var(--bubble); font-size: 26px; color: var(--yellow); }
   .postmark {
-    position: absolute; right: 60px; top: 30px;
-    width: 120px; height: 120px; border-radius: 50%;
+    position: absolute; right: 74px; top: 26px;
+    width: 104px; height: 104px; border-radius: 50%;
     border: 3px solid rgba(65, 19, 130, .75);
     color: rgba(65, 19, 130, .8);
     display: grid; place-items: center; text-align: center;
     font-family: var(--cond); font-size: 12px; line-height: 1.1;
     transform: rotate(-14deg);
   }
-  .postmark::after { content: ""; position: absolute; left: 90px; top: 30px; width: 110px; height: 60px; background: repeating-linear-gradient(0deg, rgba(65, 19, 130,.7) 0 3px, transparent 3px 11px); border-radius: 0 50% 50% 0 / 0 100% 100% 0; opacity: .8; }
-  .to { font-family: var(--hand); font-size: 25px; line-height: 1.25; color: #2B0B5E; }
+  .postmark::after { content: ""; position: absolute; right: 96px; top: 24px; width: 110px; height: 56px; background: repeating-linear-gradient(0deg, rgba(65, 19, 130,.7) 0 3px, transparent 3px 11px); border-radius: 0 50% 50% 0 / 0 100% 100% 0; opacity: .8; }
+  .to { font-family: var(--hand); font-size: 24px; line-height: 1.2; color: #2B0B5E; }
   .to .line { border-bottom: 2px solid var(--navy); padding: 4px 0 2px; }
   .to small { font-family: var(--body); font-size: 11px; color: #666; display: block; margin-bottom: 2px; }
   .fee { display: inline-block; background: var(--yellow); color: var(--navy); border: 3px solid var(--navy); font-family: var(--cond); font-size: 28px; padding: 2px 10px; transform: rotate(-3deg); margin: 4px 0; }
@@ -75,9 +80,9 @@
   .fine .note { border-top: 2px dashed var(--rose); padding-top: 8px; margin-top: 4px; }
   .notincl { margin-top: 10px; padding: 8px 10px; background: #fff3c4; border: 2px dashed var(--navy); font-size: 12.5px; line-height: 1.4; }
   .notincl b { font-family: var(--cond); font-weight: normal; font-size: 15px; text-transform: uppercase; }
-  /* the example check, paper-clipped to the postcard */
+  /* the example check, paper-clipped to the note */
   .check {
-    grid-column: 1 / -1; position: relative; margin: 6px 6px 2px;
+    position: relative; margin: 6px 0 2px;
     background: repeating-linear-gradient(0deg, rgba(1, 97, 201, .05) 0 2px, transparent 2px 6px), #eaf4ec;
     border: 2px solid #6f8f7a; border-radius: 6px; box-shadow: 4px 4px 0 rgba(65, 19, 130, .35);
     padding: 14px 18px 12px; transform: rotate(1.2deg);
@@ -107,12 +112,14 @@
   .cholla:hover .cholla-label { background: var(--yellow); }
   @media (prefers-reduced-motion: reduce) { .cholla:hover img { animation: none; } }
   @media (max-width: 768px) {
-    .postcard { grid-template-columns: 1fr; transform: none; box-shadow: 6px 6px 0 var(--navy); padding: 16px; }
-    .divider { height: 3px; }
-    .addr-side { padding-top: 130px; }
-    .postmark { right: auto; left: 0; top: 4px; }
-    .stamp { top: 4px; }
+    .envelope { aspect-ratio: auto; min-height: 300px; transform: none; box-shadow: 6px 6px 0 var(--navy); }
+    .envelope .to { position: static; width: auto; padding: 128px 16px 44px; }
+    .envelope .from { font-size: 15px; left: 14px; top: 12px; }
+    .stamp { right: 12px; top: 12px; width: 70px; height: 84px; }
+    .postmark { right: 60px; top: 56px; width: 84px; height: 84px; font-size: 10px; }
     .postmark::after { display: none; }
+    .inside { grid-template-columns: 1fr; gap: 30px; }
+    .note-paper { transform: rotate(-1deg); }
     .msg { font-size: 18px; }
     .check { transform: none; padding: 14px 12px 10px; }
     .check .row { flex-wrap: wrap; }
@@ -145,10 +152,10 @@
               <li>Check payable to: <b>Roca Roja Bicycles</b></li>
               <li>Memo line: <b>SSAZ + the name(s) of everyone you're paying for</b><br>e.g. "SSAZ + Jane Doe, John Doe"</li>
             </ul></li>
-          <li><b>Include a note on the postcard</b> with every registrant's name.</li>
-          <li><b>Include your email address on the postcard, NEATLY WRITTEN.</b> Block letters.</li>
+          <li><b>Include a note in the envelope</b> with every registrant's name.</li>
+          <li><b>Include your email address on the note, NEATLY WRITTEN.</b> Block letters.</li>
           <li><b>+1s are fine.</b> To add someone who isn't riding so they can take part in the food, send an <b>additional $50 per non-rider</b> and put their name on the note (and in the memo if paying by check).</li>
-          <li><b>Mail it to:</b> Flat Tire Bike Shop, 6061 E Cave Creek Rd Ste 7, Cave Creek, AZ 85331.</li>
+          <li><b>Put it all in an envelope, seal it, stamp it, and mail it to:</b> Flat Tire Bike Shop, 6061 E Cave Creek Rd Ste 7, Cave Creek, AZ 85331.</li>
         </ol>
         <p class="note"><b>Print it. Block letters.</b> If we can't read your email we can't email you, and if we can't email you, you're uninvited. We will not guess whether that's a "u" or a "v." We will just drink your $130.</p>
         <p class="note"><b>Example:</b> two riders and one non-rider = $130 + $130 + $50 = <b>$310</b>, memo "SSAZ + Jane Doe, John Doe, Pat Doe".</p>
@@ -156,24 +163,25 @@
 
       <div class="span3">
         <h3 class="cond example-title misreg">What yours should look like</h3>
-        <article class="postcard" aria-label="Example of a filled-out registration postcard and check">
-          <div class="msg">
+        <article class="envelope" aria-label="Example envelope, sealed and stamped, addressed to Flat Tire Bike Shop">
+          <div class="from">Jane Doe<br>123 Dirt Rd<br>Anywhere, USA</div>
+          <div class="postmark" aria-hidden="true">CAVE CREEK<br>AZ<br>JAN 2 2027</div>
+          <div class="stamp" aria-hidden="true"><div><span class="cents">USA</span><br>FOREVER</div></div>
+          <div class="to">
+            <div class="line">Flat Tire Bike Shop</div>
+            <div class="line">6061 E Cave Creek Rd Ste 7</div>
+            <div class="line">Cave Creek, AZ 85331</div>
+          </div>
+          <div class="sealed" aria-hidden="true">Sealed. Licked, even.</div>
+        </article>
+        <p class="inside-title">&darr; WHAT GOES INSIDE &darr;</p>
+        <div class="inside">
+          <div class="note-paper msg" role="group" aria-label="Example note">
             <p>Flat Tire Bike Shop,</p>
-            <p>Here's my $130 for SSAZ 2027. Check's enclosed (see below).</p>
+            <p>Here's my $130 for SSAZ 2027. Check's enclosed.</p>
             <p>Registrant: <u>Jane Doe</u><br>Email: <u class="email">JANE.DOE@EXAMPLE.COM</u></p>
             <p>See you in Bumble Bee. I'll bring the beer I owe you.</p>
             <p class="signoff">&mdash; Jane</p>
-          </div>
-          <div class="divider" aria-hidden="true"></div>
-          <div class="addr-side">
-            <div class="postmark" aria-hidden="true">CAVE CREEK<br>AZ<br>JAN 2 2027</div>
-            <div class="stamp" aria-hidden="true"><div><span class="cents">USA</span><br>FOREVER</div></div>
-            <div class="to">
-              <small>To:</small>
-              <div class="line">Flat Tire Bike Shop</div>
-              <div class="line">6061 E Cave Creek Rd Ste 7</div>
-              <div class="line">Cave Creek, AZ 85331</div>
-            </div>
           </div>
           <div class="check" role="img" aria-label="Example check: Pay to the order of Roca Roja Bicycles, $130.00, memo SSAZ plus the registrant's name">
             <div class="top"><span>YOUR NAME HERE<br>123 Dirt Rd, Anywhere USA</span><span>No. 1001<br>Date <span class="fill" style="font-size:15px">Jan 2, 2027</span></span></div>
@@ -182,7 +190,7 @@
             <div class="row"><span class="lbl">Memo</span><span class="fill"><span class="callout">SSAZ + Jane Doe</span></span><span class="lbl">&nbsp;</span><span class="fill sig">J. Doe</span></div>
             <div class="micr">&#9286;000000000&#9286; 0000000000&#9288; 1001</div>
           </div>
-        </article>
+        </div>
       </div>
 
       <section class="panel tilt-l" aria-labelledby="t2">
@@ -219,7 +227,7 @@
       <p>Also, the ritual of licking a stamp weeds out the uncommitted.</p>
       <p>No refunds. If you don't come, your $130 buys somebody else a beer and they toast your cowardice.</p>
       <div class="sig">— Management.</div>
-      <figure class="howdy"><img src="assets/howdy-cleator.jpg" width="800" height="532" alt="Postcard: Howdy! From Cleator"></figure>
+      <figure class="howdy"><img src="assets/howdy-cleator.jpg" width="800" height="532" alt="Vintage card: Howdy! From Cleator"></figure>
       <a class="cholla" href="index.html" title="don't touch the cholla or else...">
         <img src="assets/obj-cholla.png" alt="A cholla cactus. Clicking it sends you all the way back to the front door.">
         <span class="cholla-label">don't touch the cholla or else...</span>
