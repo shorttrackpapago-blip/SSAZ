@@ -390,6 +390,10 @@
     { src: "crew-65.png", alt: "A man with a jheri curl in a black suit" },
     { src: "crew-66.png", alt: "A plastic lawn penguin gazing at the sky" },
     { src: "crew-67.jpg", alt: "The old MTV Music Television logo on a squiggly pink-and-blue background" },
+    { src: "crew-68.png", alt: "A gray-haired comedian in a black T-shirt, mid-rant into a microphone" },
+    { src: "crew-69.png", alt: "A man in a leather coat and gloves, swigging from a bottle and side-eyeing you" },
+    { src: "crew-70.png", alt: "Two women in a silver convertible giving you the look" },
+    { src: "crew-71.png", alt: "A big guy in yellow aviators and a fishing vest, hands folded next to a beer bottle" },
     { src: "sign-scandi-jesus.svg", alt: "A brown backcountry road sign: Have you found Scandinavian Jesus yet?" },
     { src: "scandi-jesus.jpg", alt: "A holy card of Scandinavian Jesus, in a backwards cap with sunglasses on his head", label: "Good fuckin' job, you found me. I got nothin'", big: true }
   ];
@@ -397,7 +401,7 @@
   function mountRoamers() {
     var host = document.querySelector(".catalog");
     if (!host) return;
-    var COUNT = 4, picks = [], forced = [];
+    var COUNT = 8, picks = [], forced = [];
     var bySrc = function (src) { return ROAMERS.filter(function (r) { return r.src === src; })[0]; };
     var SIGN = bySrc("sign-scandi-jesus.svg"), JESUS = bySrc("scandi-jesus.jpg");
     var isCamp = !!document.querySelector(".scene");
