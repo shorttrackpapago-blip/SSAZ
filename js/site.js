@@ -108,7 +108,7 @@
     "band-bar.jpg", "tongue.jpg", "group-stop.jpg", "mountain-ride.jpg",
     "uhaul.jpg", "plaid-grin.jpg", "vista-ride.jpg", "bus.jpg"
   ];
-  var STRIP_START = { itinerary: 0, register: 1, gear: 2, venue: 3, guestbook: 4, misc: 5 };
+  var STRIP_START = { itinerary: 0, register: 1, gear: 2, venue: 3, guestbook: 4, misc: 5, history: 6 };
 
   function mountStrips() {
     document.querySelectorAll("[data-strip]").forEach(function (el) {
@@ -199,6 +199,7 @@
     register: ["There's a reason it's called a teddy bear cholla. Go ahead, give it a nice hug.", "It looks like you're trying to pay cash by mail. In this economy?", "Write your email neatly. I've seen your handwriting."],
     gear: ["A new bike won't make you faster. It'll make you broke and slow.", "Your gear list is longer than your ride will be."],
     venue: ["Tandems are singlespeeds.", "Load the map before you lose signal. You won't.", "Bumble Bee has one road in. You'll still get lost.", "Don't look for yourself in these. We cropped you out.", "These photos are AI generated. So is your fitness."],
+    history: ["He knows what you did in 2019.", "History is written by whoever is still awake at the fire.", "Coming soon. Like you, after six beers."],
     guestbook: ["Sign it. It's the only thing you'll finish this weekend.", "Write something nice. Or honest. Not both."],
     misc: ["I'm trying to warn you, this is just a porn site.", "Where's all the ladies' porn?", "You're on the Misc. page. Even the website doesn't know what to do with you.", "Read the doping section. Then look at your bottle. Sus."]
   };
@@ -415,12 +416,14 @@
     var bySrc = function (src) { return ROAMERS.filter(function (r) { return r.src === src; })[0]; };
     var SIGN = bySrc("sign-scandi-jesus.svg"), JESUS = bySrc("scandi-jesus.jpg");
     var isCamp = !!document.querySelector(".scene");
+    var isHistory = /history(\.html)?$/.test(location.pathname);   // he is already on that page; keep him out of the floaters there
 
     // Scandinavian Jesus quest: everyone sees the sign on the camp page; the next page they
     // open after that shows the man himself. Stage lives in localStorage: 0 -> 1 (saw sign) -> 2 (found him).
     var stage = store.get("ssaz-sj") || "0";
+    var POOL = isHistory ? ROAMERS.filter(function (r) { return r !== SIGN && r !== JESUS; }) : ROAMERS;
     if (isCamp && stage !== "2") { forced.push(SIGN); store.set("ssaz-sj", "1"); }
-    else if (!isCamp && stage === "1") { forced.push(JESUS); store.set("ssaz-sj", "2"); }
+    else if (!isCamp && !isHistory && stage === "1") { forced.push(JESUS); store.set("ssaz-sj", "2"); }
 
     // on the campsite they'd sit on top of the clickable scene, so unless the screen is wide enough
     // for the gutters, only the forced sign shows (parked by the banner instead of in a gutter)
@@ -436,12 +439,12 @@
     picks = forced.slice();
     if (!narrowCamp) {
       var want = COUNT - picks.length, taken = picks.map(function (r) { return r.src; });
-      var fresh = shuffle(ROAMERS.filter(notIn(seen.concat(taken))));
+      var fresh = shuffle(POOL.filter(notIn(seen.concat(taken))));
       var draw = fresh.slice(0, want);
       if (draw.length < want) {   // cycle complete: everything has been seen, start over
         seen = [];
         var used = taken.concat(draw.map(function (r) { return r.src; }));
-        draw = draw.concat(shuffle(ROAMERS.filter(notIn(used))).slice(0, want - draw.length));
+        draw = draw.concat(shuffle(POOL.filter(notIn(used))).slice(0, want - draw.length));
       }
       picks = picks.concat(draw);
     }

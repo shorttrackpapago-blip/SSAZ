@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<title>History</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Reenie+Beanie&family=Titan+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<style>
+  .soon { text-align: center; padding: 18px 14px 22px; }
+  .soon h2 { font-size: clamp(38px, 7vw, 76px); color: var(--yellow); margin: 0 0 4px; transform: rotate(-2deg); }
+  .soon .gifrow { justify-content: center; }
+  .revelation { display: block; width: min(100%, 520px); height: auto; margin: 0 auto; overflow: visible; }
+  .revelation .ring { font-family: var(--bubble); font-size: 31px; letter-spacing: .02em; fill: var(--yellow); stroke: var(--navy); stroke-width: 6px; paint-order: stroke fill; stroke-linejoin: round; }
+  .revelation .rays { transform-box: view-box; transform-origin: 50% 50%; animation: rays 30s linear infinite; }
+  .revelation .jesus { filter: drop-shadow(6px 6px 0 #000); animation: glow 3.2s ease-in-out infinite alternate; }
+  @keyframes rays { to { transform: rotate(360deg); } }
+  @keyframes glow { from { filter: drop-shadow(6px 6px 0 #000) drop-shadow(0 0 6px #fff6b0); } to { filter: drop-shadow(6px 6px 0 #000) drop-shadow(0 0 26px #fff6b0); } }
+  @media (prefers-reduced-motion: reduce) { .revelation .rays, .revelation .jesus { animation: none; } }
+  .soon .fine { font-size: 12px; margin: 14px 0 0; }
+</style>
+</head>
+<body>
+<div class="catalog">
+  <a class="sticker" href="camp.html"><img src="assets/logo.png" alt="Singlespeed Arizona 2027 — The Sequel. Back to camp."></a>
+  <nav class="topbar" aria-label="Pages">
+    <a href="camp.html">← Home</a><a href="itinerary.html">Plan</a><a href="register.html">Register</a><a href="gear.html">Gear</a><a href="venue.html">Venue</a><a href="history.html" aria-current="page">History</a><a href="guestbook.html">Guestbook</a><a href="misc.html">Misc.</a>
+  </nav>
+
+  <div class="floater"><img src="assets/obj-bonfire-jump.png" alt="Someone jumping over the bonfire, a time-honored tradition"></div>
+
+  <header class="banner">
+    <h1 class="bubble">History</h1>
+    <span class="kicker">Decades of bad decisions. Some of them documented.</span>
+  </header>
+
+  <main class="sheet no-rail">
+    <div class="vert" aria-hidden="true">Coming soon · coming soon · coming soon · coming soon</div>
+    <div class="info soon">
+      <h2 class="bubble">Coming soon</h2>
+      <svg class="revelation" viewBox="0 0 560 680" role="img" aria-labelledby="rev-t">
+        <title id="rev-t">Scandinavian Jesus, glowing, surrounded by the words: All will be revealed... soon, now fuck off!</title>
+        <defs>
+          <path id="ring" d="M280 30 a250 310 0 1 1 -0.1 0"/>
+          <radialGradient id="halo"><stop offset="0" stop-color="#fff6b0" stop-opacity=".95"/><stop offset=".6" stop-color="#FFDE06" stop-opacity=".35"/><stop offset="1" stop-color="#FFDE06" stop-opacity="0"/></radialGradient>
+        </defs>
+        <g class="rays" aria-hidden="true">
+          <g fill="#FFDE06" opacity=".22">
+            <path d="M280 340 L250 -40 L310 -40 Z"/><path d="M280 340 L250 -40 L310 -40 Z" transform="rotate(30 280 340)"/>
+            <path d="M280 340 L250 -40 L310 -40 Z" transform="rotate(60 280 340)"/><path d="M280 340 L250 -40 L310 -40 Z" transform="rotate(90 280 340)"/>
+            <path d="M280 340 L250 -40 L310 -40 Z" transform="rotate(120 280 340)"/><path d="M280 340 L250 -40 L310 -40 Z" transform="rotate(150 280 340)"/>
+            <path d="M280 340 L250 -40 L310 -40 Z" transform="rotate(180 280 340)"/><path d="M280 340 L250 -40 L310 -40 Z" transform="rotate(210 280 340)"/>
+            <path d="M280 340 L250 -40 L310 -40 Z" transform="rotate(240 280 340)"/><path d="M280 340 L250 -40 L310 -40 Z" transform="rotate(270 280 340)"/>
+            <path d="M280 340 L250 -40 L310 -40 Z" transform="rotate(300 280 340)"/><path d="M280 340 L250 -40 L310 -40 Z" transform="rotate(330 280 340)"/>
+          </g>
+        </g>
+        <ellipse cx="280" cy="340" rx="230" ry="290" fill="url(#halo)" aria-hidden="true"/>
+        <image class="jesus" href="assets/roamers/scandi-jesus.jpg" x="152" y="121" width="256" height="438"/>
+        <text class="ring" aria-hidden="true"><textPath href="#ring" textLength="1770" lengthAdjust="spacing">ALL WILL BE REVEALED... SOON, NOW FUCK OFF! ★ ALL WILL BE REVEALED... SOON, NOW FUCK OFF! ★</textPath></text>
+      </svg>
+      <p class="fine">The history of Single Speed Arizona is being compiled by our team of historians (Karl, from memory, at the fire). Check back later.</p>
+      <div class="gifrow"><img src="assets/gif/construction.gif" width="176" height="64" alt="Under construction"><img src="assets/gif/digger.gif" width="80" height="80" alt=""></div>
+    </div>
+  </main>
+
+  <div class="snapstrip" data-strip="history"></div>
+
+  <footer class="footer">
+    <div class="legal">© 2027 Management. All rights reserved. No refunds. No kids. No gears.</div>
+    <div class="bestviewed">Best viewed in Netscape Navigator at 800×600.</div>
+  </footer>
+  <div class="after-footer"></div>
+</div>
+<script src="js/site.js"></script>
+</body>
+</html>
