@@ -394,6 +394,16 @@
     { src: "crew-69.png", alt: "A man in a leather coat and gloves, swigging from a bottle and side-eyeing you" },
     { src: "crew-70.png", alt: "Two women in a silver convertible giving you the look" },
     { src: "crew-71.png", alt: "A big guy in yellow aviators and a fishing vest, hands folded next to a beer bottle" },
+    { src: "crew-72.png", alt: "A skeleton in a teal bike helmet holding up a beat-up red beer can" },
+    { src: "crew-73.png", alt: "A bearded guy in a tank top worn over a bra, beer in one hand, flipping you off with the other" },
+    { src: "crew-74.png", alt: "A rider in a Short Track at Papago jersey shotgunning a can" },
+    { src: "crew-75.jpg", alt: "A guy in a bike helmet, knotted plaid crop top and jorts, yelling on the trail" },
+    { src: "crew-76.png", alt: "Two riders standing with their bikes, both chugging", big: true },
+    { src: "crew-77.png", alt: "A grinning rider in a purple Suns jersey and yellow shades, raising a PBR" },
+    { src: "crew-78.png", alt: "A hand holding a sweaty Tecate can in front of a rider going by" },
+    { src: "crew-79.png", alt: "A rider at his handlebars winking with his tongue out" },
+    { src: "crew-80.png", alt: "A rider in a teal jersey and Camelbak, chugging a can" },
+    { src: "crew-81.png", alt: "A guy in a bike helmet and blue underwear, and nothing else" },
     { src: "sign-scandi-jesus.svg", alt: "A brown backcountry road sign: Have you found Scandinavian Jesus yet?" },
     { src: "scandi-jesus.jpg", alt: "A holy card of Scandinavian Jesus, in a backwards cap with sunglasses on his head", label: "Good fuckin' job, you found me. I got nothin'", big: true }
   ];
