@@ -51,7 +51,7 @@ var HISTORY_PHOTOS = [
   if (!stage || !HISTORY_PHOTOS.length) return;
 
   var SLOTS = 9;                 // cards on the wheel at once
-  var DEG_PER_SEC = 4;           // one turn every 90 seconds
+  var DEG_PER_SEC = 8;           // one turn every 45 seconds
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // ---------- the wheel itself (SVG, drawn once) ----------
