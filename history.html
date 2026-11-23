@@ -31,10 +31,20 @@
   .wheel-sec .kick { text-align: center; font-family: var(--cond); font-size: 15px; letter-spacing: .05em; margin: 2px 0 10px; }
   .hw-stage {
     position: relative; overflow: hidden; height: 360px; border: 3px solid var(--navy); box-shadow: 6px 6px 0 var(--navy);
-    background: radial-gradient(120% 90% at 50% 0%, #fff3cf 0%, #f6d79a 45%, #e3a764 80%, #c98545 100%);
+    background: radial-gradient(120% 95% at 50% 0%, #7b3fc4 0%, #5a20a6 40%, var(--navy) 75%, #2b0a5c 100%);
   }
-  .hw-stage::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(rgba(65, 19, 130, .08) 1.2px, transparent 1.4px); background-size: 6px 6px; }
-  .hw-wheel { position: absolute; }
+  .hw-stage::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(rgba(255, 255, 255, .07) 1.2px, transparent 1.4px); background-size: 6px 6px; z-index: 0; }
+  .hw-wheel { position: absolute; z-index: 1; }
+  .hw-card { cursor: zoom-in; }
+  .hw-card:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+  .hw-zoom {
+    position: fixed; z-index: 160; box-sizing: border-box; padding: 10px; background: #fff; border: 2px solid #222;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, .4); cursor: zoom-out;
+    transition: left .3s ease, top .3s ease, width .3s ease, height .3s ease, box-shadow .3s ease;
+  }
+  .hw-zoom.big { box-shadow: 12px 12px 0 var(--navy), 0 0 0 4px var(--yellow); }
+  .hw-zoom img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  @media (prefers-reduced-motion: reduce) { .hw-zoom { transition: none; } }
   .hw-svg { position: absolute; inset: 0; width: 100%; height: 100%; filter: drop-shadow(0 6px 4px rgba(0, 0, 0, .25)); }
   .hw-slot { position: absolute; left: 50%; top: 50%; width: 0; height: 0; will-change: transform; }
   .hw-svg, .hw-card { will-change: transform; }
@@ -94,8 +104,8 @@
     <section class="info wheel-sec" aria-labelledby="tl">
       <h2 id="tl" class="bubble">Around and around</h2>
       <p class="kick">The archives, one revolution at a time.</p>
-      <div class="hw-stage" id="history-wheel" role="region" aria-label="Old SSAZ photos riding the spokes of a slowly spinning bike wheel. Hover to stop it."></div>
-      <p class="hw-hint">Hover to hold the wheel still.</p>
+      <div class="hw-stage" id="history-wheel" role="region" aria-label="Old SSAZ photos riding the spokes of a slowly spinning bike wheel. Click a photo to enlarge it."></div>
+      <p class="hw-hint">Click a photo to blow it up. Move off it to send it back.</p>
     </section>
     </div>
   </main>

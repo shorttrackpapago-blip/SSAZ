@@ -97,9 +97,16 @@ var HISTORY_PHOTOS = [
     var img = document.createElement("img");
     img.addEventListener("load", function () { this.parentNode.classList.toggle("tall", this.naturalHeight > this.naturalWidth); });
     card.appendChild(img);
+    card.tabIndex = 0;
+    card.setAttribute("role", "button");
     slot.appendChild(card);
     wheel.appendChild(slot);
-    slots.push({ base: i * 360 / SLOTS, slot: slot, card: card, img: img, p: 0 });
+    var s = { base: i * 360 / SLOTS, slot: slot, card: card, img: img, p: 0 };
+    slots.push(s);
+    (function (s) {
+      s.card.addEventListener("click", function (e) { e.stopPropagation(); zoomIn(s); });
+      s.card.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); zoomIn(s); } });
+    })(s);
   }
   function load(s) {
     var ph = HISTORY_PHOTOS[next % HISTORY_PHOTOS.length];
@@ -138,9 +145,60 @@ var HISTORY_PHOTOS = [
     });
   }
 
-  var paused = false, last = 0;
-  stage.addEventListener("mouseenter", function () { paused = true; });
-  stage.addEventListener("mouseleave", function () { paused = false; });
+  // ---------- click a card: it blows up and the wheel stops. Move the mouse off it (or tap/click
+  // anywhere, or hit Esc) and it shrinks back onto its spoke and the wheel rolls on. ----------
+  var paused = false, last = 0, zoom = null;
+  function place(el, r) { el.style.left = r.left + "px"; el.style.top = r.top + "px"; el.style.width = r.width + "px"; el.style.height = r.height + "px"; }
+  function zoomIn(s) {
+    if (zoom) return;
+    paused = true;
+    var from = s.card.getBoundingClientRect();
+    var nw = s.img.naturalWidth || 4, nh = s.img.naturalHeight || 3, pad = 20;
+    var k = Math.min(Math.min(innerWidth * 0.9, 820) / nw, (innerHeight * 0.8) / nh);
+    var tw = nw * k + pad, th = nh * k + pad;
+    var cx = from.left + from.width / 2, cy = from.top + from.height / 2;
+    var to = {
+      left: Math.min(Math.max(cx - tw / 2, 8), innerWidth - tw - 8),
+      top: Math.min(Math.max(cy - th / 2, 8), innerHeight - th - 8),
+      width: tw, height: th
+    };
+    var z = document.createElement("div");
+    z.className = "hw-zoom";
+    z.setAttribute("role", "dialog");
+    z.setAttribute("aria-label", s.img.alt);
+    z.innerHTML = '<img alt="">';
+    z.firstChild.src = s.img.src;
+    z.firstChild.alt = s.img.alt;
+    place(z, from);
+    document.body.appendChild(z);
+    s.card.style.visibility = "hidden";
+    z.getBoundingClientRect();        // commit the start size so the grow animates
+    z.classList.add("big");
+    place(z, to);
+    zoom = { z: z, s: s, to: to, ready: false };
+    setTimeout(function () { if (zoom && zoom.z === z) zoom.ready = true; }, 320);
+  }
+  function zoomOut() {
+    if (!zoom || zoom.closing) return;
+    var z = zoom.z, s = zoom.s;
+    zoom.closing = true;
+    z.classList.remove("big");
+    place(z, s.card.getBoundingClientRect());
+    setTimeout(function () {
+      z.remove();
+      s.card.style.visibility = "";
+      zoom = null;
+      paused = false;
+    }, 300);
+  }
+  document.addEventListener("mousemove", function (e) {
+    if (!zoom || !zoom.ready) return;
+    var r = zoom.z.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) zoomOut();
+  });
+  document.addEventListener("click", function () { if (zoom && zoom.ready) zoomOut(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") zoomOut(); });
+  window.addEventListener("scroll", function () { if (zoom && zoom.ready) zoomOut(); }, { passive: true });
   function tick(now) {
     var dt = last ? Math.min(0.1, (now - last) / 1000) : 0;
     last = now;
