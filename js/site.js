@@ -411,6 +411,10 @@
     { src: "crew-85.png", alt: "A grinning rider in a pink bikini bottom, with a costume crown and streamers on her helmet" },
     { src: "crew-86.jpg", alt: "A pack of riders jostling at the start in the desert, saguaro in the background" },
     { src: "crew-87.png", alt: "A rider in a blue jersey on a green singlespeed, grabbing a beer handed up from the side of the trail" },
+    { src: "crew-88.png", alt: "Two cartoon characters, a chihuahua and a cat, bursting grinning through a torn hole" },
+    { src: "crew-89.png", alt: "Two cartoon teens on a red couch, one in an AC/DC shirt and one in a Metallica shirt, sneering" },
+    { src: "crew-90.png", alt: "A BMX racer in a full-face helmet ripping toward you, number plate on the bars" },
+    { src: "crew-91.png", alt: "An older guy on a teal mountain bike pointing a shotgun off to the side" },
     { src: "sign-scandi-jesus.svg", alt: "A brown backcountry road sign: Have you found Scandinavian Jesus yet?" },
     { src: "scandi-jesus.jpg", alt: "A holy card of Scandinavian Jesus, in a backwards cap with sunglasses on his head", label: "Good fuckin' job, you found me. I got nothin'", big: true }
   ];
