@@ -24,7 +24,13 @@ var HISTORY_PHOTOS = [
   { src: "h16.jpg", alt: "A crowd of riders and bikes on a dirt road high above rolling desert mountains" },
   { src: "h17.jpg", alt: "Bikes lined up along a sidewalk railing outside an old-town patio" },
   { src: "h18.jpg", alt: "Four riders posing on a dirt road, one in a stars-and-stripes shirt, one in tie-dye" },
-  { src: "h19.jpg", alt: "A close-up of an SSAZ23 trucker hat that says Getting Inferior down in Superior, tongue sticking out below the brim" }
+  { src: "h19.jpg", alt: "A close-up of an SSAZ23 trucker hat that says Getting Inferior down in Superior, tongue sticking out below the brim" },
+  { src: "h20.jpg", alt: "Riders crossing a rust-orange suspension bridge strung with party lights" },
+  { src: "h21.jpg", alt: "Six riders with drinks lounging on stone steps under a tree with a bike hanging in it" },
+  { src: "h22.jpg", alt: "A big bearded guy in a sleeveless shirt holding a bag up so another rider can drink from it" },
+  { src: "h23.jpg", alt: "Bikes strewn across a desert lot around a van, a horse trailer and a red truck, a big peak behind" },
+  { src: "h24.jpg", alt: "A crowd silhouetted around a huge bonfire at dusk, the trees lit orange" },
+  { src: "h25.jpg", alt: "A crowd of riders gathering in the street, a big red mountain behind them" }
 ];
 /* ================================================================ */
 
