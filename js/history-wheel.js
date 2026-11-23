@@ -30,7 +30,13 @@ var HISTORY_PHOTOS = [
   { src: "h22.jpg", alt: "A big bearded guy in a sleeveless shirt holding a bag up so another rider can drink from it" },
   { src: "h23.jpg", alt: "Bikes strewn across a desert lot around a van, a horse trailer and a red truck, a big peak behind" },
   { src: "h24.jpg", alt: "A crowd silhouetted around a huge bonfire at dusk, the trees lit orange" },
-  { src: "h25.jpg", alt: "A crowd of riders gathering in the street, a big red mountain behind them" }
+  { src: "h25.jpg", alt: "A crowd of riders gathering in the street, a big red mountain behind them" },
+  { src: "h26.jpg", alt: "A grinning rider with her mouth open under a hot dog dangling from a rope" },
+  { src: "h27.jpg", alt: "A bearded guy in an Arizona-flag cape dancing on a lit-up patio at night" },
+  { src: "h28.jpg", alt: "A bearded rider digging into a snack bag next to a picnic-table spread of cheese and salami" },
+  { src: "h29.jpg", alt: "Two bearded riders laughing at a trailside table of snacks, pickles and beer" },
+  { src: "h30.jpg", alt: "Two riders cruising side by side on a bike path, one in a polka-dot jersey" },
+  { src: "h31.jpg", alt: "A black-and-white shot of a bearded rider popping a wheelie on a fat bike" }
 ];
 /* ================================================================ */
 
