@@ -15,7 +15,7 @@ It's plain HTML, CSS, and vanilla JS, with no build step and no dependencies bey
 | `register.html` | How to register: $130 cash or check, sealed in an envelope, by mail. Example envelope, note and check. |
 | `gear.html` | Bikes 'n' Shit. |
 | `venue.html` + `js/gallery.js` | The venue: ranch video, getting here, weather, camping, nearby sites, and the photo wall (2019 was also at Bumble Bee Ranch). `gallery.html` just redirects here. |
-| `history.html` | Coming soon: Scandinavian Jesus in a halo, ringed by "All will be revealed... soon, now fuck off!" (He stays out of the floaters on this page.) |
+| `history.html` | Coming soon: Scandinavian Jesus in a halo, ringed by "All will be revealed... soon, now fuck off!" (He stays out of the floaters on this page.) Below that, the history wheel (`js/history-wheel.js`): old photos riding the spokes of a slowly spinning wheel, oldest first, looping. To add photos, drop them in `assets/history/` and add lines to `HISTORY_PHOTOS` at the top of that file. |
 | `guestbook.html` | The Atabook guestbook embed. |
 | `misc.html` | Shenanigans: fact-checked cycling and doping quotes, lore, one-liners, silly links. |
 | `404.html` | For GitHub Pages. |
