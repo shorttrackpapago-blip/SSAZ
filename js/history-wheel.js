@@ -11,7 +11,14 @@ var HISTORY_PHOTOS = [
   { src: "h03.jpg", alt: "A shirtless guy in bib shorts standing in the creek, pouring from a keg" },
   { src: "h04.jpg", alt: "A bearded rider leading a group up a dirt road" },
   { src: "h05.jpg", alt: "A bearded rider in a pink and yellow jersey and a vintage helmet, arms out" },
-  { src: "h06.jpg", alt: "A Tecate held out to a rider coming around a bend in the road" }
+  { src: "h06.jpg", alt: "A Tecate held out to a rider coming around a bend in the road" },
+  { src: "h07.jpg", alt: "A huge group of riders lined up along a desert road, everyone holding a wheel over their head" },
+  { src: "h08.jpg", alt: "A rubber dildo standing upright in a parking lot, riders and bikes scattered behind it" },
+  { src: "h09.jpg", alt: "A bearded rider on a singlespeed giving a fist pump, the valley far below" },
+  { src: "h10.jpg", alt: "A guy in a camp chair hoisting an inflatable sheep, friends drinking beside him" },
+  { src: "h11.jpg", alt: "Riders loading bikes into the back of a rental moving truck" },
+  { src: "h12.jpg", alt: "A crew of bearded guys outside an old tin shack, one kneeling and flipping the bird" },
+  { src: "h13.jpg", alt: "A big crowd of riders and bikes in a gravel lot, a party bus and a moving truck behind them" }
 ];
 /* ================================================================ */
 
