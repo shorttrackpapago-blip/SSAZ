@@ -405,6 +405,12 @@
     { src: "crew-79.png", alt: "A rider at his handlebars winking with his tongue out" },
     { src: "crew-80.png", alt: "A rider in a teal jersey and Camelbak, chugging a can" },
     { src: "crew-81.png", alt: "A guy in a bike helmet and blue underwear, and nothing else" },
+    { src: "crew-82.jpg", alt: "Riders crammed into the back of a box truck, one with his face in his hands" },
+    { src: "crew-83.jpg", alt: "Four riders hoisting their bikes over a guy flat on his back in the dirt with his bike on top of him" },
+    { src: "crew-84.png", alt: "An orange mailbox stenciled SSAZ" },
+    { src: "crew-85.png", alt: "A grinning rider in a pink bikini bottom, with a costume crown and streamers on her helmet" },
+    { src: "crew-86.jpg", alt: "A pack of riders jostling at the start in the desert, saguaro in the background" },
+    { src: "crew-87.png", alt: "A rider in a blue jersey on a green singlespeed, grabbing a beer handed up from the side of the trail" },
     { src: "sign-scandi-jesus.svg", alt: "A brown backcountry road sign: Have you found Scandinavian Jesus yet?" },
     { src: "scandi-jesus.jpg", alt: "A holy card of Scandinavian Jesus, in a backwards cap with sunglasses on his head", label: "Good fuckin' job, you found me. I got nothin'", big: true }
   ];
