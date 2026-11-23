@@ -18,7 +18,13 @@ var HISTORY_PHOTOS = [
   { src: "h10.jpg", alt: "A guy in a camp chair hoisting an inflatable sheep, friends drinking beside him" },
   { src: "h11.jpg", alt: "Riders loading bikes into the back of a rental moving truck" },
   { src: "h12.jpg", alt: "A crew of bearded guys outside an old tin shack, one kneeling and flipping the bird" },
-  { src: "h13.jpg", alt: "A big crowd of riders and bikes in a gravel lot, a party bus and a moving truck behind them" }
+  { src: "h13.jpg", alt: "A big crowd of riders and bikes in a gravel lot, a party bus and a moving truck behind them" },
+  { src: "h14.jpg", alt: "Riders crowded around a picnic table of beer bottles outside a tin-sided bar" },
+  { src: "h15.jpg", alt: "Two guys at a picnic table throwing devil horns, a beached speedboat and a guy chugging behind them" },
+  { src: "h16.jpg", alt: "A crowd of riders and bikes on a dirt road high above rolling desert mountains" },
+  { src: "h17.jpg", alt: "Bikes lined up along a sidewalk railing outside an old-town patio" },
+  { src: "h18.jpg", alt: "Four riders posing on a dirt road, one in a stars-and-stripes shirt, one in tie-dye" },
+  { src: "h19.jpg", alt: "A close-up of an SSAZ23 trucker hat that says Getting Inferior down in Superior, tongue sticking out below the brim" }
 ];
 /* ================================================================ */
 
